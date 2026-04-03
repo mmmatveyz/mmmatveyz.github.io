@@ -41,6 +41,11 @@
     --transition-normal: 300ms ease;
 }
 
+/* Smooth transition for theme switching */
+body, .header, .footer, .card, .form-input, .form-textarea, .nav, .tech-tag, .skill-tag {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
 /* Reset & Base */
 *, *::before, *::after {
     box-sizing: border-box;
@@ -510,4 +515,44 @@ ul {
 @media print {
     .header, .footer, .btn { display: none; }
     body { font-size: 12pt; }
+}
+
+/* ==========================================
+   🌙 DARK THEME & TOGGLE BUTTON
+   ========================================== */
+[data-theme="dark"] {
+    --color-bg: #0f172a;
+    --color-text: #f8fafc;
+    --color-text-secondary: #94a3b8;
+    --color-accent: #818cf8;
+    --color-accent-hover: #6366f1;
+    --color-border: #334155;
+    --color-card-bg: #1e293b;
+    --color-shadow: rgba(0, 0, 0, 0.4);
+}
+
+.theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.25rem;
+    padding: 0.5rem;
+    margin-left: 0.5rem;
+    display: flex;
+    align-items: center;
+    color: var(--color-text);
+    transition: transform var(--transition-fast);
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+    color: var(--color-accent);
+}
+
+@media (max-width: 767px) {
+    .theme-toggle {
+        margin-left: 0;
+        margin-top: var(--space-sm);
+        align-self: flex-end;
+    }
 }

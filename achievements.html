@@ -16,7 +16,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="css/style.css"/>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+    <link rel="icon" href="image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
 </head>
 <body>
 <header class="header">
@@ -28,6 +28,8 @@
             <a href="projects.html" class="nav-link">Проекты</a>
             <a href="achievements.html" class="nav-link active">Достижения</a>
             <a href="contacts.html" class="nav-link">Контакты</a>
+            <!-- 🔘 Кнопка переключения темы -->
+            <button id="theme-toggle" class="theme-toggle" aria-label="Переключить тему">🌙</button>
         </nav>
     </div>
 </header>
@@ -61,7 +63,37 @@
 </footer>
 
 <script>
+    // --- 🌙 Логика тёмной темы ---
+    const themeToggle = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+        html.setAttribute('data-theme', 'dark');
+        themeToggle.textContent = '☀️';
+    } else {
+        html.setAttribute('data-theme', 'light');
+        themeToggle.textContent = '🌙';
+    }
+
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = html.getAttribute('data-theme');
+        if (currentTheme === 'dark') {
+            html.setAttribute('data-theme', 'light');
+            localStorage.setItem('theme', 'light');
+            themeToggle.textContent = '🌙';
+        } else {
+            html.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+            themeToggle.textContent = '☀️';
+        }
+    });
+
+    // --- Остальной скрипт ---
     document.getElementById('year').textContent = new Date().getFullYear();
+
     const menuToggle = document.querySelector('.menu-toggle');
     const nav = document.querySelector('.nav');
     if (menuToggle) {
@@ -71,6 +103,7 @@
             nav.style.clipPath = expanded ? 'inset(0 0 100% 0)' : 'inset(0 0 0 0)';
         });
     }
+
     const currentPath = window.location.pathname.split('/').pop() || 'index.html';
     document.querySelectorAll('.nav-link').forEach(link => {
         if (link.getAttribute('href') === currentPath) link.classList.add('active');
