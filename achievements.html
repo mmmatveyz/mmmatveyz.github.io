@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Достижения | Матвей Зрячих</title>
+    <meta name="description" content="Профессиональные достижения в электронике, ЧПУ и разработке Telegram-ботов."/>
+    <meta property="og:title" content="Достижения | Матвей Зрячих">
+    <meta property="og:description" content="4 года в электронике, модернизация станков, 2 Telegram-бота за полгода.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mmmatveyz.github.io/achievements.html">
+    <meta property="og:image" content="https://mmmatveyz.github.io/og-image.png">
+    <meta property="og:locale" content="ru_RU">
+    <script defer data-domain="mmmatveyz.github.io" src="https://plausible.io/js/script.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+<body>
+<header class="header">
+    <div class="container header-inner">
+        <a href="index.html" class="logo">mm<span>matveyz</span></a>
+        <button class="menu-toggle" aria-label="Открыть меню">☰</button>
+        <nav class="nav">
+            <a href="index.html" class="nav-link">Главная</a>
+            <a href="projects.html" class="nav-link">Проекты</a>
+            <a href="achievements.html" class="nav-link active">Достижения</a>
+            <a href="contacts.html" class="nav-link">Контакты</a>
+        </nav>
+    </div>
+</header>
+
+<main class="section">
+    <div class="container">
+        <h1 class="section-title">Мои достижения</h1>
+        <div class="grid-4">
+            <div class="card achievement-card"><div class="achievement-number">4 года</div><h3 class="card-title">В электронике и ЧПУ</h3><p class="card-text">Обслуживание >100 станков: диагностика, ремонт, настройка ЧПУ Siemens Sinumerik</p></div>
+            <div class="card achievement-card"><div class="achievement-number">1 проект</div><h3 class="card-title">Модернизация станка</h3><p class="card-text">Полная замена шкафа управления токарно-карусельного станка на релейной схеме</p></div>
+            <div class="card achievement-card"><div class="achievement-number">2 бота</div><h3 class="card-title">За полгода</h3><p class="card-text">Самостоятельное освоение Python, асинхронности, работы с NLP и эмбеддингами</p></div>
+            <div class="card achievement-card"><div class="achievement-number">NLP</div><h3 class="card-title">Семантический поиск</h3><p class="card-text">Реализация эмбеддингов (paraphrase-multilingual-MiniLM-L12-v2) с фоновой генерацией</p></div>
+        </div>
+        <div class="mt-lg">
+            <h2 class="section-title">Навыки и технологии</h2>
+            <div class="skills-list">
+                <span class="skill-tag">Python</span><span class="skill-tag">Aiogram</span><span class="skill-tag">SQLite</span><span class="skill-tag">sentence-transformers</span><span class="skill-tag">openpyxl</span><span class="skill-tag">Git</span><span class="skill-tag">Siemens Sinumerik</span><span class="skill-tag">Profibus</span><span class="skill-tag">Modbus</span><span class="skill-tag">Ethernet/IP</span><span class="skill-tag">Гидравлика</span><span class="skill-tag">Пневматика</span><span class="skill-tag">Диагностика электроники</span>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <p>© <span id="year"></span> Матвей Зрячих (mmmatveyz). Все права защищены.</p>
+        <div class="footer-links">
+            <a href="https://t.me/mmmatveyz" class="footer-link" target="_blank" rel="noopener">Telegram ✈️</a>
+            <a href="https://github.com/mmmatveyz" class="footer-link" target="_blank" rel="noopener">GitHub 💻</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const menuToggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('.nav');
+    if (menuToggle) {
+        menuToggle.addEventListener('click', () => {
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+            menuToggle.setAttribute('aria-expanded', !expanded);
+            nav.style.clipPath = expanded ? 'inset(0 0 100% 0)' : 'inset(0 0 0 0)';
+        });
+    }
+    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('.nav-link').forEach(link => {
+        if (link.getAttribute('href') === currentPath) link.classList.add('active');
+    });
+</script>
+</body>
+</html>

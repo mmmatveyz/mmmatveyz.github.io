@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Контакты | Матвей Зрячих</title>
+    <meta name="description" content="Свяжитесь со мной для обсуждения проектов по автоматизации и разработке ботов."/>
+    <meta property="og:title" content="Контакты | Матвей Зрячих">
+    <meta property="og:description" content="Telegram, Email, GitHub. Готов обсудить вашу задачу.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mmmatveyz.github.io/contacts.html">
+    <meta property="og:image" content="https://mmmatveyz.github.io/og-image.png">
+    <meta property="og:locale" content="ru_RU">
+    <script defer data-domain="mmmatveyz.github.io" src="https://plausible.io/js/script.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+<body>
+<header class="header">
+    <div class="container header-inner">
+        <a href="index.html" class="logo">mm<span>matveyz</span></a>
+        <button class="menu-toggle" aria-label="Открыть меню">☰</button>
+        <nav class="nav">
+            <a href="index.html" class="nav-link">Главная</a>
+            <a href="projects.html" class="nav-link">Проекты</a>
+            <a href="achievements.html" class="nav-link">Достижения</a>
+            <a href="contacts.html" class="nav-link active">Контакты</a>
+        </nav>
+    </div>
+</header>
+
+<main class="section">
+    <div class="container">
+        <h1 class="section-title">Свяжитесь со мной</h1>
+        <div class="grid-2">
+            <div class="contact-info">
+                <p class="card-text">Лучший способ связаться со мной — Telegram. Отвечаю обычно в течение нескольких часов.</p>
+                <div class="contact-item"><span>✈️</span><a href="https://t.me/mmmatveyz" target="_blank" rel="noopener">@mmmatveyz</a></div>
+                <div class="contact-item"><span>✉️</span><a href="mailto:matvey@example.com">matvey@example.com</a></div>
+                <div class="contact-item"><span>💻</span><a href="https://github.com/mmmatveyz" target="_blank" rel="noopener">github.com/mmmatveyz</a></div>
+                <div class="mt-md"><p class="card-text"><strong>Город:</strong> Санкт-Петербург 🇷🇺<br><strong>Часовой пояс:</strong> UTC+3</p></div>
+            </div>
+            <form class="contact-form card" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                <div class="form-group"><label class="form-label" for="name">Имя *</label><input class="form-input" type="text" id="name" name="name" required placeholder="Ваше имя"/></div>
+                <div class="form-group"><label class="form-label" for="email">Email *</label><input class="form-input" type="email" id="email" name="email" required placeholder="you@example.com"/></div>
+                <div class="form-group"><label class="form-label" for="message">Сообщение *</label><textarea class="form-textarea" id="message" name="message" required placeholder="Расскажите о вашей задаче..."></textarea></div>
+                <button type="submit" class="btn btn-primary">Отправить →</button>
+                <p class="form-note">⚠️ Замените action на ваш Formspree endpoint для работы формы.</p>
+            </form>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <p>© <span id="year"></span> Матвей Зрячих (mmmatveyz). Все права защищены.</p>
+        <div class="footer-links">
+            <a href="https://t.me/mmmatveyz" class="footer-link" target="_blank" rel="noopener">Telegram ✈️</a>
+            <a href="https://github.com/mmmatveyz" class="footer-link" target="_blank" rel="noopener">GitHub 💻</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const menuToggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('.nav');
+    if (menuToggle) {
+        menuToggle.addEventListener('click', () => {
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+            menuToggle.setAttribute('aria-expanded', !expanded);
+            nav.style.clipPath = expanded ? 'inset(0 0 100% 0)' : 'inset(0 0 0 0)';
+        });
+    }
+    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('.nav-link').forEach(link => {
+        if (link.getAttribute('href') === currentPath) link.classList.add('active');
+    });
+    const form = document.querySelector('.contact-form');
+    if (form && form.action.includes('YOUR_FORM_ID')) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('⚠️ Настройте Formspree endpoint в атрибуте action формы для отправки.');
+        });
+    }
+</script>
+</body>
+</html>
