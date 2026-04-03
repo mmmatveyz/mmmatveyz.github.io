@@ -558,26 +558,30 @@ ul {
     }
 }
 
-/* 🎨 Buttons fix for dark theme */
+/* 🎨 FIX: Buttons for dark theme - переопределяем ВСЕ кнопки */
 [data-theme="dark"] .btn-primary {
-    background: var(--color-accent);
-    color: #fff;
+    background: #818cf8 !important;
+    color: #ffffff !important;
+    border-color: #818cf8 !important;
 }
 
 [data-theme="dark"] .btn-primary:hover {
-    background: var(--color-accent-hover);
+    background: #6366f1 !important;
+    border-color: #6366f1 !important;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px var(--color-shadow);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 [data-theme="dark"] .btn-outline {
-    border-color: var(--color-text);
-    color: var(--color-text);
+    background: transparent !important;
+    border-color: #f8fafc !important;
+    color: #f8fafc !important;
 }
 
 [data-theme="dark"] .btn-outline:hover {
-    background: var(--color-text);
-    color: var(--color-bg);
+    background: #818cf8 !important;
+    border-color: #818cf8 !important;
+    color: #ffffff !important;
 }
 
 [data-theme="dark"] .btn-sm {
