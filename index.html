@@ -60,7 +60,12 @@
         <div class="container">
             <h1 class="hero-title">Привет, я Матвей.<br>Электромонтёр-инженер и разработчик Telegram-ботов</h1>
             <p class="hero-subtitle">Создаю цифровые инструменты для производства и автоматизирую учёт</p>
-            <a href="projects.html" class="btn btn-primary">Посмотреть проекты →</a>
+
+            <!-- 🔘 Две кнопки в ряд -->
+            <div class="hero-buttons">
+                <a href="projects.html" class="btn btn-primary">Посмотреть проекты →</a>
+                <a href="resume.pdf" download class="btn btn-outline">📄 Скачать резюме</a>
+            </div>
         </div>
     </section>
 
@@ -98,6 +103,47 @@
             </div>
         </div>
     </section>
+
+    <!-- 💬 НОВАЯ СЕКЦИЯ: Отзывы -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Отзывы</h2>
+
+            <!-- Сетка для отображения отзывов (пока пустая) -->
+            <div class="testimonials-grid" id="testimonials-list">
+                <div class="card text-center" style="grid-column: 1 / -1;">
+                    <p class="card-text">Пока нет отзывов. Будьте первым!</p>
+                </div>
+            </div>
+
+            <!-- Форма для отправки нового отзыва -->
+            <div class="mt-lg review-form-wrapper">
+                <h3 class="section-title" style="font-size: var(--text-xl);">Оставить отзыв</h3>
+                <form class="contact-form card" action="https://formspree.io/f/xnjogdwb" method="POST">
+                    <!-- Скрытое поле, чтобы отличать отзывы от контактов в Formspree -->
+                    <input type="hidden" name="form-type" value="review">
+
+                    <div class="form-group">
+                        <label class="form-label" for="review-name">Ваше имя *</label>
+                        <input class="form-input" type="text" id="review-name" name="name" required placeholder="Иван Иванов">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="review-role">Роль / Компания</label>
+                        <input class="form-input" type="text" id="review-role" name="role" placeholder="Главный инженер, ООО «Пример»">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="review-text">Ваш отзыв *</label>
+                        <textarea class="form-textarea" id="review-text" name="message" required placeholder="Расскажите о вашем опыте работы..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Отправить отзыв →</button>
+                    <p class="form-note">Отзыв появится после модерации.</p>
+                </form>
+            </div>
+        </div>
+    </section>
 </main>
 
 <footer class="footer">
@@ -115,7 +161,6 @@
     const themeToggle = document.getElementById('theme-toggle');
     const html = document.documentElement;
 
-    // Проверяем сохранённую тему или системные настройки
     const savedTheme = localStorage.getItem('theme');
     const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
@@ -127,7 +172,6 @@
         themeToggle.textContent = '🌙';
     }
 
-    // Обработчик клика
     themeToggle.addEventListener('click', () => {
         const currentTheme = html.getAttribute('data-theme');
         if (currentTheme === 'dark') {
@@ -141,7 +185,7 @@
         }
     });
 
-    // --- Остальной скрипт (год, меню, активная ссылка) ---
+    // --- Остальной скрипт ---
     document.getElementById('year').textContent = new Date().getFullYear();
 
     const menuToggle = document.querySelector('.menu-toggle');
@@ -158,6 +202,29 @@
     document.querySelectorAll('.nav-link').forEach(link => {
         if (link.getAttribute('href') === currentPath) link.classList.add('active');
     });
+
+    // --- Обработка формы отзывов (визуальная обратная связь) ---
+    const reviewForm = document.querySelector('.review-form-wrapper form');
+    if (reviewForm) {
+        reviewForm.addEventListener('submit', (e) => {
+            // Не блокируем отправку, просто показываем сообщение после успеха
+            // Фактическая отправка идёт на Formspree
+            setTimeout(() => {
+                if (reviewForm.classList.contains('sent')) return;
+                // После редиректа Formspree пользователь вернётся на страницу
+                // Можно добавить сообщение в URL параметр и показать его
+                const urlParams = new URLSearchParams(window.location.search);
+                if (urlParams.get('success') === 'review') {
+                    const msg = document.createElement('p');
+                    msg.className = 'card-text';
+                    msg.style.color = 'var(--color-accent)';
+                    msg.textContent = '✅ Спасибо! Ваш отзыв отправлен на модерацию.';
+                    reviewForm.parentNode.insertBefore(msg, reviewForm);
+                    reviewForm.reset();
+                }
+            }, 100);
+        });
+    }
 </script>
 </body>
 </html>

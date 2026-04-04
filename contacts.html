@@ -46,6 +46,9 @@
                 <div class="mt-md"><p class="card-text"><strong>Город:</strong> Санкт-Петербург 🇷🇺<br><strong>Часовой пояс:</strong> UTC+3</p></div>
             </div>
             <form class="contact-form card" action="https://formspree.io/f/xnjogdwb" method="POST">
+                <!-- Скрытое поле для различения форм в Formspree -->
+                <input type="hidden" name="form-type" value="contact">
+
                 <div class="form-group"><label class="form-label" for="name">Имя *</label><input class="form-input" type="text" id="name" name="name" required placeholder="Ваше имя"/></div>
                 <div class="form-group"><label class="form-label" for="email">Email *</label><input class="form-input" type="email" id="email" name="email" required placeholder="you@example.com"/></div>
                 <div class="form-group"><label class="form-label" for="message">Сообщение *</label><textarea class="form-textarea" id="message" name="message" required placeholder="Расскажите о вашей задаче..."></textarea></div>

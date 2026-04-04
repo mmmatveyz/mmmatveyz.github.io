@@ -588,3 +588,118 @@ ul {
     padding: var(--space-xs) var(--space-md);
     font-size: var(--text-xs);
 }
+
+/* ==========================================
+   📦 NEW FEATURES: Hero Buttons, Screenshots, Reviews
+   ========================================== */
+
+/* Hero Buttons Layout */
+.hero-buttons {
+    display: flex;
+    gap: var(--space-md);
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: var(--space-lg);
+}
+
+/* Project Screenshots */
+.project-screenshot {
+    margin: var(--space-md) 0;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    background: var(--color-border);
+}
+
+.project-screenshot img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform var(--transition-normal);
+}
+
+.project-screenshot:hover img {
+    transform: scale(1.02);
+}
+
+/* Reviews & Testimonials Grid */
+.testimonials-grid {
+    display: grid;
+    gap: var(--space-lg);
+}
+
+@media (min-width: 768px) {
+    .testimonials-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .testimonials-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.testimonial-card {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.testimonial-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.testimonial-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: var(--text-lg);
+    flex-shrink: 0;
+}
+
+.testimonial-name {
+    font-weight: 600;
+    font-size: var(--text-base);
+    margin: 0;
+}
+
+.testimonial-role {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    margin: 0;
+}
+
+.testimonial-text {
+    font-style: italic;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin: var(--space-sm) 0 0;
+}
+
+.testimonial-rating {
+    color: #f59e0b;
+    font-size: var(--text-sm);
+    letter-spacing: 2px;
+    margin-top: auto;
+}
+
+/* Review Form Wrapper */
+.review-form-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.review-form-wrapper .form-note {
+    text-align: center;
+    margin-top: var(--space-sm);
+}

@@ -5,12 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Страница не найдена | Матвей Зрячих</title>
     <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="Страница не найдена. Вернитесь на главную или посмотрите проекты.">
+
+    <!-- Open Graph для красивого превью -->
+    <meta property="og:title" content="404 | Страница не найдена">
+    <meta property="og:description" content="Похоже, эта страница ушла в ремонт.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mmmatveyz.github.io/404.html">
+    <meta property="og:locale" content="ru_RU">
+
+    <!-- Analytics -->
+    <script defer data-domain="mmmatveyz.github.io" src="https://plausible.io/js/script.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="css/style.css"/>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
-    <style>body{display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0;}</style>
+    <link rel="icon" href="image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+
+    <style>
+        /* Центрирование контента 404 */
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .error-main {
+            padding: var(--space-2xl) 0;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
-<main class="section text-center">
+<!-- 🔘 Кнопка темы в углу -->
+<button id="theme-toggle" class="theme-toggle" aria-label="Переключить тему" style="position: fixed; top: 1rem; right: 1rem; z-index: 1000;">🌙</button>
+
+<main class="error-main text-center">
     <div class="container">
         <h1 class="hero-title">404 ⚡</h1>
         <p class="hero-subtitle">Похоже, эта страница ушла в ремонт.<br>Вернёмся на главную или в проекты.</p>
@@ -20,5 +52,35 @@
         </div>
     </div>
 </main>
+
+<script>
+    // --- 🌙 Логика тёмной темы (как на всех страницах) ---
+    const themeToggle = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+        html.setAttribute('data-theme', 'dark');
+        themeToggle.textContent = '☀️';
+    } else {
+        html.setAttribute('data-theme', 'light');
+        themeToggle.textContent = '🌙';
+    }
+
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = html.getAttribute('data-theme');
+        if (currentTheme === 'dark') {
+            html.setAttribute('data-theme', 'light');
+            localStorage.setItem('theme', 'light');
+            themeToggle.textContent = '🌙';
+        } else {
+            html.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+            themeToggle.textContent = '☀️';
+        }
+    });
+</script>
 </body>
 </html>
