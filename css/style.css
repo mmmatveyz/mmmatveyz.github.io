@@ -577,13 +577,14 @@ ul {
     transform: scale(1.03);
 }
 
-/* 💬 REVIEWS CAROUSEL (Слайдер) */
+/* 💬 REVIEWS CAROUSEL (ИСПРАВЛЕННЫЙ) */
 .reviews-wrapper {
     position: relative;
-    padding: 0 3rem; /* Space for arrows */
+    /* Выносим область кнопок за пределы видимой зоны карточек */
+    margin: 0 -1.5rem;
+    padding: 0 1.5rem;
 }
 
-/* Carousel Buttons */
 .carousel-btn {
     position: absolute;
     top: 50%;
@@ -610,50 +611,47 @@ ul {
     border-color: var(--color-accent);
 }
 
-.carousel-btn.left { left: 0; }
-.carousel-btn.right { right: 0; }
+/* Кнопки вынесены за пределы карточек */
+.carousel-btn.left { left: -1.5rem; }
+.carousel-btn.right { right: -1.5rem; }
 
-/* Hide buttons on mobile */
 @media (max-width: 768px) {
-    .reviews-wrapper { padding: 0; }
+    .reviews-wrapper { margin: 0; padding: 0; }
     .carousel-btn { display: none; }
 }
 
-/* Carousel Container */
 .testimonials-grid {
     display: flex;
     gap: var(--space-lg);
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    padding-bottom: 1rem;
-
-    /* Hide Scrollbar */
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none;  /* IE and Edge */
+    /* Отступы внутри скролла, чтобы карточки не прилипали к краям */
+    padding: 0.5rem 1rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
-.testimonials-grid::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
-}
+.testimonials-grid::-webkit-scrollbar { display: none; }
 
-/* Review Card in Carousel */
 .testimonial-card {
-    flex: 0 0 100%; /* Mobile: 1 per view */
+    flex: 0 0 100%;
     scroll-snap-align: start;
     display: flex;
     flex-direction: column;
+    /* Отключаем общий hover-подъём, который вызывает "прыжки" */
+}
+
+.testimonial-card:hover {
+    transform: none !important; /* Фикс прыжков */
+    box-shadow: 0 4px 12px var(--color-shadow); /* Мягкая тень вместо подъема */
 }
 
 @media (min-width: 768px) {
-    .testimonial-card {
-        flex: 0 0 calc(50% - 1.5rem); /* Tablet: 2 per view */
-    }
+    .testimonial-card { flex: 0 0 calc(50% - var(--space-lg)); }
 }
 
 @media (min-width: 1024px) {
-    .testimonial-card {
-        flex: 0 0 calc(33.333% - 2rem); /* Desktop: 3 per view */
-    }
+    .testimonial-card { flex: 0 0 calc(33.333% - var(--space-lg)); }
 }
 
 .testimonial-header {
