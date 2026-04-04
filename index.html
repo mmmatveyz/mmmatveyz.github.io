@@ -37,7 +37,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="css/style.css"/>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+    <link rel="icon" href="image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
 </head>
 <body>
 <header class="header">
@@ -104,16 +104,15 @@
         </div>
     </section>
 
-    <!-- 💬 НОВАЯ СЕКЦИЯ: Отзывы -->
+    <!-- 💬 СЕКЦИЯ: Отзывы (динамическая загрузка) -->
     <section class="section">
         <div class="container">
             <h2 class="section-title">Отзывы</h2>
 
-            <!-- Сетка для отображения отзывов (пока пустая) -->
+            <!-- Сюда скрипт вставит карточки -->
             <div class="testimonials-grid" id="testimonials-list">
-                <div class="card text-center" style="grid-column: 1 / -1;">
-                    <p class="card-text">Пока нет отзывов. Будьте первым!</p>
-                </div>
+                <!-- Индикатор загрузки -->
+                <p style="color: var(--color-text-secondary);">Загрузка отзывов...</p>
             </div>
 
             <!-- Форма для отправки нового отзыва -->
@@ -207,12 +206,8 @@
     const reviewForm = document.querySelector('.review-form-wrapper form');
     if (reviewForm) {
         reviewForm.addEventListener('submit', (e) => {
-            // Не блокируем отправку, просто показываем сообщение после успеха
-            // Фактическая отправка идёт на Formspree
             setTimeout(() => {
                 if (reviewForm.classList.contains('sent')) return;
-                // После редиректа Formspree пользователь вернётся на страницу
-                // Можно добавить сообщение в URL параметр и показать его
                 const urlParams = new URLSearchParams(window.location.search);
                 if (urlParams.get('success') === 'review') {
                     const msg = document.createElement('p');
@@ -225,6 +220,60 @@
             }, 100);
         });
     }
+
+    // --- 📜 Загрузка отзывов из Google Таблицы (API) ---
+    // ВНИМАНИЕ: Замени ссылку ниже на свою из SheetDB!
+    const reviewsApiUrl = 'https://sheetdb.io/api/v1/gwd0ujmjh6dia';
+    const reviewsContainer = document.getElementById('testimonials-list');
+
+    function getStars(count) {
+        // Убеждаемся, что count - это число
+        const starsCount = parseInt(count, 10);
+        return '⭐'.repeat(starsCount > 0 ? starsCount : 5);
+    }
+
+    // Загрузка данных
+    fetch(reviewsApiUrl)
+        .then(response => {
+        if (!response.ok) throw new Error('Network response was not ok');
+        return response.json();
+    })
+        .then(data => {
+        // Очищаем контейнер (убираем "Загрузка...")
+        reviewsContainer.innerHTML = '';
+
+        if (data.length === 0) {
+            reviewsContainer.innerHTML = '<p class="card-text">Пока нет отзывов. Будьте первым!</p>';
+            return;
+        }
+
+        // Берем последние отзывы и переворачиваем список (новые сверху)
+        const recentReviews = data.slice().reverse();
+
+        recentReviews.forEach(review => {
+            const card = document.createElement('div');
+            card.className = 'card testimonial-card';
+
+            // Безопасная вставка данных
+            card.innerHTML = `
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">${review.name ? review.name.charAt(0).toUpperCase() : '?'}</div>
+                        <div>
+                            <h4 class="testimonial-name">${review.name}</h4>
+                            <p class="testimonial-role">${review.role}</p>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">"${review.text}"</p>
+                    <div class="testimonial-rating">${getStars(review.stars)}</div>
+                `;
+            reviewsContainer.appendChild(card);
+        });
+    })
+        .catch(error => {
+        console.error('Ошибка загрузки отзывов:', error);
+        // Не показываем ошибку пользователю, просто оставляем пустым или пишем
+        reviewsContainer.innerHTML = '';
+    });
 </script>
 </body>
 </html>
