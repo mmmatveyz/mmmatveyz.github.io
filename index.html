@@ -37,7 +37,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="css/style.css"/>
-    <link rel="icon" href="image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+
+    <!-- 🟢 ИСПРАВЛЕНИЕ ИКОНКИ: Используем отдельный файл -->
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
 </head>
 <body>
 <header class="header">
@@ -104,15 +106,22 @@
         </div>
     </section>
 
-    <!-- 💬 СЕКЦИЯ: Отзывы (динамическая загрузка) -->
+    <!-- 💬 СЕКЦИЯ: Отзывы (КАРУСЕЛЬ) -->
     <section class="section">
         <div class="container">
             <h2 class="section-title">Отзывы</h2>
 
-            <!-- Сюда скрипт вставит карточки -->
-            <div class="testimonials-grid" id="testimonials-list">
-                <!-- Индикатор загрузки -->
-                <p style="color: var(--color-text-secondary);">Загрузка отзывов...</p>
+            <!-- Обертка для слайдера -->
+            <div class="reviews-wrapper">
+                <button class="carousel-btn left" id="scrollLeft">❮</button>
+
+                <!-- Контейнер с карточками -->
+                <div class="testimonials-grid" id="testimonials-list">
+                    <!-- Сюда скрипт вставит карточки -->
+                    <p style="color: var(--color-text-secondary);">Загрузка отзывов...</p>
+                </div>
+
+                <button class="carousel-btn right" id="scrollRight">❯</button>
             </div>
 
             <!-- Форма для отправки нового отзыва -->
@@ -202,7 +211,7 @@
         if (link.getAttribute('href') === currentPath) link.classList.add('active');
     });
 
-    // --- Обработка формы отзывов (визуальная обратная связь) ---
+    // --- Обработка формы отзывов ---
     const reviewForm = document.querySelector('.review-form-wrapper form');
     if (reviewForm) {
         reviewForm.addEventListener('submit', (e) => {
@@ -221,15 +230,32 @@
         });
     }
 
-    // --- 📜 Загрузка отзывов из Google Таблицы (API) ---
-    // ВНИМАНИЕ: Замени ссылку ниже на свою из SheetDB!
+    // --- 📜 Загрузка отзывов из Google Таблицы (API) + Карусель ---
     const reviewsApiUrl = 'https://sheetdb.io/api/v1/gwd0ujmjh6dia';
     const reviewsContainer = document.getElementById('testimonials-list');
 
     function getStars(count) {
-        // Убеждаемся, что count - это число
         const starsCount = parseInt(count, 10);
         return '⭐'.repeat(starsCount > 0 ? starsCount : 5);
+    }
+
+    // Логика карусели
+    const scrollLeftBtn = document.getElementById('scrollLeft');
+    const scrollRightBtn = document.getElementById('scrollRight');
+
+    function scrollContainer(direction) {
+        const container = reviewsContainer;
+        const scrollAmount = container.clientWidth; // Прокручиваем на ширину видимой области
+        if (direction === 'left') {
+            container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        } else {
+            container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        }
+    }
+
+    if (scrollLeftBtn && scrollRightBtn) {
+        scrollLeftBtn.addEventListener('click', () => scrollContainer('left'));
+        scrollRightBtn.addEventListener('click', () => scrollContainer('right'));
     }
 
     // Загрузка данных
@@ -239,7 +265,6 @@
         return response.json();
     })
         .then(data => {
-        // Очищаем контейнер (убираем "Загрузка...")
         reviewsContainer.innerHTML = '';
 
         if (data.length === 0) {
@@ -247,14 +272,13 @@
             return;
         }
 
-        // Берем последние отзывы и переворачиваем список (новые сверху)
+        // Берем последние отзывы (новые сверху)
         const recentReviews = data.slice().reverse();
 
         recentReviews.forEach(review => {
             const card = document.createElement('div');
             card.className = 'card testimonial-card';
 
-            // Безопасная вставка данных
             card.innerHTML = `
                     <div class="testimonial-header">
                         <div class="testimonial-avatar">${review.name ? review.name.charAt(0).toUpperCase() : '?'}</div>
@@ -271,7 +295,6 @@
     })
         .catch(error => {
         console.error('Ошибка загрузки отзывов:', error);
-        // Не показываем ошибку пользователю, просто оставляем пустым или пишем
         reviewsContainer.innerHTML = '';
     });
 </script>
