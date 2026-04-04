@@ -593,6 +593,7 @@ ul {
    📦 NEW FEATURES: Hero Buttons, Screenshots, Reviews
    ========================================== */
 
+/* Hero Buttons Layout */
 .hero-buttons {
     display: flex;
     gap: var(--space-md);
@@ -601,48 +602,47 @@ ul {
     margin-top: var(--space-lg);
 }
 
+/* 📸 Project Screenshots — ФИКС: Делаем как "телефон" по центру */
 .project-screenshot {
-    margin: var(--space-md) 0;
-    border-radius: var(--radius-md);
+    margin: var(--space-lg) auto; /* Центрируем сам блок */
+    border-radius: 20px; /* Более сильное скругление (как у смартфона) */
     overflow: hidden;
     border: 1px solid var(--color-border);
-    background: var(--color-border);
-    max-width: 100%;
-    max-height: 320px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background: var(--color-bg); /* Фон под цвет карточки */
+
+    /* Ограничиваем ширину, чтобы не было гигантским */
+    width: 100%;
+    max-width: 320px;
+    display: block;
+
+    /* Убираем фиксированную высоту, пусть зависит от картинки */
+    height: auto;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2); /* Легкая тень для объема */
 }
 
 .project-screenshot img {
-    width: 100%;
-    height: auto;
-    max-height: 320px;
-    object-fit: contain;
+    width: 100%; /* Картинка заполняет наш узкий контейнер */
+    height: auto; /* Высота автоматическая */
     display: block;
     transition: transform var(--transition-normal);
 }
 
 .project-screenshot:hover img {
-    transform: scale(1.02);
+    transform: scale(1.03); /* Чуть увеличиваем при наведении */
 }
 
+/* Отзывы */
 .testimonials-grid {
     display: grid;
     gap: var(--space-lg);
 }
-
 @media (min-width: 768px) {
-    .testimonials-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+    .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
 }
-
 @media (min-width: 1024px) {
-    .testimonials-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
+    .testimonials-grid { grid-template-columns: repeat(3, 1fr); }
 }
+/* ... остальной код без изменений ... */
 
 .testimonial-card {
     text-align: left;
