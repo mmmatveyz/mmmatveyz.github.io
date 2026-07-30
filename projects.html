@@ -5,77 +5,112 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Проекты | Матвей Зрячих</title>
     <meta name="description" content="Проекты: РемонтTrack и WorkTimeBot — Telegram-боты для автоматизации промышленных процессов."/>
+
     <meta property="og:title" content="Проекты | Матвей Зрячих">
     <meta property="og:description" content="РемонтTrack и WorkTimeBot — Telegram-боты для автоматизации промышленных процессов.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://mmmatveyz.github.io/projects.html">
     <meta property="og:image" content="https://mmmatveyz.github.io/og-image.png">
     <meta property="og:locale" content="ru_RU">
-    <script defer data-domain="mmmatveyz.github.io" src="https://plausible.io/js/script.js"></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600:700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="css/style.css"/>
-    <link rel="icon" href="image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
 </head>
 <body>
 <header class="header">
     <div class="container header-inner">
         <a href="index.html" class="logo">mm<span>matveyz</span></a>
-        <button class="menu-toggle" aria-label="Открыть меню">☰</button>
-        <nav class="nav">
+        <button class="menu-toggle" aria-label="Открыть меню" aria-expanded="false">☰</button>
+        <nav class="nav" id="nav">
             <a href="index.html" class="nav-link">Главная</a>
             <a href="projects.html" class="nav-link active">Проекты</a>
             <a href="achievements.html" class="nav-link">Достижения</a>
             <a href="contacts.html" class="nav-link">Контакты</a>
-            <!-- 🔘 Кнопка переключения темы -->
             <button id="theme-toggle" class="theme-toggle" aria-label="Переключить тему">🌙</button>
         </nav>
     </div>
 </header>
 
-<main class="section">
+<main class="section reveal">
     <div class="container">
-        <h1 class="section-title">Мои проекты</h1>
+        <h1 class="section-title text-center">Мои проекты</h1>
+
+        <div class="project-filters">
+            <button class="filter-btn active" data-filter="all">Все проекты</button>
+            <button class="filter-btn" data-filter="bot">Telegram-боты</button>
+            <button class="filter-btn" data-filter="web">Веб-разработка</button>
+            <button class="filter-btn" data-filter="cnc">ЧПУ и Автоматизация</button>
+        </div>
+
         <div class="projects-grid">
 
-            <!-- Project 1: РемонтTrack -->
-            <article class="card">
+            <article class="card" data-category="bot">
                 <h2 class="card-title">🔧 РемонтTrack</h2>
                 <p class="card-text">Учёт ремонтов станков с семантическим поиском и аналитикой</p>
-
-                <!-- 📸 Скриншот проекта -->
                 <div class="project-screenshot">
-                    <img src="images/remotrack-screenshot.png" alt="РемонтTrack: интерфейс бота в Telegram" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <img src="images/remotrack-screenshot.png" alt="РемонтTrack" loading="lazy" onerror="this.parentElement.style.display='none'">
                 </div>
-
                 <div class="card-tech">
                     <span class="tech-tag">Python</span><span class="tech-tag">Aiogram</span><span class="tech-tag">SQLite</span><span class="tech-tag">sentence-transformers</span>
                 </div>
-                <p class="card-text">Ведение базы ремонтов, семантический поиск по описанию неисправностей, история по инвентарному номеру станка, статистика простоев, ролевая модель доступа, система приглашений для бригад, автоматический бэкап базы данных.</p>
+                <p class="card-text">Ведение базы ремонтов, семантический поиск по описанию неисправностей, история по инвентарному номеру станка, статистика простоев, ролевая модель доступа.</p>
                 <div class="card-actions">
-                    <a href="#" class="btn btn-sm btn-outline">Демо (закрыто)</a>
+                    <a href="#" class="btn btn-sm btn-outline">Детали проекта</a>
                     <a href="#" class="btn btn-sm btn-primary">GitHub →</a>
                 </div>
             </article>
 
-            <!-- Project 2: WorkTimeBot -->
-            <article class="card">
+            <article class="card" data-category="bot">
                 <h2 class="card-title">⏱️ WorkTimeBot</h2>
                 <p class="card-text">Автоматизация табеля рабочего времени</p>
-
-                <!-- 📸 Скриншот проекта -->
                 <div class="project-screenshot">
-                    <img src="images/worktime-screenshot.png" alt="WorkTimeBot: генерация отчёта в Excel" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <img src="images/worktime-screenshot.png" alt="WorkTimeBot" loading="lazy" onerror="this.parentElement.style.display='none'">
                 </div>
-
                 <div class="card-tech">
                     <span class="tech-tag">Python</span><span class="tech-tag">python-telegram-bot</span><span class="tech-tag">SQLite</span><span class="tech-tag">openpyxl</span>
                 </div>
-                <p class="card-text">Автоматическое заполнение табеля из сообщений рабочего чата, учёт перерывов, ночных смен, сверхурочных и праздничных дней, генерация отчётов в формате Excel с формулами для бухгалтерии.</p>
+                <p class="card-text">Автоматическое заполнение табеля из сообщений рабочего чата, учёт перерывов, ночных смен, сверхурочных, генерация отчётов в Excel для бухгалтерии.</p>
                 <div class="card-actions">
-                    <a href="#" class="btn btn-sm btn-outline">Демо (закрыто)</a>
+                    <a href="#" class="btn btn-sm btn-outline">Детали проекта</a>
                     <a href="#" class="btn btn-sm btn-primary">GitHub →</a>
+                </div>
+            </article>
+
+            <article class="card" data-category="web">
+                <h2 class="card-title">⚡ VoltGroup</h2>
+                <p class="card-text">Веб-платформа с калькулятором смет и Telegram-интеграцией</p>
+                <div class="project-screenshot">
+                    <img src="images/voltgroup-screenshot.png" alt="VoltGroup" loading="lazy" onerror="this.parentElement.style.display='none'">
+                </div>
+                <div class="card-tech">
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">Telegram API</span>
+                    <span class="tech-tag">Калькулятор смет</span>
+                    <span class="tech-tag">HTML5/CSS3</span>
+                </div>
+                <p class="card-text">Интерактивный сайт с умным расчётом стоимости электромонтажа, ведением карточек объектов и автоматической пересылкой заявок в Telegram-бот компании.</p>
+                <div class="card-actions">
+                    <a href="#" class="btn btn-sm btn-outline">Детали проекта</a>
+                    <a href="https://voltgroup-spb.ru" target="_blank" rel="noopener" class="btn btn-sm btn-primary">Открыть сайт ↗</a>
+                </div>
+            </article>
+
+            <article class="card" data-category="web">
+                <h2 class="card-title">🌐 Персональное портфолио</h2>
+                <p class="card-text">Быстрый адаптивный сайт с серверлесс-бэкендом</p>
+                <div class="project-screenshot">
+                    <img src="images/portfolio-screenshot.png" alt="Персональное портфолио" loading="lazy" onerror="this.parentElement.style.display='none'">
+                </div>
+                <div class="card-tech">
+                    <span class="tech-tag">JavaScript</span><span class="tech-tag">Google Apps Script</span><span class="tech-tag">CSS3</span><span class="tech-tag">Яндекс.Метрика</span>
+                </div>
+                <p class="card-text">Сайт-визитка с поддержкой тёмной темы, модерацией отзывов в Google Таблицах, AJAX-отправкой форм, интерактивным курсором и высокой скоростью загрузки.</p>
+                <div class="card-actions">
+                    <a href="https://github.com/mmmatveyz/mmmatveyz.github.io" target="_blank" rel="noopener" class="btn btn-sm btn-primary">GitHub →</a>
                 </div>
             </article>
 
@@ -87,58 +122,21 @@
     <div class="container">
         <p>© <span id="year"></span> Матвей Зрячих (mmmatveyz). Все права защищены.</p>
         <div class="footer-links">
+            <a href="privacy.html" class="footer-link">Конфиденциальность 🔒</a>
             <a href="https://t.me/mmmatveyz" class="footer-link" target="_blank" rel="noopener">Telegram ✈️</a>
             <a href="https://github.com/mmmatveyz" class="footer-link" target="_blank" rel="noopener">GitHub 💻</a>
         </div>
     </div>
 </footer>
 
-<script>
-    // --- 🌙 Логика тёмной темы ---
-    const themeToggle = document.getElementById('theme-toggle');
-    const html = document.documentElement;
+<script src="js/main.js"></script>
 
-    const savedTheme = localStorage.getItem('theme');
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+<div id="cookie-banner" class="cookie-banner reveal">
+    <p class="card-text" style="margin: 0; font-size: var(--text-sm);">
+        Этот сайт использует Яндекс.Метрику для сбора статистики и улучшения работы. Продолжая использование, вы соглашаетесь с нашей <a href="privacy.html" style="color: var(--color-accent); text-decoration: underline;">политикой обработки данных</a>.
+    </p>
+    <button id="accept-cookies" class="btn btn-sm btn-primary">Понятно</button>
+</div>
 
-    if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
-        html.setAttribute('data-theme', 'dark');
-        themeToggle.textContent = '☀️';
-    } else {
-        html.setAttribute('data-theme', 'light');
-        themeToggle.textContent = '🌙';
-    }
-
-    themeToggle.addEventListener('click', () => {
-        const currentTheme = html.getAttribute('data-theme');
-        if (currentTheme === 'dark') {
-            html.setAttribute('data-theme', 'light');
-            localStorage.setItem('theme', 'light');
-            themeToggle.textContent = '🌙';
-        } else {
-            html.setAttribute('data-theme', 'dark');
-            localStorage.setItem('theme', 'dark');
-            themeToggle.textContent = '☀️';
-        }
-    });
-
-    // --- Остальной скрипт ---
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    const menuToggle = document.querySelector('.menu-toggle');
-    const nav = document.querySelector('.nav');
-    if (menuToggle) {
-        menuToggle.addEventListener('click', () => {
-            const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
-            menuToggle.setAttribute('aria-expanded', !expanded);
-            nav.style.clipPath = expanded ? 'inset(0 0 100% 0)' : 'inset(0 0 0 0)';
-        });
-    }
-
-    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
-    document.querySelectorAll('.nav-link').forEach(link => {
-        if (link.getAttribute('href') === currentPath) link.classList.add('active');
-    });
-</script>
 </body>
 </html>

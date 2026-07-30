@@ -5,36 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Контакты | Матвей Зрячих</title>
     <meta name="description" content="Свяжитесь со мной для обсуждения проектов по автоматизации и разработке ботов."/>
+
     <meta property="og:title" content="Контакты | Матвей Зрячих">
     <meta property="og:description" content="Telegram, Email, GitHub. Готов обсудить вашу задачу.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://mmmatveyz.github.io/contacts.html">
     <meta property="og:image" content="https://mmmatveyz.github.io/og-image.png">
     <meta property="og:locale" content="ru_RU">
-    <script defer data-domain="mmmatveyz.github.io" src="https://plausible.io/js/script.js"></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="css/style.css"/>
-    <link rel="icon" href="image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
 </head>
 <body>
 <header class="header">
     <div class="container header-inner">
         <a href="index.html" class="logo">mm<span>matveyz</span></a>
-        <button class="menu-toggle" aria-label="Открыть меню">☰</button>
-        <nav class="nav">
+        <button class="menu-toggle" aria-label="Открыть меню" aria-expanded="false">☰</button>
+        <nav class="nav" id="nav">
             <a href="index.html" class="nav-link">Главная</a>
             <a href="projects.html" class="nav-link">Проекты</a>
             <a href="achievements.html" class="nav-link">Достижения</a>
             <a href="contacts.html" class="nav-link active">Контакты</a>
-            <!-- 🔘 Кнопка переключения темы -->
             <button id="theme-toggle" class="theme-toggle" aria-label="Переключить тему">🌙</button>
         </nav>
     </div>
 </header>
 
-<main class="section">
+<main class="section reveal">
     <div class="container">
         <h1 class="section-title">Свяжитесь со мной</h1>
         <div class="grid-2">
@@ -45,13 +46,21 @@
                 <div class="contact-item"><span>💻</span><a href="https://github.com/mmmatveyz" target="_blank" rel="noopener">github.com/mmmatveyz</a></div>
                 <div class="mt-md"><p class="card-text"><strong>Город:</strong> Санкт-Петербург 🇷🇺<br><strong>Часовой пояс:</strong> UTC+3</p></div>
             </div>
-            <form class="contact-form card" action="https://formspree.io/f/xnjogdwb" method="POST">
-                <!-- Скрытое поле для различения форм в Formspree -->
-                <input type="hidden" name="form-type" value="contact">
 
-                <div class="form-group"><label class="form-label" for="name">Имя *</label><input class="form-input" type="text" id="name" name="name" required placeholder="Ваше имя"/></div>
-                <div class="form-group"><label class="form-label" for="email">Email *</label><input class="form-input" type="email" id="email" name="email" required placeholder="you@example.com"/></div>
-                <div class="form-group"><label class="form-label" for="message">Сообщение *</label><textarea class="form-textarea" id="message" name="message" required placeholder="Расскажите о вашей задаче..."></textarea></div>
+            <form class="contact-form card" id="contactForm" action="https://script.google.com/macros/s/AKfycbxrBExj_TvpbnR4Yd2Q8kvxtmKHyOLMH25m1E9v80xo3Pl7RDaNoMf_4OOhfIX8RJhR/exec" method="POST">
+                <input type="hidden" name="form-type" value="contact">
+                <div class="form-group">
+                    <label class="form-label" for="name">Имя *</label>
+                    <input class="form-input" type="text" id="name" name="name" required placeholder="Ваше имя"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="email">Email *</label>
+                    <input class="form-input" type="email" id="email" name="email" required placeholder="you@example.com"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="message">Сообщение *</label>
+                    <textarea class="form-textarea" id="message" name="message" required placeholder="Расскажите о вашей задаче..."></textarea>
+                </div>
                 <button type="submit" class="btn btn-primary">Отправить →</button>
             </form>
         </div>
@@ -62,58 +71,59 @@
     <div class="container">
         <p>© <span id="year"></span> Матвей Зрячих (mmmatveyz). Все права защищены.</p>
         <div class="footer-links">
+            <a href="privacy.html" class="footer-link">Конфиденциальность 🔒</a>
             <a href="https://t.me/mmmatveyz" class="footer-link" target="_blank" rel="noopener">Telegram ✈️</a>
             <a href="https://github.com/mmmatveyz" class="footer-link" target="_blank" rel="noopener">GitHub 💻</a>
         </div>
     </div>
 </footer>
 
+<script src="js/main.js"></script>
+
 <script>
-    // --- 🌙 Логика тёмной темы ---
-    const themeToggle = document.getElementById('theme-toggle');
-    const html = document.documentElement;
+    // Фоновая отправка формы контактов (AJAX)
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
 
-    const savedTheme = localStorage.getItem('theme');
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            submitBtn.textContent = 'Отправка...';
+            submitBtn.disabled = true;
 
-    if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
-        html.setAttribute('data-theme', 'dark');
-        themeToggle.textContent = '☀️';
-    } else {
-        html.setAttribute('data-theme', 'light');
-        themeToggle.textContent = '🌙';
-    }
+            const formData = new FormData(contactForm);
 
-    themeToggle.addEventListener('click', () => {
-        const currentTheme = html.getAttribute('data-theme');
-        if (currentTheme === 'dark') {
-            html.setAttribute('data-theme', 'light');
-            localStorage.setItem('theme', 'light');
-            themeToggle.textContent = '🌙';
-        } else {
-            html.setAttribute('data-theme', 'dark');
-            localStorage.setItem('theme', 'dark');
-            themeToggle.textContent = '☀️';
-        }
-    });
+            fetch(contactForm.action, {
+                method: 'POST',
+                body: formData,
+                mode: 'no-cors'
+            }).then(() => {
+                const msg = document.createElement('p');
+                msg.className = 'card-text mt-sm';
+                msg.style.color = '#10b981';
+                msg.style.fontWeight = '500';
+                msg.textContent = '✅ Сообщение успешно отправлено! Я свяжусь с вами в ближайшее время.';
 
-    // --- Остальной скрипт ---
-    document.getElementById('year').textContent = new Date().getFullYear();
+                contactForm.parentNode.insertBefore(msg, contactForm.nextSibling);
 
-    const menuToggle = document.querySelector('.menu-toggle');
-    const nav = document.querySelector('.nav');
-    if (menuToggle) {
-        menuToggle.addEventListener('click', () => {
-            const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
-            menuToggle.setAttribute('aria-expanded', !expanded);
-            nav.style.clipPath = expanded ? 'inset(0 0 100% 0)' : 'inset(0 0 0 0)';
+                contactForm.reset();
+                submitBtn.textContent = 'Отправить →';
+                submitBtn.disabled = false;
+            }).catch(error => {
+                console.error('Ошибка отправки:', error);
+                submitBtn.textContent = 'Отправить →';
+                submitBtn.disabled = false;
+            });
         });
     }
-
-    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
-    document.querySelectorAll('.nav-link').forEach(link => {
-        if (link.getAttribute('href') === currentPath) link.classList.add('active');
-    });
 </script>
+
+<div id="cookie-banner" class="cookie-banner reveal">
+    <p class="card-text" style="margin: 0; font-size: var(--text-sm);">
+        Этот сайт использует Яндекс.Метрику для сбора статистики и улучшения работы. Продолжая использование, вы соглашаетесь с нашей <a href="privacy.html" style="color: var(--color-accent); text-decoration: underline;">политикой обработки данных</a>.
+    </p>
+    <button id="accept-cookies" class="btn btn-sm btn-primary">Понятно</button>
+</div>
+
 </body>
 </html>

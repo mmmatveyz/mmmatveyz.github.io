@@ -6,7 +6,6 @@
     <title>Матвей Зрячих | Электромонтёр и разработчик Telegram-ботов</title>
     <meta name="description" content="Портфолио Матвей Зрячих: обслуживание ЧПУ, разработка ботов на Python, автоматизация промышленных процессов."/>
 
-    <!-- Open Graph -->
     <meta property="og:title" content="Матвей Зрячих | Электромонтёр и разработчик Telegram-ботов">
     <meta property="og:description" content="Портфолио: обслуживание ЧПУ, разработка ботов на Python, автоматизация производства.">
     <meta property="og:type" content="website">
@@ -14,10 +13,20 @@
     <meta property="og:image" content="https://mmmatveyz.github.io/og-image.png">
     <meta property="og:locale" content="ru_RU">
 
-    <!-- Analytics -->
-    <script defer data-domain="mmmatveyz.github.io" src="https://plausible.io/js/script.js"></script>
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=111155265', 'ym');
 
-    <!-- JSON-LD -->
+        ym(111155265, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/111155265" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
@@ -38,7 +47,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="css/style.css"/>
 
-    <!-- 🟢 ИСПРАВЛЕНИЕ ИКОНКИ: Используем отдельный файл -->
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
 </head>
 <body>
@@ -51,47 +59,54 @@
             <a href="projects.html" class="nav-link">Проекты</a>
             <a href="achievements.html" class="nav-link">Достижения</a>
             <a href="contacts.html" class="nav-link">Контакты</a>
-            <!-- 🔘 Кнопка переключения темы -->
             <button id="theme-toggle" class="theme-toggle" aria-label="Переключить тему">🌙</button>
         </nav>
     </div>
 </header>
 
 <main>
-    <section class="hero">
-        <div class="container">
-            <h1 class="hero-title">Привет, я Матвей.<br>Электромонтёр-инженер и разработчик Telegram-ботов</h1>
-            <p class="hero-subtitle">Создаю цифровые инструменты для производства и автоматизирую учёт</p>
+    <section class="hero reveal">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <h1 class="hero-title">Привет, я Матвей.<br>Электромонтёр-инженер и разработчик Telegram-ботов</h1>
+                <div class="typewriter-wrapper">
+                    <p class="hero-subtitle typewriter">Создаю цифровые инструменты для производства</p>
+                </div>
 
-            <!-- 🔘 Две кнопки в ряд -->
-            <div class="hero-buttons">
-                <a href="projects.html" class="btn btn-primary">Посмотреть проекты →</a>
-                <a href="resume.pdf" download class="btn btn-outline">📄 Скачать резюме</a>
+                <div class="hero-buttons">
+                    <a href="projects.html" class="btn btn-primary">Посмотреть проекты →</a>
+                    <a href="resume.pdf" download class="btn btn-outline">📄 Скачать резюме</a>
+                </div>
+            </div>
+
+            <div class="hero-image-wrapper">
+                <img src="images/profile.jpg" alt="Матвей Зрячих" class="hero-image" loading="lazy" onerror="this.src='https://placehold.co/400x400/1e293b/818cf8?text=Фото'">
             </div>
         </div>
     </section>
 
-    <section class="section">
+    <section class="section reveal">
         <div class="container">
             <div class="card">
                 <h2 class="section-title">Что у меня в голове</h2>
-                <p class="card-text">Я совмещаю инженерный опыт на производстве с разработкой Telegram-ботов. Мои боты помогают вести учёт ремонтов, автоматизировать табель рабочего времени и решать реальные задачи промышленных предприятий. Всё, что я создаю, основано на понимании процессов «с земли».</p>
+                <p class="card-text">Я совмещаю инженерный опыт на производстве с современной веб-разработкой и созданием Telegram-экосистем. Мои решения помогают автоматизировать учёт ремонтов, строить сложные сметные калькуляторы, связывать веб-сервисы с ботами и избавлять бизнес от рутины. Всё, что я создаю, основано на понимании промышленных и бизнес-процессов «с земли».</p>
+                <p class="card-text" style="font-weight: 500; color: var(--color-accent); margin-bottom: var(--space-md);">🚀 Открыт к предложениям, найму и freelance-проектам по автоматизации и разработке.</p>
                 <a href="contacts.html" class="btn btn-outline">Связаться со мной</a>
             </div>
         </div>
     </section>
 
-    <section class="section">
+    <section class="section reveal">
         <div class="container">
             <h2 class="section-title">Обо мне</h2>
             <div class="grid-2">
                 <div class="about-block">
-                    <h3>Опыт</h3>
-                    <p>4 года работы электромонтёром и инженером-электроником. Обслуживание более 100 станков: токарные, фрезерные, расточные, обрабатывающие центры. Работа с системами ЧПУ Siemens Sinumerik.</p>
+                    <h3>Инженерный опыт</h3>
+                    <p>4 года работы электромонтёром и инженером-электроником. Обслуживание более 100 станков: токарные, фрезерные, расточные, обрабатывающие центры. Работа с системами ЧПУ Siemens Sinumerik и промышленной автоматикой.</p>
                 </div>
                 <div class="about-block">
-                    <h3>Разработка</h3>
-                    <p>Полгода назад начал изучать Python и разработку Telegram-ботов. Уже реализовал два проекта: бот для учёта ремонтов и бот для автоматизации табеля рабочего времени.</p>
+                    <h3>Разработка и Автоматизация</h3>
+                    <p>Создаю асинхронных Telegram-ботов на Python и веб-сервисы. Реализовал системы учёта ремонтов с NLP-поиском, авто-табели рабочего времени, веб-платформу с калькулятором смет и серверлесс-интеграции через Google Apps Script.</p>
                 </div>
             </div>
             <div class="mt-lg">
@@ -106,48 +121,45 @@
         </div>
     </section>
 
-    <!-- 💬 СЕКЦИЯ: Отзывы (КАРУСЕЛЬ) -->
-    <section class="section">
+    <section class="section reveal">
         <div class="container">
             <h2 class="section-title">Отзывы</h2>
-
-            <!-- Обертка для слайдера -->
             <div class="reviews-wrapper">
                 <button class="carousel-btn left" id="scrollLeft">❮</button>
-
-                <!-- Контейнер с карточками -->
                 <div class="testimonials-grid" id="testimonials-list">
-                    <!-- Сюда скрипт вставит карточки -->
                     <p style="color: var(--color-text-secondary);">Загрузка отзывов...</p>
                 </div>
-
                 <button class="carousel-btn right" id="scrollRight">❯</button>
             </div>
 
-            <!-- Форма для отправки нового отзыва -->
             <div class="mt-lg review-form-wrapper">
                 <h3 class="section-title" style="font-size: var(--text-xl);">Оставить отзыв</h3>
-                <form class="contact-form card" action="https://formspree.io/f/xnjogdwb" method="POST">
-                    <!-- Скрытое поле, чтобы отличать отзывы от контактов в Formspree -->
+                <form class="contact-form card" id="reviewForm" action="https://script.google.com/macros/s/AKfycbxrBExj_TvpbnR4Yd2Q8kvxtmKHyOLMH25m1E9v80xo3Pl7RDaNoMf_4OOhfIX8RJhR/exec" method="POST">
                     <input type="hidden" name="form-type" value="review">
-
                     <div class="form-group">
                         <label class="form-label" for="review-name">Ваше имя *</label>
                         <input class="form-input" type="text" id="review-name" name="name" required placeholder="Иван Иванов">
                     </div>
-
                     <div class="form-group">
                         <label class="form-label" for="review-role">Роль / Компания</label>
                         <input class="form-input" type="text" id="review-role" name="role" placeholder="Главный инженер, ООО «Пример»">
                     </div>
-
+                    <div class="form-group">
+                        <label class="form-label" for="review-stars">Оценка</label>
+                        <select class="form-input" id="review-stars" name="stars">
+                            <option value="5">⭐⭐⭐⭐⭐ (Отлично)</option>
+                            <option value="4">⭐⭐⭐⭐ (Хорошо)</option>
+                            <option value="3">⭐⭐⭐ (Нормально)</option>
+                            <option value="2">⭐⭐ (Так себе)</option>
+                            <option value="1">⭐ (Плохо)</option>
+                        </select>
+                    </div>
                     <div class="form-group">
                         <label class="form-label" for="review-text">Ваш отзыв *</label>
                         <textarea class="form-textarea" id="review-text" name="message" required placeholder="Расскажите о вашем опыте работы..."></textarea>
                     </div>
-
                     <button type="submit" class="btn btn-primary">Отправить отзыв →</button>
-                    <p class="form-note">Отзыв появится после модерации.</p>
+                    <p class="form-note">Отзыв появится на сайте моментально.</p>
                 </form>
             </div>
         </div>
@@ -158,94 +170,31 @@
     <div class="container">
         <p>© <span id="year"></span> Матвей Зрячих (mmmatveyz). Все права защищены.</p>
         <div class="footer-links">
+            <a href="privacy.html" class="footer-link">Конфиденциальность 🔒</a>
             <a href="https://t.me/mmmatveyz" class="footer-link" target="_blank" rel="noopener">Telegram ✈️</a>
             <a href="https://github.com/mmmatveyz" class="footer-link" target="_blank" rel="noopener">GitHub 💻</a>
         </div>
     </div>
 </footer>
 
+<script src="js/main.js"></script>
+
 <script>
-    // --- 🌙 Логика тёмной темы ---
-    const themeToggle = document.getElementById('theme-toggle');
-    const html = document.documentElement;
+    // ОБНОВЛЕННАЯ ССЫЛКА ДЛЯ ЗАГРУЗКИ ОТЗЫВОВ
+    const googleAppScriptUrl = 'https://script.google.com/macros/s/AKfycbxrBExj_TvpbnR4Yd2Q8kvxtmKHyOLMH25m1E9v80xo3Pl7RDaNoMf_4OOhfIX8RJhR/exec';
 
-    const savedTheme = localStorage.getItem('theme');
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-    if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
-        html.setAttribute('data-theme', 'dark');
-        themeToggle.textContent = '☀️';
-    } else {
-        html.setAttribute('data-theme', 'light');
-        themeToggle.textContent = '🌙';
-    }
-
-    themeToggle.addEventListener('click', () => {
-        const currentTheme = html.getAttribute('data-theme');
-        if (currentTheme === 'dark') {
-            html.setAttribute('data-theme', 'light');
-            localStorage.setItem('theme', 'light');
-            themeToggle.textContent = '🌙';
-        } else {
-            html.setAttribute('data-theme', 'dark');
-            localStorage.setItem('theme', 'dark');
-            themeToggle.textContent = '☀️';
-        }
-    });
-
-    // --- Остальной скрипт ---
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    const menuToggle = document.querySelector('.menu-toggle');
-    const nav = document.querySelector('.nav');
-    if (menuToggle) {
-        menuToggle.addEventListener('click', () => {
-            const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
-            menuToggle.setAttribute('aria-expanded', !expanded);
-            nav.style.clipPath = expanded ? 'inset(0 0 100% 0)' : 'inset(0 0 0 0)';
-        });
-    }
-
-    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
-    document.querySelectorAll('.nav-link').forEach(link => {
-        if (link.getAttribute('href') === currentPath) link.classList.add('active');
-    });
-
-    // --- Обработка формы отзывов ---
-    const reviewForm = document.querySelector('.review-form-wrapper form');
-    if (reviewForm) {
-        reviewForm.addEventListener('submit', (e) => {
-            setTimeout(() => {
-                if (reviewForm.classList.contains('sent')) return;
-                const urlParams = new URLSearchParams(window.location.search);
-                if (urlParams.get('success') === 'review') {
-                    const msg = document.createElement('p');
-                    msg.className = 'card-text';
-                    msg.style.color = 'var(--color-accent)';
-                    msg.textContent = '✅ Спасибо! Ваш отзыв отправлен на модерацию.';
-                    reviewForm.parentNode.insertBefore(msg, reviewForm);
-                    reviewForm.reset();
-                }
-            }, 100);
-        });
-    }
-
-    // --- 📜 Загрузка отзывов из Google Таблицы (API) + Карусель ---
-    const reviewsApiUrl = 'https://sheetdb.io/api/v1/gwd0ujmjh6dia';
     const reviewsContainer = document.getElementById('testimonials-list');
+    const scrollLeftBtn = document.getElementById('scrollLeft');
+    const scrollRightBtn = document.getElementById('scrollRight');
 
     function getStars(count) {
         const starsCount = parseInt(count, 10);
         return '⭐'.repeat(starsCount > 0 ? starsCount : 5);
     }
 
-    // Логика карусели
-    const scrollLeftBtn = document.getElementById('scrollLeft');
-    const scrollRightBtn = document.getElementById('scrollRight');
-
     function scrollContainer(direction) {
         const container = reviewsContainer;
-        const scrollAmount = container.clientWidth; // Прокручиваем на ширину видимой области
+        const scrollAmount = container.clientWidth;
         if (direction === 'left') {
             container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
         } else {
@@ -258,45 +207,90 @@
         scrollRightBtn.addEventListener('click', () => scrollContainer('right'));
     }
 
-    // Загрузка данных
-    fetch(reviewsApiUrl)
-        .then(response => {
-        if (!response.ok) throw new Error('Network response was not ok');
-        return response.json();
-    })
-        .then(data => {
-        reviewsContainer.innerHTML = '';
-
-        if (data.length === 0) {
-            reviewsContainer.innerHTML = '<p class="card-text">Пока нет отзывов. Будьте первым!</p>';
-            return;
-        }
-
-        // Берем последние отзывы (новые сверху)
-        const recentReviews = data.slice().reverse();
-
-        recentReviews.forEach(review => {
-            const card = document.createElement('div');
-            card.className = 'card testimonial-card';
-
-            card.innerHTML = `
-                    <div class="testimonial-header">
-                        <div class="testimonial-avatar">${review.name ? review.name.charAt(0).toUpperCase() : '?'}</div>
-                        <div>
-                            <h4 class="testimonial-name">${review.name}</h4>
-                            <p class="testimonial-role">${review.role}</p>
+    // Функция загрузки отзывов
+    function loadReviews() {
+        fetch(googleAppScriptUrl)
+            .then(response => response.json())
+            .then(data => {
+            reviewsContainer.innerHTML = '';
+            if (data.length === 0) {
+                reviewsContainer.innerHTML = '<p class="card-text">Пока нет отзывов. Будьте первым!</p>';
+                return;
+            }
+            const recentReviews = data.slice().reverse();
+            recentReviews.forEach(review => {
+                const card = document.createElement('div');
+                card.className = 'card testimonial-card';
+                card.innerHTML = `
+                        <div class="testimonial-header">
+                            <div class="testimonial-avatar">${review.name ? review.name.charAt(0).toUpperCase() : '?'}</div>
+                            <div>
+                                <h4 class="testimonial-name">${review.name}</h4>
+                                <p class="testimonial-role">${review.role || ''}</p>
+                            </div>
                         </div>
-                    </div>
-                    <p class="testimonial-text">"${review.text}"</p>
-                    <div class="testimonial-rating">${getStars(review.stars)}</div>
-                `;
-            reviewsContainer.appendChild(card);
+                        <p class="testimonial-text">"${review.text}"</p>
+                        <div class="testimonial-rating">${getStars(review.stars)}</div>
+                    `;
+                reviewsContainer.appendChild(card);
+            });
+        })
+            .catch(error => {
+            console.error('Ошибка загрузки отзывов:', error);
+            reviewsContainer.innerHTML = '<p class="card-text">Не удалось загрузить отзывы.</p>';
         });
-    })
-        .catch(error => {
-        console.error('Ошибка загрузки отзывов:', error);
-        reviewsContainer.innerHTML = '';
-    });
+    }
+
+    // Первичная загрузка
+    loadReviews();
+
+    // Фоновая отправка формы отзывов (AJAX)
+    const reviewForm = document.getElementById('reviewForm');
+    if (reviewForm) {
+        reviewForm.addEventListener('submit', (e) => {
+            e.preventDefault(); // Отменяем переход на другую страницу
+
+            const submitBtn = reviewForm.querySelector('button[type="submit"]');
+            submitBtn.textContent = 'Отправка...';
+            submitBtn.disabled = true;
+
+            const formData = new FormData(reviewForm);
+
+            // Используем mode: 'no-cors' чтобы обойти политики безопасности браузера при отправке в Google
+            fetch(reviewForm.action, {
+                method: 'POST',
+                body: formData,
+                mode: 'no-cors'
+            }).then(() => {
+                // Выводим сообщение об успехе
+                const msg = document.createElement('p');
+                msg.className = 'card-text mt-sm';
+                msg.style.color = '#10b981'; // Приятный зеленый цвет
+                msg.style.fontWeight = '500';
+                msg.textContent = '✅ Спасибо! Ваш отзыв успешно опубликован.';
+                reviewForm.parentNode.insertBefore(msg, reviewForm.nextSibling);
+
+                reviewForm.reset();
+                submitBtn.textContent = 'Отправить отзыв →';
+                submitBtn.disabled = false;
+
+                // Перезагружаем ленту отзывов, чтобы сразу показать новый
+                setTimeout(loadReviews, 1500);
+            }).catch(error => {
+                console.error('Ошибка отправки:', error);
+                submitBtn.textContent = 'Отправить отзыв →';
+                submitBtn.disabled = false;
+            });
+        });
+    }
 </script>
+
+<div id="cookie-banner" class="cookie-banner reveal">
+    <p class="card-text" style="margin: 0; font-size: var(--text-sm);">
+        Этот сайт использует Яндекс.Метрику для сбора статистики и улучшения работы. Продолжая использование, вы соглашаетесь с нашей <a href="privacy.html" style="color: var(--color-accent); text-decoration: underline;">политикой обработки данных</a>.
+    </p>
+    <button id="accept-cookies" class="btn btn-sm btn-primary">Понятно</button>
+</div>
+
 </body>
 </html>

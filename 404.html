@@ -3,84 +3,61 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Страница не найдена | Матвей Зрячих</title>
-    <meta name="robots" content="noindex, nofollow">
-    <meta name="description" content="Страница не найдена. Вернитесь на главную или посмотрите проекты.">
+    <title>404 — Страница не найдена | Матвей Зрячих</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="description" content="Страница не найдена. Вернитесь на главную или посмотрите проекты." />
 
-    <!-- Open Graph для красивого превью -->
-    <meta property="og:title" content="404 | Страница не найдена">
-    <meta property="og:description" content="Похоже, эта страница ушла в ремонт.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://mmmatveyz.github.io/404.html">
-    <meta property="og:locale" content="ru_RU">
-
-    <!-- Analytics -->
-    <script defer data-domain="mmmatveyz.github.io" src="https://plausible.io/js/script.js"></script>
+    <meta property="og:title" content="404 | Страница не найдена" />
+    <meta property="og:description" content="Похоже, эта страница ушла в ремонт." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://mmmatveyz.github.io/404.html" />
+    <meta property="og:locale" content="ru_RU" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="css/style.css"/>
-    <link rel="icon" href="image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
 
-    <style>
-        /* Центрирование контента 404 */
-        body {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            margin: 0;
-        }
-        .error-main {
-            padding: var(--space-2xl) 0;
-            width: 100%;
-        }
-    </style>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
 </head>
-<body>
-<!-- 🔘 Кнопка темы в углу -->
-<button id="theme-toggle" class="theme-toggle" aria-label="Переключить тему" style="position: fixed; top: 1rem; right: 1rem; z-index: 1000;">🌙</button>
+<body style="display: flex; flex-direction: column; min-height: 100vh;">
 
-<main class="error-main text-center">
+<header class="header">
+    <div class="container header-inner">
+        <a href="index.html" class="logo">mm<span>matveyz</span></a>
+        <button class="menu-toggle" aria-label="Открыть меню" aria-expanded="false">☰</button>
+        <nav class="nav" id="nav">
+            <a href="index.html" class="nav-link">Главная</a>
+            <a href="projects.html" class="nav-link">Проекты</a>
+            <a href="achievements.html" class="nav-link">Достижения</a>
+            <a href="contacts.html" class="nav-link">Контакты</a>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Переключить тему">🌙</button>
+        </nav>
+    </div>
+</header>
+
+<main class="error-main text-center reveal" style="flex: 1; display: flex; align-items: center; padding: var(--space-2xl) 0;">
     <div class="container">
-        <h1 class="hero-title">404 ⚡</h1>
+        <h1 class="hero-title" style="font-size: clamp(4rem, 10vw, 8rem); margin-bottom: var(--space-sm);">404 ⚡</h1>
         <p class="hero-subtitle">Похоже, эта страница ушла в ремонт.<br>Вернёмся на главную или в проекты.</p>
-        <div class="card-actions" style="justify-content:center; margin-top:1.5rem;">
-            <a href="index.html" class="btn btn-primary">→ На главную</a>
-            <a href="projects.html" class="btn btn-outline">Проекты</a>
+        <div class="card-actions" style="justify-content: center; margin-top: var(--space-lg);">
+            <a href="index.html" class="btn btn-primary">← На главную</a>
+            <a href="projects.html" class="btn btn-outline">Проекты →</a>
         </div>
     </div>
 </main>
 
-<script>
-    // --- 🌙 Логика тёмной темы (как на всех страницах) ---
-    const themeToggle = document.getElementById('theme-toggle');
-    const html = document.documentElement;
+<footer class="footer">
+    <div class="container">
+        <p>© <span id="year"></span> Матвей Зрячих (mmmatveyz). Все права защищены.</p>
+        <div class="footer-links">
+            <a href="privacy.html" class="footer-link">Конфиденциальность 🔒</a>
+            <a href="https://t.me/mmmatveyz" class="footer-link" target="_blank" rel="noopener">Telegram ✈️</a>
+            <a href="https://github.com/mmmatveyz" class="footer-link" target="_blank" rel="noopener">GitHub 💻</a>
+        </div>
+    </div>
+</footer>
 
-    const savedTheme = localStorage.getItem('theme');
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-    if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
-        html.setAttribute('data-theme', 'dark');
-        themeToggle.textContent = '☀️';
-    } else {
-        html.setAttribute('data-theme', 'light');
-        themeToggle.textContent = '🌙';
-    }
-
-    themeToggle.addEventListener('click', () => {
-        const currentTheme = html.getAttribute('data-theme');
-        if (currentTheme === 'dark') {
-            html.setAttribute('data-theme', 'light');
-            localStorage.setItem('theme', 'light');
-            themeToggle.textContent = '🌙';
-        } else {
-            html.setAttribute('data-theme', 'dark');
-            localStorage.setItem('theme', 'dark');
-            themeToggle.textContent = '☀️';
-        }
-    });
-</script>
+<script src="js/main.js"></script>
 </body>
 </html>
