@@ -648,28 +648,78 @@ ul {
     }
 }
 
+/* ==========================================
+   🎥 ПРЕВЬЮ ПРОЕКТОВ (САЙТЫ И СМАРТФОНЫ)
+   ========================================== */
+
+/* 1. Стандартный горизонтальный вид (для сайтов, 16:9) */
 .project-screenshot {
-    margin: var(--space-lg) auto;
-    border-radius: 20px;
+    margin: var(--space-md) auto;
+    border-radius: var(--radius-lg);
     overflow: hidden;
     border: 1px solid var(--color-border);
     background: var(--color-bg);
     width: 100%;
-    max-width: 320px;
-    display: block;
-    height: auto;
+    aspect-ratio: 16 / 9;
+    max-height: 240px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     box-shadow: 0 4px 20px var(--color-shadow);
-}
-
-.project-screenshot img {
-    width: 100%;
-    height: auto;
-    display: block;
+    position: relative;
     transition: transform var(--transition-normal);
 }
 
-.project-screenshot:hover img {
-    transform: scale(1.03);
+.project-screenshot video,
+.project-screenshot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: inherit;
+    transition: transform var(--transition-normal);
+}
+
+.project-screenshot:hover img,
+.project-screenshot:hover video {
+    transform: scale(1.02);
+}
+
+/* 2. Макет "Смартфон" для Telegram-ботов (.mobile-preview) */
+.project-screenshot.mobile-preview {
+    width: 100%;
+    max-width: 220px;
+    height: 400px;
+    aspect-ratio: auto;
+    margin: var(--space-md) auto;
+    border: 3px solid var(--color-border);
+    border-radius: 28px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
+    background: #000;
+    position: relative;
+}
+
+.project-screenshot.mobile-preview video,
+.project-screenshot.mobile-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 24px;
+}
+
+/* Вырез / челка сверху смартфона */
+.project-screenshot.mobile-preview::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    z-index: 2;
 }
 
 /* Project Filters */

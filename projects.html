@@ -19,6 +19,18 @@
     <link rel="stylesheet" href="css/style.css"/>
 
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=111155265', 'ym');
+
+        ym(111155265, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/111155265" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 </head>
 <body>
 <header class="header">
@@ -51,40 +63,41 @@
             <article class="card" data-category="bot">
                 <h2 class="card-title">🔧 РемонтTrack</h2>
                 <p class="card-text">Учёт ремонтов станков с семантическим поиском и аналитикой</p>
-                <div class="project-screenshot">
-                    <img src="images/remotrack-screenshot.png" alt="РемонтTrack" loading="lazy" onerror="this.parentElement.style.display='none'">
+                <div class="project-screenshot mobile-preview">
+                    <video autoplay loop muted playsinline preload="metadata">
+                        <source src="images/remonttrack-demo.mp4" type="video/mp4">
+                        Ваш браузер не поддерживает видео.
+                    </video>
                 </div>
                 <div class="card-tech">
                     <span class="tech-tag">Python</span><span class="tech-tag">Aiogram</span><span class="tech-tag">SQLite</span><span class="tech-tag">sentence-transformers</span>
                 </div>
                 <p class="card-text">Ведение базы ремонтов, семантический поиск по описанию неисправностей, история по инвентарному номеру станка, статистика простоев, ролевая модель доступа.</p>
-                <div class="card-actions">
-                    <a href="#" class="btn btn-sm btn-outline">Детали проекта</a>
-                    <a href="#" class="btn btn-sm btn-primary">GitHub →</a>
-                </div>
             </article>
 
             <article class="card" data-category="bot">
                 <h2 class="card-title">⏱️ WorkTimeBot</h2>
                 <p class="card-text">Автоматизация табеля рабочего времени</p>
-                <div class="project-screenshot">
-                    <img src="images/worktime-screenshot.png" alt="WorkTimeBot" loading="lazy" onerror="this.parentElement.style.display='none'">
+                <div class="project-screenshot mobile-preview">
+                    <video autoplay loop muted playsinline preload="metadata">
+                        <source src="images/worktime-demo.mp4" type="video/mp4">
+                        Ваш браузер не поддерживает видео.
+                    </video>
                 </div>
                 <div class="card-tech">
                     <span class="tech-tag">Python</span><span class="tech-tag">python-telegram-bot</span><span class="tech-tag">SQLite</span><span class="tech-tag">openpyxl</span>
                 </div>
                 <p class="card-text">Автоматическое заполнение табеля из сообщений рабочего чата, учёт перерывов, ночных смен, сверхурочных, генерация отчётов в Excel для бухгалтерии.</p>
-                <div class="card-actions">
-                    <a href="#" class="btn btn-sm btn-outline">Детали проекта</a>
-                    <a href="#" class="btn btn-sm btn-primary">GitHub →</a>
-                </div>
             </article>
 
             <article class="card" data-category="web">
                 <h2 class="card-title">⚡ VoltGroup</h2>
                 <p class="card-text">Веб-платформа с калькулятором смет и Telegram-интеграцией</p>
                 <div class="project-screenshot">
-                    <img src="images/voltgroup-screenshot.png" alt="VoltGroup" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <video autoplay loop muted playsinline preload="metadata">
+                        <source src="images/voltgroup-demo.mp4" type="video/mp4">
+                        Ваш браузер не поддерживает видео.
+                    </video>
                 </div>
                 <div class="card-tech">
                     <span class="tech-tag">JavaScript</span>
@@ -94,7 +107,6 @@
                 </div>
                 <p class="card-text">Интерактивный сайт с умным расчётом стоимости электромонтажа, ведением карточек объектов и автоматической пересылкой заявок в Telegram-бот компании.</p>
                 <div class="card-actions">
-                    <a href="#" class="btn btn-sm btn-outline">Детали проекта</a>
                     <a href="https://voltgroup-spb.ru" target="_blank" rel="noopener" class="btn btn-sm btn-primary">Открыть сайт ↗</a>
                 </div>
             </article>
@@ -109,9 +121,6 @@
                     <span class="tech-tag">JavaScript</span><span class="tech-tag">Google Apps Script</span><span class="tech-tag">CSS3</span><span class="tech-tag">Яндекс.Метрика</span>
                 </div>
                 <p class="card-text">Сайт-визитка с поддержкой тёмной темы, модерацией отзывов в Google Таблицах, AJAX-отправкой форм, интерактивным курсором и высокой скоростью загрузки.</p>
-                <div class="card-actions">
-                    <a href="https://github.com/mmmatveyz/mmmatveyz.github.io" target="_blank" rel="noopener" class="btn btn-sm btn-primary">GitHub →</a>
-                </div>
             </article>
 
         </div>
