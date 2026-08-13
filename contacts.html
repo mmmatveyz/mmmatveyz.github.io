@@ -34,6 +34,9 @@
     <noscript><div><img src="https://mc.yandex.ru/watch/111155265" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <!-- /Yandex.Metrika counter -->
 
+    <!-- Content Security Policy (CSP) -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://mc.yandex.ru; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://script.google.com https://mc.yandex.ru; form-action 'self' https://script.google.com;">
+
 </head>
 <body>
 <header class="header">
@@ -96,6 +99,13 @@
 <script src="js/main.js"></script>
 
 <script>
+    // Функция для безопасного экранирования HTML-символов (защита от XSS)
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
     // Фоновая отправка формы контактов (AJAX)
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
@@ -103,6 +113,7 @@
             e.preventDefault();
 
             const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.textContent;
             submitBtn.textContent = 'Отправка...';
             submitBtn.disabled = true;
 
@@ -111,22 +122,23 @@
             fetch(contactForm.action, {
                 method: 'POST',
                 body: formData,
-                mode: 'no-cors'
+                mode: 'cors'
             }).then(() => {
                 const msg = document.createElement('p');
                 msg.className = 'card-text mt-sm';
                 msg.style.color = '#10b981';
                 msg.style.fontWeight = '500';
+                // Безопасная вставка текста через textContent
                 msg.textContent = '✅ Сообщение успешно отправлено! Я свяжусь с вами в ближайшее время.';
 
                 contactForm.parentNode.insertBefore(msg, contactForm.nextSibling);
 
                 contactForm.reset();
-                submitBtn.textContent = 'Отправить →';
+                submitBtn.textContent = originalBtnText;
                 submitBtn.disabled = false;
             }).catch(error => {
                 console.error('Ошибка отправки:', error);
-                submitBtn.textContent = 'Отправить →';
+                submitBtn.textContent = originalBtnText;
                 submitBtn.disabled = false;
             });
         });
