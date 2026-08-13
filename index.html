@@ -48,6 +48,9 @@
     <link rel="stylesheet" href="css/style.css"/>
 
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+    <!-- Content Security Policy (CSP) -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://mc.yandex.ru; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://script.google.com https://mc.yandex.ru; form-action 'self' https://script.google.com;">
 </head>
 <body>
 <header class="header">
@@ -183,6 +186,13 @@
     // ОБНОВЛЕННАЯ ССЫЛКА ДЛЯ ЗАГРУЗКИ ОТЗЫВОВ
     const googleAppScriptUrl = 'https://script.google.com/macros/s/AKfycbxrBExj_TvpbnR4Yd2Q8kvxtmKHyOLMH25m1E9v80xo3Pl7RDaNoMf_4OOhfIX8RJhR/exec';
 
+    // Функция для безопасного экранирования HTML-символов (защита от XSS)
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
     const reviewsContainer = document.getElementById('testimonials-list');
     const scrollLeftBtn = document.getElementById('scrollLeft');
     const scrollRightBtn = document.getElementById('scrollRight');
@@ -221,15 +231,22 @@
             recentReviews.forEach(review => {
                 const card = document.createElement('div');
                 card.className = 'card testimonial-card';
+                
+                // Безопасное экранирование данных для защиты от XSS
+                const safeName = escapeHtml(review.name || '?');
+                const safeRole = escapeHtml(review.role || '');
+                const safeText = escapeHtml(review.text || '');
+                const initial = safeName.charAt(0).toUpperCase();
+                
                 card.innerHTML = `
                         <div class="testimonial-header">
-                            <div class="testimonial-avatar">${review.name ? review.name.charAt(0).toUpperCase() : '?'}</div>
+                            <div class="testimonial-avatar">${initial}</div>
                             <div>
-                                <h4 class="testimonial-name">${review.name}</h4>
-                                <p class="testimonial-role">${review.role || ''}</p>
+                                <h4 class="testimonial-name">${safeName}</h4>
+                                <p class="testimonial-role">${safeRole}</p>
                             </div>
                         </div>
-                        <p class="testimonial-text">"${review.text}"</p>
+                        <p class="testimonial-text">"${safeText}"</p>
                         <div class="testimonial-rating">${getStars(review.stars)}</div>
                     `;
                 reviewsContainer.appendChild(card);
@@ -251,34 +268,36 @@
             e.preventDefault(); // Отменяем переход на другую страницу
 
             const submitBtn = reviewForm.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.textContent;
             submitBtn.textContent = 'Отправка...';
             submitBtn.disabled = true;
 
             const formData = new FormData(reviewForm);
 
-            // Используем mode: 'no-cors' чтобы обойти политики безопасности браузера при отправке в Google
+            // Используем mode: 'cors' для безопасной отправки данных
             fetch(reviewForm.action, {
                 method: 'POST',
                 body: formData,
-                mode: 'no-cors'
+                mode: 'cors'
             }).then(() => {
                 // Выводим сообщение об успехе
                 const msg = document.createElement('p');
                 msg.className = 'card-text mt-sm';
                 msg.style.color = '#10b981'; // Приятный зеленый цвет
                 msg.style.fontWeight = '500';
+                // Безопасная вставка текста через textContent (защита от XSS)
                 msg.textContent = '✅ Спасибо! Ваш отзыв успешно опубликован.';
                 reviewForm.parentNode.insertBefore(msg, reviewForm.nextSibling);
 
                 reviewForm.reset();
-                submitBtn.textContent = 'Отправить отзыв →';
+                submitBtn.textContent = originalBtnText;
                 submitBtn.disabled = false;
 
                 // Перезагружаем ленту отзывов, чтобы сразу показать новый
                 setTimeout(loadReviews, 1500);
             }).catch(error => {
                 console.error('Ошибка отправки:', error);
-                submitBtn.textContent = 'Отправить отзыв →';
+                submitBtn.textContent = originalBtnText;
                 submitBtn.disabled = false;
             });
         });
