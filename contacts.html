@@ -15,7 +15,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="css/style.css"/>
 
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -35,51 +35,131 @@
     <!-- /Yandex.Metrika counter -->
 
     <!-- Content Security Policy (CSP) -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://mc.yandex.ru; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://script.google.com https://mc.yandex.ru; form-action 'self' https://script.google.com;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://mc.yandex.ru; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://script.google.com https://mc.yandex.ru; form-action 'self' https://script.google.com;">
 
 </head>
 <body>
+
 <header class="header">
     <div class="container header-inner">
         <a href="index.html" class="logo">mm<span>matveyz</span></a>
-        <button class="menu-toggle" aria-label="Открыть меню" aria-expanded="false">☰</button>
+        
+        <button class="menu-toggle" id="menu-toggle" aria-label="Открыть меню" aria-expanded="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="4" y1="12" x2="20" y2="12"></line>
+                <line x1="4" y1="6" x2="20" y2="6"></line>
+                <line x1="4" y1="18" x2="20" y2="18"></line>
+            </svg>
+        </button>
+
         <nav class="nav" id="nav">
             <a href="index.html" class="nav-link">Главная</a>
             <a href="projects.html" class="nav-link">Проекты</a>
             <a href="achievements.html" class="nav-link">Достижения</a>
             <a href="contacts.html" class="nav-link active">Контакты</a>
-            <button id="theme-toggle" class="theme-toggle" aria-label="Переключить тему">🌙</button>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Переключить тему">
+                <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
         </nav>
     </div>
 </header>
 
 <main class="section reveal">
     <div class="container">
-        <h1 class="section-title">Свяжитесь со мной</h1>
+        <div class="text-center mb-lg">
+            <h1 class="section-title">Свяжитесь со мной</h1>
+            <p class="card-text" style="max-width: 600px; margin: 0 auto;">Обсуждение проектов по автоматизации, разработки ботов, интеграций или предложений о работе</p>
+        </div>
+
         <div class="grid-2">
-            <div class="contact-info">
-                <p class="card-text">Лучший способ связаться со мной — Telegram. Отвечаю обычно в течение нескольких часов.</p>
-                <div class="contact-item"><span>✈️</span><a href="https://t.me/mmmatveyz" target="_blank" rel="noopener">@mmmatveyz</a></div>
-                <div class="contact-item"><span>✉️</span><a href="mailto:matvey6527@gmail.com">matvey6527@gmail.com</a></div>
-                <div class="contact-item"><span>💻</span><a href="https://github.com/mmmatveyz" target="_blank" rel="noopener">github.com/mmmatveyz</a></div>
-                <div class="mt-md"><p class="card-text"><strong>Город:</strong> Санкт-Петербург 🇷🇺<br><strong>Часовой пояс:</strong> UTC+3</p></div>
+            <!-- ИНФОРМАЦИЯ О СВЯЗИ -->
+            <div class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <h2 class="card-title">Прямые каналы связи</h2>
+                    <p class="card-text">Основной и самый оперативный способ связи — Telegram. Обычно отвечаю в течение нескольких часов.</p>
+                    
+                    <div class="contact-info" style="margin-top: var(--space-md);">
+                        <div class="contact-item">
+                            <div style="width: 36px; height: 36px; border-radius: var(--radius-sm); background: var(--bg-glass); border: 1px solid var(--border-subtle); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="color: var(--accent-primary);">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div style="font-size: var(--text-xs); color: var(--text-muted); font-family: var(--font-mono);">Telegram</div>
+                                <a href="https://t.me/mmmatveyz" target="_blank" rel="noopener" style="font-weight: 500; color: var(--accent-secondary);">@mmmatveyz</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div style="width: 36px; height: 36px; border-radius: var(--radius-sm); background: var(--bg-glass); border: 1px solid var(--border-subtle); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                </svg>
+                            </div>
+                            <div>
+                                <div style="font-size: var(--text-xs); color: var(--text-muted); font-family: var(--font-mono);">Электронная почта</div>
+                                <a href="mailto:matvey6527@gmail.com" style="font-weight: 500;">matvey6527@gmail.com</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div style="width: 36px; height: 36px; border-radius: var(--radius-sm); background: var(--bg-glass); border: 1px solid var(--border-subtle); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="color: var(--accent-primary);">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div style="font-size: var(--text-xs); color: var(--text-muted); font-family: var(--font-mono);">Репозиторий кода</div>
+                                <a href="https://github.com/mmmatveyz" target="_blank" rel="noopener" style="font-weight: 500;">github.com/mmmatveyz</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: var(--space-lg); padding-top: var(--space-md); border-top: 1px solid var(--border-subtle); display: flex; gap: var(--space-lg); flex-wrap: wrap;">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        <span style="font-size: var(--text-xs); color: var(--text-secondary); font-family: var(--font-mono);">Санкт-Петербург</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        <span style="font-size: var(--text-xs); color: var(--text-secondary); font-family: var(--font-mono);">UTC+3 (МСК)</span>
+                    </div>
+                </div>
             </div>
 
+            <!-- ФОРМА ОБРАТНОЙ СВЯЗИ -->
             <form class="contact-form card" id="contactForm" action="https://script.google.com/macros/s/AKfycbxrBExj_TvpbnR4Yd2Q8kvxtmKHyOLMH25m1E9v80xo3Pl7RDaNoMf_4OOhfIX8RJhR/exec" method="POST">
                 <input type="hidden" name="form-type" value="contact">
                 <div class="form-group">
-                    <label class="form-label" for="name">Имя *</label>
-                    <input class="form-input" type="text" id="name" name="name" required placeholder="Ваше имя"/>
+                    <label class="form-label" for="name">Ваше имя *</label>
+                    <input class="form-input" type="text" id="name" name="name" required placeholder="Константин">
                 </div>
                 <div class="form-group">
-                    <label class="form-label" for="email">Email *</label>
-                    <input class="form-input" type="email" id="email" name="email" required placeholder="you@example.com"/>
+                    <label class="form-label" for="email">Email для связи *</label>
+                    <input class="form-input" type="email" id="email" name="email" required placeholder="name@company.ru">
                 </div>
                 <div class="form-group">
-                    <label class="form-label" for="message">Сообщение *</label>
-                    <textarea class="form-textarea" id="message" name="message" required placeholder="Расскажите о вашей задаче..."></textarea>
+                    <label class="form-label" for="message">Описание задачи *</label>
+                    <textarea class="form-textarea" id="message" name="message" required placeholder="Опишите ваш проект, требования к автоматизации или вопросы..."></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary">Отправить →</button>
+                <button type="submit" class="btn btn-primary">
+                    <span>Отправить сообщение</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </button>
             </form>
         </div>
     </div>
@@ -89,9 +169,25 @@
     <div class="container">
         <p>© <span id="year"></span> Матвей Зрячих (mmmatveyz). Все права защищены.</p>
         <div class="footer-links">
-            <a href="privacy.html" class="footer-link">Конфиденциальность 🔒</a>
-            <a href="https://t.me/mmmatveyz" class="footer-link" target="_blank" rel="noopener">Telegram ✈️</a>
-            <a href="https://github.com/mmmatveyz" class="footer-link" target="_blank" rel="noopener">GitHub 💻</a>
+            <a href="privacy.html" class="footer-link">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                <span>Конфиденциальность</span>
+            </a>
+            <a href="https://t.me/mmmatveyz" class="footer-link" target="_blank" rel="noopener">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+                </svg>
+                <span>Telegram</span>
+            </a>
+            <a href="https://github.com/mmmatveyz" class="footer-link" target="_blank" rel="noopener">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                </svg>
+                <span>GitHub</span>
+            </a>
         </div>
     </div>
 </footer>
@@ -99,21 +195,19 @@
 <script src="js/main.js"></script>
 
 <script>
-    // Функция для безопасного экранирования HTML-символов (защита от XSS)
     function escapeHtml(text) {
         const div = document.createElement('div');
         div.textContent = text;
         return div.innerHTML;
     }
 
-    // Фоновая отправка формы контактов (AJAX)
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
             const submitBtn = contactForm.querySelector('button[type="submit"]');
-            const originalBtnText = submitBtn.textContent;
+            const originalContent = submitBtn.innerHTML;
             submitBtn.textContent = 'Отправка...';
             submitBtn.disabled = true;
 
@@ -124,32 +218,33 @@
                 body: formData,
                 mode: 'cors'
             }).then(() => {
-                const msg = document.createElement('p');
+                const msg = document.createElement('div');
                 msg.className = 'card-text mt-sm';
-                msg.style.color = '#10b981';
-                msg.style.fontWeight = '500';
-                // Безопасная вставка текста через textContent
-                msg.textContent = '✅ Сообщение успешно отправлено! Я свяжусь с вами в ближайшее время.';
+                msg.style.color = '#34d399';
+                msg.style.fontFamily = 'var(--font-mono)';
+                msg.style.fontSize = 'var(--text-sm)';
+                msg.textContent = 'Сообщение успешно отправлено. Я свяжусь с вами в ближайшее время.';
 
                 contactForm.parentNode.insertBefore(msg, contactForm.nextSibling);
 
                 contactForm.reset();
-                submitBtn.textContent = originalBtnText;
+                submitBtn.innerHTML = originalContent;
                 submitBtn.disabled = false;
             }).catch(error => {
                 console.error('Ошибка отправки:', error);
-                submitBtn.textContent = originalBtnText;
+                submitBtn.innerHTML = originalContent;
                 submitBtn.disabled = false;
             });
         });
     }
 </script>
 
+<!-- COOKIE BANNER -->
 <div id="cookie-banner" class="cookie-banner reveal">
     <p class="card-text" style="margin: 0; font-size: var(--text-sm);">
-        Этот сайт использует Яндекс.Метрику для сбора статистики и улучшения работы. Продолжая использование, вы соглашаетесь с нашей <a href="privacy.html" style="color: var(--color-accent); text-decoration: underline;">политикой обработки данных</a>.
+        Этот сайт использует аналитику для сбора технической статистики и улучшения интерфейса. Продолжая использование, вы соглашаетесь с <a href="privacy.html" style="color: var(--accent-secondary); text-decoration: underline;">политикой конфиденциальности</a>.
     </p>
-    <button id="accept-cookies" class="btn btn-sm btn-primary">Понятно</button>
+    <button id="accept-cookies" class="btn btn-sm btn-primary">Принять</button>
 </div>
 
 </body>
