@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 💎 2. Модальные окна детальной информации о проектах ---
+    // --- 💎 2. Универсальное модальное окно (Проекты и Документы) ---
     const modalOverlay = document.createElement('div');
     modalOverlay.className = 'modal-overlay';
     modalOverlay.innerHTML = `
@@ -48,6 +48,9 @@ document.addEventListener('DOMContentLoaded', () => {
             <h2 class="card-title" id="modal-title" style="font-size: var(--text-2xl); margin-top: 4px;"></h2>
             <div class="card-tech" id="modal-tech" style="margin: var(--space-sm) 0 var(--space-md);"></div>
             <div class="modal-body">
+                <div id="modal-image-wrapper" style="display: none; margin-bottom: var(--space-md); border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-subtle); background: #000;">
+                    <img id="modal-image" src="" alt="Документ" style="width: 100%; height: auto; max-height: 480px; object-fit: contain; display: block;" loading="lazy">
+                </div>
                 <p class="card-text" id="modal-desc" style="font-size: var(--text-base);"></p>
                 <div id="modal-extra" style="color: var(--text-secondary); font-size: var(--text-sm); line-height: 1.6;"></div>
             </div>
@@ -57,10 +60,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const modalTitle = document.getElementById('modal-title');
     const modalTech = document.getElementById('modal-tech');
+    const modalImageWrapper = document.getElementById('modal-image-wrapper');
+    const modalImage = document.getElementById('modal-image');
     const modalDesc = document.getElementById('modal-desc');
     const modalExtra = document.getElementById('modal-extra');
     const modalClose = modalOverlay.querySelector('.modal-close');
 
+    function closeModal() {
+        modalOverlay.classList.remove('active');
+        if (modalImage) modalImage.src = '';
+    }
+
+    if (modalClose) modalClose.addEventListener('click', closeModal);
+    modalOverlay.addEventListener('click', (e) => {
+        if (e.target === modalOverlay) closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeModal();
+    });
+
+    // --- 💎 2.1 Открытие проектов в модальном окне ---
     const projectDetails = {
         'РемонтTrack': {
             title: 'РемонтTrack',
@@ -87,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'Персональное портфолио': {
             title: 'Персональное портфолио',
             tech: ['JavaScript', 'Google Apps Script', 'CSS3', 'Яндекс.Метрика'],
-            desc: 'Интерактивный сайт-визитка для демонстрации инженерных проектов и связи с клиентами.',
+            desc: 'Интективный сайт-визитка для демонстрации инженерных проектов и связи с клиентами.',
             extra: '<strong>Архитектура и особенности:</strong> Полностью собственный Frontend без громоздких фреймворков. В качестве бесплатной серверлесс-БД используется Google Apps Script (прием отзывов, хранение, статусы модерации). Интегрированы кастомный курсор, динамическая фильтрация, переключатель темы и аналитика Яндекс.Метрики.'
         }
     };
@@ -106,7 +125,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (cardKey && projectDetails[cardKey]) {
                 const data = projectDetails[cardKey];
                 modalTitle.textContent = data.title;
+                modalTech.style.display = 'flex';
                 modalTech.innerHTML = data.tech.map(t => `<span class="tech-tag">${t}</span>`).join('');
+                modalImageWrapper.style.display = 'none';
                 modalDesc.textContent = data.desc;
                 modalExtra.innerHTML = data.extra;
 
@@ -115,16 +136,31 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    function closeModal() {
-        modalOverlay.classList.remove('active');
-    }
+    // --- 💎 2.2 Открытие документов и дипломов в модальном окне ---
+    const docButtons = document.querySelectorAll('.doc-modal-btn');
+    docButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
 
-    if (modalClose) modalClose.addEventListener('click', closeModal);
-    modalOverlay.addEventListener('click', (e) => {
-        if (e.target === modalOverlay) closeModal();
-    });
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeModal();
+            const title = btn.getAttribute('data-doc-title') || 'Документ об образовании';
+            const imgSrc = btn.getAttribute('data-doc-img');
+            const desc = btn.getAttribute('data-doc-desc') || '';
+
+            modalTitle.textContent = title;
+            modalTech.style.display = 'none';
+            modalDesc.textContent = desc;
+            modalExtra.innerHTML = '';
+
+            if (imgSrc) {
+                modalImage.src = imgSrc;
+                modalImageWrapper.style.display = 'block';
+            } else {
+                modalImageWrapper.style.display = 'none';
+            }
+
+            modalOverlay.classList.add('active');
+        });
     });
 
     // --- 💎 3. Установка текущего года в футере ---
