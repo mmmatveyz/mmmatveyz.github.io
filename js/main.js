@@ -124,6 +124,46 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === 'Escape') closeModal();
     });
 
+    // --- 📜 Модальное окно просмотра документов ---
+    const docOverlay = document.createElement('div');
+    docOverlay.className = 'modal-overlay doc-modal-overlay';
+    docOverlay.innerHTML = `
+        <div class="modal-card doc-modal-card" style="max-width: 800px; padding: var(--space-lg);">
+            <button class="modal-close doc-modal-close" aria-label="Закрыть">&times;</button>
+            <h3 class="card-title" id="doc-modal-title" style="margin-bottom: var(--space-md); font-size: var(--text-lg);"></h3>
+            <div style="text-align: center; overflow: hidden;">
+                <img src="" alt="Документ" id="doc-modal-img" style="max-width: 100%; max-height: 75vh; border-radius: var(--radius-md); box-shadow: 0 8px 24px var(--color-shadow); object-fit: contain;">
+            </div>
+        </div>
+    `;
+    document.body.appendChild(docOverlay);
+
+    const docModalTitle = document.getElementById('doc-modal-title');
+    const docModalImg = document.getElementById('doc-modal-img');
+    const docModalClose = docOverlay.querySelector('.doc-modal-close');
+
+    function closeDocModal() {
+        docOverlay.classList.remove('active');
+    }
+
+    if (docModalClose) docModalClose.addEventListener('click', closeDocModal);
+    docOverlay.addEventListener('click', (e) => {
+        if (e.target === docOverlay) closeDocModal();
+    });
+
+    document.addEventListener('click', (e) => {
+        const btn = e.target.closest('.doc-modal-btn');
+        if (btn) {
+            e.preventDefault();
+            const src = btn.getAttribute('data-doc-src') || btn.getAttribute('href');
+            const title = btn.getAttribute('data-doc-title') || 'Просмотр документа';
+
+            docModalTitle.textContent = title;
+            docModalImg.src = src;
+            docOverlay.classList.add('active');
+        }
+    });
+
     // --- Установка текущего года в футере ---
     const yearEl = document.getElementById('year');
     if (yearEl) yearEl.textContent = new Date().getFullYear();
@@ -211,6 +251,26 @@ document.addEventListener('DOMContentLoaded', () => {
             el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
         });
     }
+
+    // --- 🗂️ Табы внутри карточек проектов ---
+    document.querySelectorAll('.card').forEach(card => {
+        const tabBtns = card.querySelectorAll('.project-tab-btn');
+        const tabPanes = card.querySelectorAll('.tab-pane');
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const targetTab = btn.getAttribute('data-tab');
+
+                tabBtns.forEach(b => b.classList.remove('active'));
+                tabPanes.forEach(p => p.classList.remove('active'));
+
+                btn.classList.add('active');
+                const activePane = card.querySelector(`.tab-pane[data-pane="${targetTab}"]`);
+                if (activePane) activePane.classList.add('active');
+            });
+        });
+    });
 
     // --- 🗂️ Фильтрация портфолио ---
     const filterBtns = document.querySelectorAll('.filter-btn');

@@ -62,38 +62,68 @@
             <a href="projects.html" class="nav-link">Проекты</a>
             <a href="achievements.html" class="nav-link">Достижения</a>
             <a href="contacts.html" class="nav-link">Контакты</a>
+            <a href="resume.html" class="nav-link">Резюме 📄</a>
             <button id="theme-toggle" class="theme-toggle" aria-label="Переключить тему">🌙</button>
         </nav>
     </div>
 </header>
 
 <main>
-    <section class="hero reveal">
-        <div class="container hero-grid">
+    <section class="hero hero-relative reveal">
+        <canvas id="hero-canvas" class="hero-canvas"></canvas>
+        <div class="container hero-grid hero-content-wrapper">
             <div class="hero-content">
-                <h1 class="hero-title">Привет, я Матвей.<br>Электромонтёр-инженер и разработчик Telegram-ботов</h1>
+                <div class="status-pill">
+                    <span class="status-dot"></span>
+                    <span>Открыт к предложениям: Электромонтёр 6 разряда / Автоматизация (СПб)</span>
+                </div>
+                <h1 class="hero-title">Привет, я Матвей Зрячих.<br>Электромонтёр 6 разряда и Python-разработчик</h1>
                 <div class="typewriter-wrapper">
-                    <p class="hero-subtitle typewriter">Создаю цифровые инструменты для производства</p>
+                    <p class="hero-subtitle typewriter">Обслуживание ЧПУ (Siemens, Fanuc), силовая электроника & автоматизация процессов</p>
                 </div>
 
                 <div class="hero-buttons">
                     <a href="projects.html" class="btn btn-primary">Посмотреть проекты →</a>
-                    <a href="resume.pdf" download class="btn btn-outline">📄 Скачать резюме</a>
+                    <a href="resume.html" class="btn btn-outline">📄 Открыть резюме →</a>
                 </div>
             </div>
 
             <div class="hero-image-wrapper">
-                <img src="images/profile.jpg" alt="Матвей Зрячих" class="hero-image" loading="lazy" onerror="this.src='https://placehold.co/400x400/1e293b/818cf8?text=Фото'">
+                <img src="images/profile.jpg" alt="Матвей Зрячих" class="hero-image" loading="lazy" onerror="this.src='https://placehold.co/400x400/0f172a/818cf8?text=Матвей+Зрячих'">
+            </div>
+        </div>
+    </section>
+
+    <!-- 📊 Баннер ключевых показателей -->
+    <section class="section reveal" style="padding-top: 0;">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card card-glass">
+                    <div class="stat-value">4.5 года</div>
+                    <div class="stat-label">Опыт («Силовые машины», «Энергомаш»)</div>
+                </div>
+                <div class="stat-card card-glass">
+                    <div class="stat-value">6 разряд</div>
+                    <div class="stat-label">Электромонтёр ЧПУ & СЦБ</div>
+                </div>
+                <div class="stat-card card-glass">
+                    <div class="stat-value">ЧПУ & КИПиА</div>
+                    <div class="stat-label">Siemens Sinumerik, Fanuc, Приводы</div>
+                </div>
+                <div class="stat-card card-glass">
+                    <div class="stat-value">Python & AI</div>
+                    <div class="stat-label">Telegram-боты & Базы знаний поломок</div>
+                </div>
             </div>
         </div>
     </section>
 
     <section class="section reveal">
         <div class="container">
-            <div class="card">
-                <h2 class="section-title">Что у меня в голове</h2>
-                <p class="card-text">Я совмещаю инженерный опыт на производстве с современной веб-разработкой и созданием Telegram-экосистем. Мои решения помогают автоматизировать учёт ремонтов, строить сложные сметные калькуляторы, связывать веб-сервисы с ботами и избавлять бизнес от рутины. Всё, что я создаю, основано на понимании промышленных и бизнес-процессов «с земли».</p>
-                <p class="card-text" style="font-weight: 500; color: var(--color-accent); margin-bottom: var(--space-md);">🚀 Открыт к предложениям, найму и freelance-проектам по автоматизации и разработке.</p>
+            <div class="card card-glass">
+                <h2 class="section-title">Инженерия «с земли» и современная IT-автоматизация</h2>
+                <p class="card-text">Я совмещаю практический опыт электромонтёра 6 разряда (диагностика ЧПУ Siemens/Fanuc, силовые цепи, КИПиА, шкафы управления) с современной веб-разработкой и созданием Telegram-экосистем. Мои решения помогают автоматизировать учёт ремонтов на заводе, строить интерактивные калькуляторы смет для бизнеса (VoltGroup), связывать сервисы с ботами и избавлять производство от рутины.</p>
+                <p class="card-text" style="font-weight: 500; color: var(--color-accent); margin-bottom: var(--space-md);">🚀 Открыт к предложениям по найму (Электромонтёр 6 разряда / Автоматизация, Full-time СПб) и freelance-проектам по разработке ботов и сайтов.</p>
                 <a href="contacts.html" class="btn btn-outline">Связаться со мной</a>
             </div>
         </div>
@@ -101,17 +131,63 @@
 
     <section class="section reveal">
         <div class="container">
-            <h2 class="section-title">Обо мне</h2>
+            <h2 class="section-title">Обо мне и моих направлениях</h2>
             <div class="grid-2">
                 <div class="about-block">
-                    <h3>Инженерный опыт</h3>
-                    <p>4 года работы электромонтёром и инженером-электроником. Обслуживание более 100 станков: токарные, фрезерные, расточные, обрабатывающие центры. Работа с системами ЧПУ Siemens Sinumerik и промышленной автоматикой.</p>
+                    <h3>Промышленность & ЧПУ (4.5+ года)</h3>
+                    <p>Работа в тяжелом машиностроении (АО «Силовые машины», «Энергомаш»). Обслуживание металлорежущих станков с ЧПУ (Siemens Sinumerik, Fanuc), силовая электроника, устранение аварий PLC, КИПиА, модернизация шкафов управления и пусконаладка.</p>
                 </div>
                 <div class="about-block">
-                    <h3>Разработка и Автоматизация</h3>
-                    <p>Создаю асинхронных Telegram-ботов на Python и веб-сервисы. Реализовал системы учёта ремонтов с NLP-поиском, авто-табели рабочего времени, веб-платформу с калькулятором смет и серверлесс-интеграции через Google Apps Script.</p>
+                    <h3>Веб-разработка & Telegram-боты</h3>
+                    <p>Создаю асинхронных Telegram-ботов на Python и веб-платформы. Реализовал систему «РемонтTrack» с векторным NLP-поиском поломок, «WorkTimeBot» для авто-табелей Excel, веб-платформу VoltGroup с калькулятором смет и серверлесс-интеграции на Google Apps Script.</p>
                 </div>
             </div>
+            <div class="mt-lg">
+                <h3 class="mb-sm">Технологическая матрица</h3>
+                <div class="tech-matrix">
+                    <div class="tech-node">
+                        <span class="tech-icon">🐍</span>
+                        <span class="tech-name">Python 3.11+</span>
+                        <span class="tech-desc">Asyncio / Aiogram</span>
+                    </div>
+                    <div class="tech-node">
+                        <span class="tech-icon">⚡</span>
+                        <span class="tech-name">Telegram Bot API</span>
+                        <span class="tech-desc">Webhooks / Bots</span>
+                    </div>
+                    <div class="tech-node">
+                        <span class="tech-icon">🤖</span>
+                        <span class="tech-name">NLP & Vector AI</span>
+                        <span class="tech-desc">MiniLM Embeddings</span>
+                    </div>
+                    <div class="tech-node">
+                        <span class="tech-icon">🌐</span>
+                        <span class="tech-name">Frontend Web</span>
+                        <span class="tech-desc">JS ES6+ / HTML5 / CSS3</span>
+                    </div>
+                    <div class="tech-node">
+                        <span class="tech-icon">⚙️</span>
+                        <span class="tech-name">Siemens Sinumerik</span>
+                        <span class="tech-desc">ЧПУ / Промавтоматика</span>
+                    </div>
+                    <div class="tech-node">
+                        <span class="tech-icon">📊</span>
+                        <span class="tech-name">Data & Excel</span>
+                        <span class="tech-desc">SQLite / OpenPyXL</span>
+                    </div>
+                    <div class="tech-node">
+                        <span class="tech-icon">☁️</span>
+                        <span class="tech-name">Serverless</span>
+                        <span class="tech-desc">Google Apps Script</span>
+                    </div>
+                    <div class="tech-node">
+                        <span class="tech-icon">🛠️</span>
+                        <span class="tech-name">CI/CD & Git</span>
+                        <span class="tech-desc">GitHub / Workflows</span>
+                    </div>
+                </div>
+            </div>
+
             <div class="mt-lg">
                 <h3 class="mb-sm">Персональные данные</h3>
                 <dl class="personal-data">
@@ -180,6 +256,7 @@
     </div>
 </footer>
 
+<script src="js/canvas-bg.js"></script>
 <script src="js/main.js"></script>
 
 <script>

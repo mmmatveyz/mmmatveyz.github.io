@@ -45,6 +45,7 @@
             <a href="projects.html" class="nav-link">Проекты</a>
             <a href="achievements.html" class="nav-link active">Достижения</a>
             <a href="contacts.html" class="nav-link">Контакты</a>
+            <a href="resume.html" class="nav-link">Резюме 📄</a>
             <button id="theme-toggle" class="theme-toggle" aria-label="Переключить тему">🌙</button>
         </nav>
     </div>
@@ -56,22 +57,22 @@
         <h1 class="section-title">Мои достижения</h1>
 
         <div class="grid-4">
-            <div class="card achievement-card">
+            <div class="card card-glass achievement-card">
                 <div class="achievement-number">4 года</div>
                 <h3 class="card-title">Промышленный опыт</h3>
                 <p class="card-text">Обслуживание >100 станков с ЧПУ (Siemens Sinumerik): диагностика, ремонт, автоматика.</p>
             </div>
-            <div class="card achievement-card">
+            <div class="card card-glass achievement-card">
                 <div class="achievement-number">4 проекта</div>
                 <h3 class="card-title">В портфолио</h3>
                 <p class="card-text">Веб-платформа VoltGroup, Telegram-боты с NLP-поиском, серверлесс-БД и табели рабочего времени.</p>
             </div>
-            <div class="card achievement-card">
+            <div class="card card-glass achievement-card">
                 <div class="achievement-number">Fullstack</div>
                 <h3 class="card-title">Сквозная связка</h3>
                 <p class="card-text">Интеграция веб-сайтов с Telegram API, кастомными калькуляторами и Google Apps Script.</p>
             </div>
-            <div class="card achievement-card">
+            <div class="card card-glass achievement-card">
                 <div class="achievement-number">AI / NLP</div>
                 <h3 class="card-title">Умный поиск</h3>
                 <p class="card-text">Использование векторных эмбеддингов (MiniLM) для семантического поиска неисправностей.</p>
@@ -114,14 +115,14 @@
         </div>
 
         <div class="mt-lg">
-            <h2 class="section-title">Образование и квалификация</h2>
-            <p class="card-text mb-lg" style="color: var(--color-text-secondary); max-width: 650px;">
-                Подтверждённая профильная подготовка в области микроэлектроники, автоматики и промышленного оборудования.
+            <h2 class="section-title">Образование, квалификация и дипломы</h2>
+            <p class="card-text mb-lg" style="color: var(--color-text-secondary); max-width: 750px;">
+                Официально подтверждённая профильная подготовка, высший разряд, дипломы и профессиональные допуски.
             </p>
 
             <div class="grid-2">
 
-                <article class="card">
+                <article class="card card-glass">
                     <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: var(--space-xs);">
                         <span class="tech-tag" style="background: var(--color-accent); color: #fff;">Инженерный уровень</span>
                         <span class="card-text" style="margin: 0; font-size: var(--text-xs);">Проф. переподготовка</span>
@@ -130,46 +131,49 @@
                     <p class="card-text">Диплом о профессиональной переподготовке по специальности «Инженер-электроник».</p>
                     <p class="card-text">Обслуживание, диагностика и программирование электронных систем, микроконтроллеров и сложного промышленного оборудования.</p>
                     <div class="mt-md">
-                        <a href="images/docs/engineer-electronics.jpg" target="_blank" rel="noopener" class="btn btn-sm btn-outline">
+                        <button class="btn btn-sm btn-outline doc-modal-btn" data-doc-title="Диплом «Инженер-электроник»" data-doc-src="images/docs/engineer-electronics.jpg">
                             Посмотреть диплом 👁️
-                        </a>
+                        </button>
                     </div>
                 </article>
 
-                <article class="card">
+                <article class="card card-glass">
                     <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: var(--space-xs);">
                         <span class="tech-tag" style="background: #10b981; color: #fff;">6 разряд (высший)</span>
-                        <span class="card-text" style="margin: 0; font-size: var(--text-xs);">Повышение квалификации</span>
+                        <span class="card-text" style="margin: 0; font-size: var(--text-xs);">2026 г.</span>
                     </div>
-                    <h3 class="card-title">⚡ Электромонтёр по ремонту и обслуживанию электроустановок</h3>
-                    <p class="card-text">Удостоверение о повышении квалификации (6 разряд).</p>
-                    <p class="card-text">Работы в сложных электроустановках, налаживание и глубокое обслуживание силовой автоматики и распределительных сетей.</p>
+                    <h3 class="card-title">⚡ Электромонтёр по ремонту и обслуживанию электрооборудования</h3>
+                    <p class="card-text">Удостоверение о повышении квалификации (6 разряд, АНО ДПО «ОЦ «ПетроПроф»).</p>
+                    <p class="card-text">Обслуживание сложных систем ЧПУ, ремонт силовых цепей, выявление причин аварий приводов и датчиков, пусконаладка.</p>
                     <div class="mt-md">
-                        <a href="images/docs/electrician-6th.jpg" target="_blank" rel="noopener" class="btn btn-sm btn-outline">
+                        <button class="btn btn-sm btn-outline doc-modal-btn" data-doc-title="Удостоверение Электромонтёра 6-го разряда" data-doc-src="images/docs/electrician-6th.jpg">
                             Посмотреть документ 👁️
-                        </a>
+                        </button>
                     </div>
                 </article>
 
-                <article class="card">
+                <article class="card card-glass">
                     <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: var(--space-xs);">
-                        <span class="tech-tag">4 разряд</span>
-                        <span class="card-text" style="margin: 0; font-size: var(--text-xs);">СПО</span>
+                        <span class="tech-tag">4 разряд (СПО)</span>
+                        <span class="card-text" style="margin: 0; font-size: var(--text-xs);">Выпуск 2020 г.</span>
                     </div>
-                    <h3 class="card-title">🛠️ Электромонтёр устройств СЦБ</h3>
-                    <p class="card-text">Диплом о среднем профессиональном образовании (электромонтёр по ремонту и обслуживанию устройств СЦБ, 4 разряд).</p>
-                    <p class="card-text">Базовое профильное образование: обслуживание релейных систем, автоматики, цепей управления и систем безопасности.</p>
+                    <h3 class="card-title">🛠️ Колледж метрополитена (СПб ГБПОУ)</h3>
+                    <p class="card-text">Диплом СПО по специальности «Электромонтёр устройств СЦБ» (Сигнализация, Централизация и Блокировка).</p>
+                    <p class="card-text">Фундаментальная подготовка по электротехнике, релейной защите, автоматике и чтению сложных принципиальных схем.</p>
                     <div class="mt-md">
-                        <a href="images/docs/electrician-scb-4th.jpg" target="_blank" rel="noopener" class="btn btn-sm btn-outline">
+                        <button class="btn btn-sm btn-outline doc-modal-btn" data-doc-title="Диплом Колледжа метрополитена (СЦБ)" data-doc-src="images/docs/electrician-scb-4th.jpg">
                             Посмотреть диплом 👁️
-                        </a>
+                        </button>
                     </div>
                 </article>
 
-                <article class="card" style="border: 2px dashed var(--color-border); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: var(--space-lg);">
-                    <span style="font-size: 2rem; margin-bottom: var(--space-xs);">📜</span>
-                    <h3 class="card-title" style="font-size: var(--text-base);">Сертификаты и курсы</h3>
-                    <p class="card-text" style="font-size: var(--text-xs); margin: 0;">Повышение квалификации, IT-сертификаты и промышленные допуски.</p>
+                <article class="card card-glass">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: var(--space-xs);">
+                        <span class="tech-tag" style="background: #06b6d4; color: #fff;">Python / IT</span>
+                        <span class="card-text" style="margin: 0; font-size: var(--text-xs);">Разработка</span>
+                    </div>
+                    <h3 class="card-title">🐍 Разработка на Python & Telegram API</h3>
+                    <p class="card-text">Практическое применение асинхронного Python (Aiogram 3, SQLite, Vector NLP, OpenPyXL) для создания баз знаний неисправностей оборудования и автоматизации бизнес-процессов.</p>
                 </article>
 
             </div>
@@ -189,6 +193,7 @@
     </div>
 </footer>
 
+<script src="js/canvas-bg.js"></script>
 <script src="js/main.js"></script>
 
 <div id="cookie-banner" class="cookie-banner reveal">

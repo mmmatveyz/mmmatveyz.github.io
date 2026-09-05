@@ -1,4 +1,5 @@
 /* css/style.css */
+@import 'components.css';
 
 :root {
 /* Colors - Light Theme */

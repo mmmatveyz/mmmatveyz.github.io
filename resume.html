@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Резюме | Зрячих Матвей Олегович — Электромонтёр 6 разряда</title>
+    <meta name="description" content="Резюме: Зрячих Матвей Олегович — Электромонтёр по ремонту и обслуживанию электрооборудования 6 разряда, ЧПУ, автоматизация, Python.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #818cf8;
+            --accent-glow: rgba(129, 140, 248, 0.25);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 2rem 1rem;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .resume-container {
+            max-width: 920px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 3rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            position: relative;
+        }
+
+        .no-print-bar {
+            max-width: 920px;
+            margin: 0 auto 1.5rem auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+        }
+
+        .btn-primary {
+            background: #6366f1;
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: #4f46e5;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* Header */
+        .resume-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 2rem;
+            margin-bottom: 2rem;
+            gap: 2rem;
+        }
+
+        .header-main h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.25rem;
+            background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header-title {
+            font-size: 1.15rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .badge-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .badge {
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 6px;
+            background: rgba(99, 102, 241, 0.15);
+            color: #a5b4fc;
+            border: 1px solid rgba(165, 180, 252, 0.2);
+        }
+
+        .badge-green {
+            background: rgba(16, 185, 129, 0.15);
+            color: #6ee7b7;
+            border-color: rgba(110, 231, 183, 0.2);
+        }
+
+        .contact-info {
+            text-align: right;
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .contact-info a {
+            color: var(--text-main);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .contact-info a:hover {
+            color: var(--accent);
+        }
+
+        /* Layout Grid */
+        .resume-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2.5rem;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--accent);
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border-color);
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 1.75rem;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 1.25rem;
+            border-left: 2px solid rgba(129, 140, 248, 0.3);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 4px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 8px var(--accent);
+        }
+
+        .job-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .company-name {
+            font-weight: 600;
+            color: var(--accent);
+            font-size: 0.95rem;
+        }
+
+        .job-period {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+            font-family: var(--font-mono);
+        }
+
+        .job-desc {
+            font-size: 0.88rem;
+            color: #cbd5e1;
+        }
+
+        .job-desc ul {
+            list-style-type: disc;
+            padding-left: 1.2rem;
+            margin-top: 0.5rem;
+        }
+
+        .job-desc li {
+            margin-bottom: 0.35rem;
+        }
+
+        /* Sidebar Sections */
+        .sidebar-block {
+            margin-bottom: 2rem;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .skill-tag {
+            font-size: 0.8rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            padding: 4px 10px;
+            border-radius: 6px;
+            color: #e2e8f0;
+        }
+
+        .edu-item {
+            margin-bottom: 1rem;
+        }
+
+        .edu-degree {
+            font-weight: 700;
+            font-size: 0.92rem;
+            color: var(--text-main);
+        }
+
+        .edu-place {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .edu-year {
+            font-size: 0.78rem;
+            color: var(--accent);
+            font-family: var(--font-mono);
+        }
+
+        /* Print Media Styles */
+        @media print {
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                text-shadow: none !important;
+                filter: none !important;
+            }
+
+            body {
+                background: #ffffff !important;
+                color: #0f172a !important;
+                padding: 0 !important;
+                font-size: 10.5pt !important;
+            }
+
+            .no-print-bar {
+                display: none !important;
+            }
+
+            .resume-container {
+                border: none !important;
+                box-shadow: none !important;
+                padding: 0 !important;
+                max-width: 100% !important;
+                background: #ffffff !important;
+                color: #0f172a !important;
+            }
+
+            .header-main h1 {
+                background: none !important;
+                -webkit-background-clip: unset !important;
+                -webkit-text-fill-color: #0f172a !important;
+                color: #0f172a !important;
+                font-size: 20pt !important;
+            }
+
+            .header-title {
+                color: #4338ca !important;
+                font-size: 11pt !important;
+            }
+
+            .contact-info, .contact-info a {
+                color: #1e293b !important;
+            }
+
+            .job-title, .edu-degree {
+                color: #0f172a !important;
+                font-size: 11pt !important;
+            }
+
+            .job-period, .edu-year {
+                color: #4338ca !important;
+            }
+
+            .company-name, .section-title {
+                color: #4338ca !important;
+            }
+
+            .job-desc, .job-desc li, .edu-place, .sidebar-block div {
+                color: #1e293b !important;
+            }
+
+            .badge {
+                background: #e0e7ff !important;
+                color: #3730a3 !important;
+                border: 1px solid #c7d2fe !important;
+            }
+
+            .badge-green {
+                background: #d1fae5 !important;
+                color: #065f46 !important;
+                border: 1px solid #a7f3d0 !important;
+            }
+
+            .skill-tag {
+                background: #f1f5f9 !important;
+                color: #0f172a !important;
+                border: 1px solid #cbd5e1 !important;
+            }
+
+            .timeline-item {
+                border-left-color: #6366f1 !important;
+            }
+
+            .timeline-item::before {
+                background: #6366f1 !important;
+                box-shadow: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="no-print-bar">
+        <a href="index.html" class="btn btn-outline">← На главную портфолио</a>
+        <button onclick="window.print()" class="btn btn-primary">🖨️ Распечатать / Сохранить в PDF</button>
+    </div>
+
+    <div class="resume-container">
+        <header class="resume-header">
+            <div class="header-main">
+                <h1>Зрячих Матвей Олегович</h1>
+                <div class="header-title">Электромонтёр по ремонту и обслуживанию электрооборудования 6 разряда</div>
+                <div class="badge-list">
+                    <span class="badge badge-green">6-й Разряд (Высший)</span>
+                    <span class="badge">Опыт 4.5+ года</span>
+                    <span class="badge">ЧПУ Siemens & Fanuc</span>
+                    <span class="badge">Инженер-Электроник</span>
+                    <span class="badge">Python Automatician</span>
+                </div>
+            </div>
+            <div class="contact-info">
+                <div><strong>СПб, м. Девяткино</strong></div>
+                <div>📞 <a href="tel:+79817915616">+7 (981) 791-56-16</a></div>
+                <div>✉️ <a href="mailto:matvey6527@mail.ru">matvey6527@mail.ru</a></div>
+                <div>🌐 <a href="https://mmmatveyz.github.io" target="_blank">mmmatveyz.github.io</a></div>
+                <div style="margin-top: 4px; font-weight: 600; color: #10b981;">Желаемый доход: 180 000 ₽</div>
+            </div>
+        </header>
+
+        <div class="resume-grid">
+            <div class="main-column">
+                <section style="margin-bottom: 2rem;">
+                    <h2 class="section-title">Опыт работы (4 года 6 месяцев)</h2>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="job-title">Электромонтёр 6 разряда</div>
+                            <div class="company-name">АО «Силовые машины» (Тяжёлое машиностроение)</div>
+                            <div class="job-period">Июль 2026 — Настоящее время</div>
+                            <div class="job-desc">
+                                <ul>
+                                    <li><strong>Диагностика и ремонт ЧПУ:</strong> металлорежущие станки с ЧПУ Siemens Sinumerik и Fanuc (силовые цепи, датчики положения, серводвигатели, блоки управления).</li>
+                                    <li><strong>Пусконаладочные работы:</strong> локализация аварий, анализ ошибок PLC, сброс сбоев, замена модулей питания и электроники.</li>
+                                    <li><strong>Модернизация:</strong> сборка и перемонтаж шкафов управления, замена устаревших компонентов на современные аналоги.</li>
+                                    <li><strong>Систематизация ремонтов:</strong> разработал личную базу решений на базе Telegram-бота для мгновенной диагностики повторных отказов.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="job-title">Электромонтёр по ремонту и обслуживанию электрооборудования</div>
+                            <div class="company-name">«Энергомаш» (Санкт-Петербург)</div>
+                            <div class="job-period">Апрель 2022 — Июнь 2026 (4 года 3 месяца)</div>
+                            <div class="job-desc">
+                                <ul>
+                                    <li>Обслуживание и ремонт электронных систем металлообрабатывающих станков с ЧПУ (Fanuc, Siemens Sinumerik).</li>
+                                    <li>Техническое обслуживание систем КИПиА: проверка энкодеров, линеек, концевых выключателей, частотных преобразователей.</li>
+                                    <li>Соблюдение регламентов ТБ, ПУЭ, правила эксплуатации слаботочных и силовых распределительных систем.</li>
+                                    <li>Наладка и испытание электрических машин, устранение неисправностей в силовых цепях.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="section-title">Ключевая квалификация</h2>
+                    <p class="job-desc">
+                        Электромонтёр 6-го разряда с 4.5-летним опытом в ремонте и эксплуатации сложного промышленного оборудования и станков с ЧПУ. Специализируюсь на локализации отказов в силовых модулях, сервоприводах, датчиках обратной связи и блоках управления. Умею читать принципиальные электрические схемы любой сложности. Внедряю Python-скрипты и Telegram-ботов для автоматизации учета поломок и рутинных задач.
+                    </p>
+                </section>
+            </div>
+
+            <div class="sidebar-column">
+                <div class="sidebar-block">
+                    <h2 class="section-title">Навыки</h2>
+                    <div class="skills-list">
+                        <span class="skill-tag">Диагностика ЧПУ</span>
+                        <span class="skill-tag">Siemens Sinumerik</span>
+                        <span class="skill-tag">Fanuc</span>
+                        <span class="skill-tag">Силовые цепи</span>
+                        <span class="skill-tag">Сервоприводы</span>
+                        <span class="skill-tag">КИПиА</span>
+                        <span class="skill-tag">Релейная защита</span>
+                        <span class="skill-tag">Шкафы управления</span>
+                        <span class="skill-tag">Чтение электросхем</span>
+                        <span class="skill-tag">Осциллограф</span>
+                        <span class="skill-tag">Мегаомметр</span>
+                        <span class="skill-tag">Соблюдение ПУЭ и ТБ</span>
+                        <span class="skill-tag">Python (Asyncio, Bot API)</span>
+                        <span class="skill-tag">SQLite & OpenPyXL</span>
+                    </div>
+                </div>
+
+                <div class="sidebar-block">
+                    <h2 class="section-title">Образование</h2>
+                    <div class="edu-item">
+                        <div class="edu-degree">Электромонтёр устройств СЦБ</div>
+                        <div class="edu-place">СПб ГБПОУ «Колледж метрополитена»</div>
+                        <div class="edu-year">2020 г. (СПО)</div>
+                    </div>
+                </div>
+
+                <div class="sidebar-block">
+                    <h2 class="section-title">Курсы и Разряды</h2>
+                    <div class="edu-item">
+                        <div class="edu-degree">Инженер-электроник</div>
+                        <div class="edu-place">Проф. переподготовка</div>
+                    </div>
+                    <div class="edu-item">
+                        <div class="edu-degree">Электромонтёр 6-го разряда</div>
+                        <div class="edu-place">АНО ДПО «ОЦ «ПетроПроф» (2026 г.)</div>
+                    </div>
+                </div>
+
+                <div class="sidebar-block">
+                    <h2 class="section-title">Языки</h2>
+                    <div style="font-size: 0.88rem;">
+                        <div><strong>Русский:</strong> Родной</div>
+                        <div><strong>Английский:</strong> A1 (Базовый)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
