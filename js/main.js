@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalOverlay = document.createElement('div');
     modalOverlay.className = 'modal-overlay';
     modalOverlay.innerHTML = `
-        <div class="modal-card">
+        <div class="modal-card" style="max-width: 820px; max-height: 90vh; overflow-y: auto;">
             <button class="modal-close" aria-label="Закрыть модальное окно">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -48,8 +48,8 @@ document.addEventListener('DOMContentLoaded', () => {
             <h2 class="card-title" id="modal-title" style="font-size: var(--text-2xl); margin-top: 4px;"></h2>
             <div class="card-tech" id="modal-tech" style="margin: var(--space-sm) 0 var(--space-md);"></div>
             <div class="modal-body">
-                <div id="modal-image-wrapper" style="display: none; margin-bottom: var(--space-md); border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-subtle); background: #000;">
-                    <img id="modal-image" src="" alt="Документ" style="width: 100%; height: auto; max-height: 480px; object-fit: contain; display: block;" loading="lazy">
+                <div id="modal-image-wrapper" style="display: none; margin-bottom: var(--space-md); border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-subtle); background: rgba(0, 0, 0, 0.4); text-align: center;">
+                    <img id="modal-image" src="" alt="Документ" style="width: 100%; height: auto; max-height: 70vh; object-fit: contain; display: block; margin: 0 auto;" loading="lazy">
                 </div>
                 <p class="card-text" id="modal-desc" style="font-size: var(--text-base);"></p>
                 <div id="modal-extra" style="color: var(--text-secondary); font-size: var(--text-sm); line-height: 1.6;"></div>
@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'Персональное портфолио': {
             title: 'Персональное портфолио',
             tech: ['JavaScript', 'Google Apps Script', 'CSS3', 'Яндекс.Метрика'],
-            desc: 'Интективный сайт-визитка для демонстрации инженерных проектов и связи с клиентами.',
+            desc: 'Интерактивный сайт-визитка для демонстрации инженерных проектов и связи с клиентами.',
             extra: '<strong>Архитектура и особенности:</strong> Полностью собственный Frontend без громоздких фреймворков. В качестве бесплатной серверлесс-БД используется Google Apps Script (прием отзывов, хранение, статусы модерации). Интегрированы кастомный курсор, динамическая фильтрация, переключатель темы и аналитика Яндекс.Метрики.'
         }
     };
@@ -129,6 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 modalTech.innerHTML = data.tech.map(t => `<span class="tech-tag">${t}</span>`).join('');
                 modalImageWrapper.style.display = 'none';
                 modalDesc.textContent = data.desc;
+                modalDesc.style.display = 'block';
                 modalExtra.innerHTML = data.extra;
 
                 modalOverlay.classList.add('active');
@@ -137,69 +138,28 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- 💎 2.2 Открытие документов и дипломов в модальном окне ---
-    const docButtons = document.querySelectorAll('.doc-modal-btn');
-    docButtons.forEach(btn => {
-        btn.addEventListener('click', (e) => {
+    document.addEventListener('click', (e) => {
+        const btn = e.target.closest('.doc-modal-btn');
+        if (btn) {
             e.preventDefault();
-            e.stopPropagation();
-
             const title = btn.getAttribute('data-doc-title') || 'Документ об образовании';
-            const imgSrc = btn.getAttribute('data-doc-img');
+            const src = btn.getAttribute('data-doc-src') || btn.getAttribute('data-doc-img') || btn.getAttribute('href');
             const desc = btn.getAttribute('data-doc-desc') || '';
 
             modalTitle.textContent = title;
             modalTech.style.display = 'none';
             modalDesc.textContent = desc;
+            modalDesc.style.display = desc ? 'block' : 'none';
             modalExtra.innerHTML = '';
 
-            if (imgSrc) {
-                modalImage.src = imgSrc;
+            if (src) {
+                modalImage.src = src;
                 modalImageWrapper.style.display = 'block';
             } else {
                 modalImageWrapper.style.display = 'none';
             }
 
             modalOverlay.classList.add('active');
-        });
-    });
-
-    // --- 📜 Модальное окно просмотра документов ---
-    const docOverlay = document.createElement('div');
-    docOverlay.className = 'modal-overlay doc-modal-overlay';
-    docOverlay.innerHTML = `
-        <div class="modal-card doc-modal-card" style="max-width: 800px; padding: var(--space-lg);">
-            <button class="modal-close doc-modal-close" aria-label="Закрыть">&times;</button>
-            <h3 class="card-title" id="doc-modal-title" style="margin-bottom: var(--space-md); font-size: var(--text-lg);"></h3>
-            <div style="text-align: center; overflow: hidden;">
-                <img src="" alt="Документ" id="doc-modal-img" style="max-width: 100%; max-height: 75vh; border-radius: var(--radius-md); box-shadow: 0 8px 24px var(--color-shadow); object-fit: contain;">
-            </div>
-        </div>
-    `;
-    document.body.appendChild(docOverlay);
-
-    const docModalTitle = document.getElementById('doc-modal-title');
-    const docModalImg = document.getElementById('doc-modal-img');
-    const docModalClose = docOverlay.querySelector('.doc-modal-close');
-
-    function closeDocModal() {
-        docOverlay.classList.remove('active');
-    }
-
-    if (docModalClose) docModalClose.addEventListener('click', closeDocModal);
-    docOverlay.addEventListener('click', (e) => {
-        if (e.target === docOverlay) closeDocModal();
-    });
-
-    document.addEventListener('click', (e) => {
-        const btn = e.target.closest('.doc-modal-btn');
-        if (btn) {
-            e.preventDefault();
-            const src = btn.getAttribute('data-doc-src') || btn.getAttribute('href');
-            const title = btn.getAttribute('data-doc-title') || 'Просмотр документа';
-
-            docModalTitle.textContent = title;
-            docModalImg.src = src;
-            docOverlay.classList.add('active');
         }
     });
 
