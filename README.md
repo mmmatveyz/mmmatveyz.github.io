@@ -57,7 +57,14 @@
 │
 ├── robots.txt              # Инструкции для поисковых краулеров
 ├── sitemap.xml             # Карта сайта с приоритетами и датами обновления
-└── favicon.svg             # Векторная иконка сайта
+├── site.webmanifest        # Стандартный Web App Manifest (PWA, Android, Chrome)
+├── yandex-manifest.json    # Манифест виджета Табло для Яндекс.Браузера
+├── yandex-tableau-logo.png # Фирменный логотип для плитки Яндекс.Табло
+├── favicon.svg             # Векторный фавикон высокого разрешения
+├── favicon.ico             # Мульти-размерный ICO (16x16, 32x32, 48x48)
+├── apple-touch-icon.png    # Иконка для iOS / Safari (180x180)
+├── icon-192.png            # PWA-иконка 192x192
+└── icon-512.png            # PWA-иконка 512x512
 ```
 
 ---

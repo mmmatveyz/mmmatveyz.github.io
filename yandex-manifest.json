@@ -1,0 +1,9 @@
+{
+  "version": "1.0",
+  "api_version": 1,
+  "layout": {
+    "logo": "/yandex-tableau-logo.png",
+    "color": "#080b11",
+    "show_title": true
+  }
+}
