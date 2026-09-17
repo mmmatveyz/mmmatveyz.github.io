@@ -396,6 +396,30 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- ⌨️ Typewriter эффект без обрезания слов ---
+    const typewriterEl = document.querySelector('.typewriter');
+    if (typewriterEl) {
+        const fullText = typewriterEl.getAttribute('data-text') || typewriterEl.textContent.trim();
+        typewriterEl.textContent = '';
+
+        const textSpan = document.createElement('span');
+        const cursor = document.createElement('span');
+        cursor.className = 'typewriter-cursor';
+        cursor.textContent = '|';
+        typewriterEl.appendChild(textSpan);
+        typewriterEl.appendChild(cursor);
+
+        let charIndex = 0;
+        function typeChar() {
+            if (charIndex < fullText.length) {
+                textSpan.textContent += fullText.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeChar, 30);
+            }
+        }
+        setTimeout(typeChar, 350);
+    }
+
     // --- 💎 12. Отзывы (Загрузка и карусель) ---
     const googleAppScriptUrl = 'https://script.google.com/macros/s/AKfycbxrBExj_TvpbnR4Yd2Q8kvxtmKHyOLMH25m1E9v80xo3Pl7RDaNoMf_4OOhfIX8RJhR/exec';
     const pageLoadTimestamp = Date.now();
