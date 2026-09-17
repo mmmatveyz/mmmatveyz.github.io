@@ -1,4 +1,4 @@
-// js/canvas-bg.js - Interactive Engineering Mesh Canvas Background
+// js/canvas-bg.js - Interactive Engineering Mesh Canvas Background (Resource-Optimized)
 
 document.addEventListener('DOMContentLoaded', () => {
     const canvas = document.getElementById('hero-canvas');
@@ -8,6 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let width, height;
     let particles = [];
     let mouse = { x: null, y: null, radius: 140 };
+    let animationFrameId = null;
+    let isVisible = true;
+    let resizeTimeout = null;
 
     function resize() {
         width = canvas.width = canvas.offsetWidth;
@@ -15,9 +18,13 @@ document.addEventListener('DOMContentLoaded', () => {
         initParticles();
     }
 
-    window.addEventListener('resize', resize);
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(resize, 100);
+    });
 
     window.addEventListener('mousemove', (e) => {
+        if (!isVisible) return;
         const rect = canvas.getBoundingClientRect();
         mouse.x = e.clientX - rect.left;
         mouse.y = e.clientY - rect.top;
@@ -69,12 +76,17 @@ document.addEventListener('DOMContentLoaded', () => {
     function initParticles() {
         particles = [];
         const count = Math.floor((width * height) / 12000);
-        for (let i = 0; i < Math.min(count, 65); i++) {
+        for (let i = 0; i < Math.min(count, 60); i++) {
             particles.push(new Particle());
         }
     }
 
     function animate() {
+        if (!isVisible || document.hidden) {
+            animationFrameId = null;
+            return;
+        }
+
         ctx.clearRect(0, 0, width, height);
 
         const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
@@ -101,9 +113,45 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        requestAnimationFrame(animate);
+        animationFrameId = requestAnimationFrame(animate);
+    }
+
+    function startAnimation() {
+        if (!animationFrameId && isVisible && !document.hidden) {
+            animationFrameId = requestAnimationFrame(animate);
+        }
+    }
+
+    function stopAnimation() {
+        if (animationFrameId) {
+            cancelAnimationFrame(animationFrameId);
+            animationFrameId = null;
+        }
+    }
+
+    // Оптимизация: пауза при уходе со вкладки или выходе из viewport
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            stopAnimation();
+        } else {
+            startAnimation();
+        }
+    });
+
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                isVisible = entry.isIntersecting;
+                if (isVisible) {
+                    startAnimation();
+                } else {
+                    stopAnimation();
+                }
+            });
+        }, { threshold: 0.05 });
+        observer.observe(canvas);
     }
 
     resize();
-    animate();
+    startAnimation();
 });

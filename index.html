@@ -65,7 +65,7 @@
     <link rel="yandex-tableau-widget" href="yandex-manifest.json">
 
     <!-- Content Security Policy (CSP) -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://mc.yandex.ru; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://script.google.com https://mc.yandex.ru; form-action 'self' https://script.google.com;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://mc.yandex.ru; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://script.google.com https://mc.yandex.ru; form-action 'self' https://script.google.com; object-src 'none'; base-uri 'self';">
 </head>
 <body>
 
@@ -251,6 +251,7 @@
                 <h3 class="section-title" style="font-size: var(--text-xl);">Оставить отзыв</h3>
                 <form class="contact-form card" id="reviewForm" action="https://script.google.com/macros/s/AKfycbxrBExj_TvpbnR4Yd2Q8kvxtmKHyOLMH25m1E9v80xo3Pl7RDaNoMf_4OOhfIX8RJhR/exec" method="POST">
                     <input type="hidden" name="form-type" value="review">
+                    <input type="text" name="_hp_trap" style="display:none !important;" tabindex="-1" autocomplete="off" aria-hidden="true">
                     <div class="form-group">
                         <label class="form-label" for="review-name">Ваше имя *</label>
                         <input class="form-input" type="text" id="review-name" name="name" required placeholder="Иван Иванов">
@@ -317,123 +318,8 @@
 <script src="js/canvas-bg.js"></script>
 <script src="js/main.js"></script>
 
-<script>
-    const googleAppScriptUrl = 'https://script.google.com/macros/s/AKfycbxrBExj_TvpbnR4Yd2Q8kvxtmKHyOLMH25m1E9v80xo3Pl7RDaNoMf_4OOhfIX8RJhR/exec';
-
-    function escapeHtml(text) {
-        const div = document.createElement('div');
-        div.textContent = text;
-        return div.innerHTML;
-    }
-
-    const reviewsContainer = document.getElementById('testimonials-list');
-    const scrollLeftBtn = document.getElementById('scrollLeft');
-    const scrollRightBtn = document.getElementById('scrollRight');
-
-    // Генерация премиум SVG-звезд вместо emoji ⭐
-    function getStarsSvg(count) {
-        const starsCount = Math.min(Math.max(parseInt(count, 10) || 5, 1), 5);
-        const starSvg = `<svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>`;
-        return starSvg.repeat(starsCount);
-    }
-
-    function scrollContainer(direction) {
-        const container = reviewsContainer;
-        const scrollAmount = container.clientWidth;
-        if (direction === 'left') {
-            container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-        } else {
-            container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-        }
-    }
-
-    if (scrollLeftBtn && scrollRightBtn) {
-        scrollLeftBtn.addEventListener('click', () => scrollContainer('left'));
-        scrollRightBtn.addEventListener('click', () => scrollContainer('right'));
-    }
-
-    function loadReviews() {
-        fetch(googleAppScriptUrl)
-            .then(response => response.json())
-            .then(data => {
-                reviewsContainer.innerHTML = '';
-                if (data.length === 0) {
-                    reviewsContainer.innerHTML = '<p class="card-text">Пока нет отзывов. Будьте первым!</p>';
-                    return;
-                }
-                const recentReviews = data.slice().reverse();
-                recentReviews.forEach(review => {
-                    const card = document.createElement('div');
-                    card.className = 'card testimonial-card';
-                    
-                    const safeName = escapeHtml(review.name || 'Пользователь');
-                    const safeRole = escapeHtml(review.role || '');
-                    const safeText = escapeHtml(review.text || '');
-                    const initial = safeName.charAt(0).toUpperCase();
-                    
-                    card.innerHTML = `
-                        <div class="testimonial-header">
-                            <div class="testimonial-avatar">${initial}</div>
-                            <div>
-                                <h4 class="testimonial-name">${safeName}</h4>
-                                <p class="testimonial-role">${safeRole}</p>
-                            </div>
-                        </div>
-                        <p class="testimonial-text">"${safeText}"</p>
-                        <div class="testimonial-rating">${getStarsSvg(review.stars)}</div>
-                    `;
-                    reviewsContainer.appendChild(card);
-                });
-            })
-            .catch(error => {
-                console.error('Ошибка загрузки отзывов:', error);
-                reviewsContainer.innerHTML = '<p class="card-text">Не удалось загрузить отзывы.</p>';
-            });
-    }
-
-    loadReviews();
-
-    const reviewForm = document.getElementById('reviewForm');
-    if (reviewForm) {
-        reviewForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            const submitBtn = reviewForm.querySelector('button[type="submit"]');
-            const originalContent = submitBtn.innerHTML;
-            submitBtn.textContent = 'Отправка...';
-            submitBtn.disabled = true;
-
-            const formData = new FormData(reviewForm);
-
-            fetch(reviewForm.action, {
-                method: 'POST',
-                body: formData,
-                mode: 'cors'
-            }).then(() => {
-                const msg = document.createElement('div');
-                msg.className = 'card-text mt-sm';
-                msg.style.color = '#34d399';
-                msg.style.fontFamily = 'var(--font-mono)';
-                msg.style.fontSize = 'var(--text-sm)';
-                msg.textContent = 'Отзыв успешно опубликован.';
-                reviewForm.parentNode.insertBefore(msg, reviewForm.nextSibling);
-
-                reviewForm.reset();
-                submitBtn.innerHTML = originalContent;
-                submitBtn.disabled = false;
-
-                setTimeout(loadReviews, 1500);
-            }).catch(error => {
-                console.error('Ошибка отправки:', error);
-                submitBtn.innerHTML = originalContent;
-                submitBtn.disabled = false;
-            });
-        });
-    }
-</script>
-
 <!-- COOKIE BANNER -->
-<div id="cookie-banner" class="cookie-banner reveal">
+<div id="cookie-banner" class="cookie-banner">
     <p class="card-text" style="margin: 0; font-size: var(--text-sm);">
         Этот сайт использует аналитику для сбора технической статистики и улучшения интерфейса. Продолжая использование, вы соглашаетесь с <a href="privacy.html" style="color: var(--accent-secondary); text-decoration: underline;">политикой конфиденциальности</a>.
     </p>

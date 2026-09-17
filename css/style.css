@@ -299,9 +299,11 @@ ul {
     width: 100%;
     background: var(--bg-secondary);
     border-bottom: 1px solid var(--border-subtle);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
     flex-direction: column;
     padding: var(--space-md);
     gap: var(--space-xs);
+    z-index: 1000;
   }
 
   .nav.active {
@@ -583,6 +585,82 @@ ul {
 @media (min-width: 768px) {
   .grid-2 {
     grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Карточки направлений и персональных данных */
+.about-block {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: transform var(--transition-smooth), border-color var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+
+.about-block:hover {
+  transform: translateY(-3px);
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-sm);
+}
+
+.about-block h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: var(--space-sm);
+  color: var(--text-primary);
+}
+
+.about-block p {
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  line-height: 1.65;
+}
+
+.personal-data {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: var(--space-xs) var(--space-md);
+  background: var(--bg-glass);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-md) var(--space-lg);
+  font-size: var(--text-sm);
+}
+
+.personal-data dt {
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding-top: 2px;
+}
+
+.personal-data dd {
+  margin: 0;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.personal-data dd a {
+  color: var(--accent-secondary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.personal-data dd a:hover {
+  color: var(--accent-primary);
+}
+
+@media (max-width: 480px) {
+  .personal-data {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+  .personal-data dt {
+    margin-top: var(--space-xs);
   }
 }
 
@@ -962,6 +1040,10 @@ ul {
 /* ==========================================================================
    MODAL DIALOGS
    ========================================================================== */
+body.modal-open {
+  overflow: hidden;
+}
+
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -1170,7 +1252,7 @@ main.achievements-page {
   border-right: 0.15em solid var(--accent-primary);
   white-space: nowrap;
   margin: 0;
-  animation: typing 2.5s steps(40, end), blink-caret 0.75s step-end infinite;
+  animation: typing 3s steps(79, end), blink-caret 0.75s step-end infinite;
 }
 
 @media (max-width: 767px) {

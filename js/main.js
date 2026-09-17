@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalOverlay = document.createElement('div');
     modalOverlay.className = 'modal-overlay';
     modalOverlay.innerHTML = `
-        <div class="modal-card" style="max-width: 820px; max-height: 90vh; overflow-y: auto;">
+        <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title" style="max-width: 820px; max-height: 90vh; overflow-y: auto;">
             <button class="modal-close" aria-label="Закрыть модальное окно">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -66,8 +66,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalExtra = document.getElementById('modal-extra');
     const modalClose = modalOverlay.querySelector('.modal-close');
 
+    function openModal() {
+        modalOverlay.classList.add('active');
+        document.body.classList.add('modal-open');
+        if (modalClose) modalClose.focus();
+    }
+
     function closeModal() {
         modalOverlay.classList.remove('active');
+        document.body.classList.remove('modal-open');
         if (modalImage) modalImage.src = '';
     }
 
@@ -76,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.target === modalOverlay) closeModal();
     });
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeModal();
+        if (e.key === 'Escape' && modalOverlay.classList.contains('active')) closeModal();
     });
 
     // --- 💎 2.1 Открытие проектов в модальном окне ---
@@ -101,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
             '• <strong>Сложный калькулятор смет:</strong> интерактивный алгоритм расчёта стоимости электромонтажа в зависимости от площади, типа помещения, количества точек и материалов.<br>' +
             '• <strong>Интеграция с Telegram-ботом:</strong> мгновенное уведомление мастеров в рабочий чат при отправке заявки или готового расчёта с сайта.<br>' +
             '• <strong>Ведение карточек объектов:</strong> структура для наглядной презентации выполненных объектов с этапами работ и техническими деталями.<br><br>' +
-            '<a href="https://voltgroup-spb.ru" target="_blank" style="color: var(--accent-secondary); text-decoration: underline; font-weight: 500;">Перейти на voltgroup-spb.ru &rarr;</a>'
+            '<a href="https://voltgroup-spb.ru" target="_blank" rel="noopener noreferrer" style="color: var(--accent-secondary); text-decoration: underline; font-weight: 500;">Перейти на voltgroup-spb.ru &rarr;</a>'
         },
         'Персональное портфолио': {
             title: 'Персональное портфолио',
@@ -132,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 modalDesc.style.display = 'block';
                 modalExtra.innerHTML = data.extra;
 
-                modalOverlay.classList.add('active');
+                openModal();
             }
         });
     });
@@ -159,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 modalImageWrapper.style.display = 'none';
             }
 
-            modalOverlay.classList.add('active');
+            openModal();
         }
     });
 
@@ -208,7 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
         cookieBanner.style.display = 'none';
     }
 
-    if (acceptCookiesBtn) {
+    if (acceptCookiesBtn && cookieBanner) {
         acceptCookiesBtn.addEventListener('click', () => {
             localStorage.setItem('cookiesAccepted', 'true');
             cookieBanner.style.opacity = '0';
@@ -228,7 +235,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('scroll', () => {
         const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scrolled = (window.scrollY / windowHeight) * 100;
+        if (windowHeight <= 0) {
+            progressBar.style.width = '0%';
+            return;
+        }
+        const scrolled = Math.min(Math.max((window.scrollY / windowHeight) * 100, 0), 100);
         progressBar.style.width = scrolled + '%';
     });
 
@@ -239,8 +250,17 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.appendChild(cursor);
 
         document.addEventListener('mousemove', (e) => {
+            cursor.style.opacity = '1';
             cursor.style.left = e.clientX + 'px';
             cursor.style.top = e.clientY + 'px';
+        });
+
+        document.addEventListener('mouseleave', () => {
+            cursor.style.opacity = '0';
+        });
+
+        document.addEventListener('mouseenter', () => {
+            cursor.style.opacity = '1';
         });
 
         const clickables = document.querySelectorAll('a, button, .card, input, textarea, select');
@@ -297,6 +317,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
         });
+    }
+
+    // --- 🎥 Оптимизация воспроизведения видео при скролле ---
+    const projectVideos = document.querySelectorAll('.project-screenshot video');
+    if (projectVideos.length > 0 && 'IntersectionObserver' in window) {
+        const videoObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const video = entry.target;
+                if (entry.isIntersecting) {
+                    video.play().catch(() => {});
+                } else {
+                    video.pause();
+                }
+            });
+        }, { threshold: 0.15 });
+
+        projectVideos.forEach(video => videoObserver.observe(video));
     }
 
     // --- 💎 11. Пасхалка: Инженерная консоль диагностики ---
@@ -358,4 +395,178 @@ document.addEventListener('DOMContentLoaded', () => {
             terminal.remove();
         });
     }
+
+    // --- 💎 12. Отзывы (Загрузка и карусель) ---
+    const googleAppScriptUrl = 'https://script.google.com/macros/s/AKfycbxrBExj_TvpbnR4Yd2Q8kvxtmKHyOLMH25m1E9v80xo3Pl7RDaNoMf_4OOhfIX8RJhR/exec';
+    const pageLoadTimestamp = Date.now();
+
+    const reviewsContainer = document.getElementById('testimonials-list');
+    const scrollLeftBtn = document.getElementById('scrollLeft');
+    const scrollRightBtn = document.getElementById('scrollRight');
+
+    function getStarsSvg(count) {
+        const starsCount = Math.min(Math.max(parseInt(count, 10) || 5, 1), 5);
+        const starSvg = `<svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>`;
+        return starSvg.repeat(starsCount);
+    }
+
+    function scrollContainer(direction) {
+        if (!reviewsContainer) return;
+        const scrollAmount = reviewsContainer.clientWidth;
+        reviewsContainer.scrollBy({
+            left: direction === 'left' ? -scrollAmount : scrollAmount,
+            behavior: 'smooth'
+        });
+    }
+
+    if (scrollLeftBtn && scrollRightBtn) {
+        scrollLeftBtn.addEventListener('click', () => scrollContainer('left'));
+        scrollRightBtn.addEventListener('click', () => scrollContainer('right'));
+    }
+
+    function loadReviews() {
+        if (!reviewsContainer) return;
+        fetch(googleAppScriptUrl)
+            .then(response => response.json())
+            .then(data => {
+                reviewsContainer.innerHTML = '';
+                if (!Array.isArray(data) || data.length === 0) {
+                    reviewsContainer.innerHTML = '<p class="card-text">Пока нет отзывов. Будьте первым!</p>';
+                    return;
+                }
+                const recentReviews = data.slice().reverse();
+                recentReviews.forEach(review => {
+                    const card = document.createElement('div');
+                    card.className = 'card testimonial-card';
+
+                    const safeName = String(review.name || 'Пользователь').trim();
+                    const safeRole = String(review.role || '').trim();
+                    const safeText = String(review.text || '').trim();
+                    const initial = (safeName.charAt(0) || 'U').toUpperCase();
+
+                    const headerDiv = document.createElement('div');
+                    headerDiv.className = 'testimonial-header';
+
+                    const avatarDiv = document.createElement('div');
+                    avatarDiv.className = 'testimonial-avatar';
+                    avatarDiv.textContent = initial;
+
+                    const infoDiv = document.createElement('div');
+                    const nameEl = document.createElement('h4');
+                    nameEl.className = 'testimonial-name';
+                    nameEl.textContent = safeName;
+                    infoDiv.appendChild(nameEl);
+
+                    if (safeRole) {
+                        const roleEl = document.createElement('p');
+                        roleEl.className = 'testimonial-role';
+                        roleEl.textContent = safeRole;
+                        infoDiv.appendChild(roleEl);
+                    }
+
+                    headerDiv.appendChild(avatarDiv);
+                    headerDiv.appendChild(infoDiv);
+
+                    const textEl = document.createElement('p');
+                    textEl.className = 'testimonial-text';
+                    textEl.textContent = `"${safeText}"`;
+
+                    const ratingEl = document.createElement('div');
+                    ratingEl.className = 'testimonial-rating';
+                    ratingEl.innerHTML = getStarsSvg(review.stars);
+
+                    card.appendChild(headerDiv);
+                    card.appendChild(textEl);
+                    card.appendChild(ratingEl);
+
+                    reviewsContainer.appendChild(card);
+                });
+            })
+            .catch(error => {
+                console.error('Ошибка загрузки отзывов:', error);
+                reviewsContainer.innerHTML = '<p class="card-text">Не удалось загрузить отзывы.</p>';
+            });
+    }
+
+    if (reviewsContainer) {
+        loadReviews();
+    }
+
+    // --- 💎 13. Обработка форм с антиспамом (Honeypot + Time-gate + предотвращение дублирования) ---
+    function setupForm(formId, successMsgText) {
+        const form = document.getElementById(formId);
+        if (!form) return;
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // 🛡️ Антиспам-проверка 1: Honeypot ловушка
+            const trap = form.querySelector('input[name="_hp_trap"]');
+            if (trap && trap.value.trim() !== '') {
+                console.warn('Bot submission blocked.');
+                form.reset();
+                return;
+            }
+
+            // 🛡️ Антиспам-проверка 2: Time-gate (блокировка мгновенной бот-отправки)
+            if (Date.now() - pageLoadTimestamp < 1500) {
+                console.warn('Submission too fast, blocked.');
+                return;
+            }
+
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalContent = submitBtn ? submitBtn.innerHTML : '';
+            if (submitBtn) {
+                submitBtn.textContent = 'Отправка...';
+                submitBtn.disabled = true;
+            }
+
+            // Удаляем старое сообщение о статусе
+            const existingMsg = form.parentNode.querySelector('.form-status-msg');
+            if (existingMsg) existingMsg.remove();
+
+            const formData = new FormData(form);
+
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                mode: 'cors'
+            }).then(() => {
+                const msg = document.createElement('div');
+                msg.className = 'form-status-msg card-text mt-sm';
+                msg.style.color = '#34d399';
+                msg.style.fontFamily = 'var(--font-mono)';
+                msg.style.fontSize = 'var(--text-sm)';
+                msg.textContent = successMsgText;
+                form.parentNode.insertBefore(msg, form.nextSibling);
+
+                form.reset();
+                if (submitBtn) {
+                    submitBtn.innerHTML = originalContent;
+                    submitBtn.disabled = false;
+                }
+
+                if (formId === 'reviewForm') {
+                    setTimeout(loadReviews, 1500);
+                }
+            }).catch(error => {
+                console.error('Ошибка отправки:', error);
+                const msg = document.createElement('div');
+                msg.className = 'form-status-msg card-text mt-sm';
+                msg.style.color = '#f87171';
+                msg.style.fontFamily = 'var(--font-mono)';
+                msg.style.fontSize = 'var(--text-sm)';
+                msg.textContent = 'Произошла ошибка при отправке. Пожалуйста, попробуйте еще раз.';
+                form.parentNode.insertBefore(msg, form.nextSibling);
+
+                if (submitBtn) {
+                    submitBtn.innerHTML = originalContent;
+                    submitBtn.disabled = false;
+                }
+            });
+        });
+    }
+
+    setupForm('reviewForm', 'Отзыв успешно опубликован.');
+    setupForm('contactForm', 'Сообщение успешно отправлено. Я свяжусь с вами в ближайшее время.');
 });

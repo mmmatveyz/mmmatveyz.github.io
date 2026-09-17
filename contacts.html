@@ -50,7 +50,7 @@
     <!-- /Yandex.Metrika counter -->
 
     <!-- Content Security Policy (CSP) -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://mc.yandex.ru; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://script.google.com https://mc.yandex.ru; form-action 'self' https://script.google.com;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://mc.yandex.ru; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://script.google.com https://mc.yandex.ru; form-action 'self' https://script.google.com; object-src 'none'; base-uri 'self';">
 
 </head>
 <body>
@@ -97,6 +97,7 @@
 
             <form class="contact-form card card-glass" id="contactForm" action="https://script.google.com/macros/s/AKfycbxrBExj_TvpbnR4Yd2Q8kvxtmKHyOLMH25m1E9v80xo3Pl7RDaNoMf_4OOhfIX8RJhR/exec" method="POST">
                 <input type="hidden" name="form-type" value="contact">
+                <input type="text" name="_hp_trap" style="display:none !important;" tabindex="-1" autocomplete="off" aria-hidden="true">
                 <div class="form-group">
                     <label class="form-label" for="name">Ваше имя *</label>
                     <input class="form-input" type="text" id="name" name="name" required placeholder="Константин">
@@ -151,53 +152,8 @@
 <script src="js/canvas-bg.js"></script>
 <script src="js/main.js"></script>
 
-<script>
-    function escapeHtml(text) {
-        const div = document.createElement('div');
-        div.textContent = text;
-        return div.innerHTML;
-    }
-
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            const submitBtn = contactForm.querySelector('button[type="submit"]');
-            const originalContent = submitBtn.innerHTML;
-            submitBtn.textContent = 'Отправка...';
-            submitBtn.disabled = true;
-
-            const formData = new FormData(contactForm);
-
-            fetch(contactForm.action, {
-                method: 'POST',
-                body: formData,
-                mode: 'cors'
-            }).then(() => {
-                const msg = document.createElement('div');
-                msg.className = 'card-text mt-sm';
-                msg.style.color = '#34d399';
-                msg.style.fontFamily = 'var(--font-mono)';
-                msg.style.fontSize = 'var(--text-sm)';
-                msg.textContent = 'Сообщение успешно отправлено. Я свяжусь с вами в ближайшее время.';
-
-                contactForm.parentNode.insertBefore(msg, contactForm.nextSibling);
-
-                contactForm.reset();
-                submitBtn.innerHTML = originalContent;
-                submitBtn.disabled = false;
-            }).catch(error => {
-                console.error('Ошибка отправки:', error);
-                submitBtn.innerHTML = originalContent;
-                submitBtn.disabled = false;
-            });
-        });
-    }
-</script>
-
 <!-- COOKIE BANNER -->
-<div id="cookie-banner" class="cookie-banner reveal">
+<div id="cookie-banner" class="cookie-banner">
     <p class="card-text" style="margin: 0; font-size: var(--text-sm);">
         Этот сайт использует аналитику для сбора технической статистики и улучшения интерфейса. Продолжая использование, вы соглашаетесь с <a href="privacy.html" style="color: var(--accent-secondary); text-decoration: underline;">политикой конфиденциальности</a>.
     </p>
