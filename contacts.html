@@ -82,17 +82,18 @@
     <div class="container">
         <div class="text-center mb-lg">
             <h1 class="section-title">Свяжитесь со мной</h1>
-            <p class="card-text" style="max-width: 600px; margin: 0 auto;">Обсуждение проектов по автоматизации, разработки ботов, интеграций или предложений о работе</p>
+            <p class="section-subtitle" style="margin: 0 auto var(--space-xl);">Обсуждение проектов по автоматизации, разработки ботов, интеграций или предложений о работе</p>
         </div>
 
-        <div class="grid-2">
-            <div class="contact-info card card-glass" style="display: flex; flex-direction: column; gap: var(--space-md);">
+        <div class="bento-grid">
+            <!-- LEFT BENTO: CONTACT CHANNELS & GEO (6 COLS) -->
+            <div class="bento-card col-6" style="display: flex; flex-direction: column; gap: var(--space-md);">
                 <div>
-                    <div class="status-pill mb-sm" style="display: inline-flex; align-items: center; width: fit-content;">
+                    <div class="status-pill mb-sm">
                         <span class="status-dot"></span>
                         <span>На связи • Ответ в течение 15–30 мин</span>
                     </div>
-                    <h2 class="card-title" style="font-size: var(--text-2xl); margin-bottom: 4px;">Прямые контакты</h2>
+                    <h2 style="font-size: var(--text-2xl); font-weight: 700; color: var(--text-primary); margin-bottom: 4px;">Прямые контакты</h2>
                     <p class="card-text" style="font-size: var(--text-sm);">Удобные каналы связи для консультаций, обсуждения задач или отправки технического задания.</p>
                 </div>
 
@@ -167,29 +168,38 @@
                 </div>
             </div>
 
-            <form class="contact-form card card-glass" id="contactForm" action="https://script.google.com/macros/s/AKfycbxrBExj_TvpbnR4Yd2Q8kvxtmKHyOLMH25m1E9v80xo3Pl7RDaNoMf_4OOhfIX8RJhR/exec" method="POST">
-                <input type="hidden" name="form-type" value="contact">
-                <input type="text" name="_hp_trap" style="display:none !important;" tabindex="-1" autocomplete="off" aria-hidden="true">
-                <div class="form-group">
-                    <label class="form-label" for="name">Ваше имя *</label>
-                    <input class="form-input" type="text" id="name" name="name" required placeholder="Константин">
+            <!-- RIGHT BENTO: CONTACT FORM (6 COLS) -->
+            <div class="bento-card col-6">
+                <div style="margin-bottom: var(--space-md);">
+                    <h2 style="font-size: var(--text-2xl); font-weight: 700; color: var(--text-primary); margin-bottom: 4px;">Написать сообщение</h2>
+                    <p class="card-text" style="font-size: var(--text-sm);">Заполните форму, и я свяжусь с вами в течение рабочего дня.</p>
                 </div>
-                <div class="form-group">
-                    <label class="form-label" for="email">Email для связи *</label>
-                    <input class="form-input" type="email" id="email" name="email" required placeholder="name@company.ru">
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="message">Описание задачи *</label>
-                    <textarea class="form-textarea" id="message" name="message" required placeholder="Опишите ваш проект, требования к автоматизации или вопросы..."></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">
-                    <span>Отправить сообщение</span>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                        <polyline points="12 5 19 12 12 19"></polyline>
-                    </svg>
-                </button>
-            </form>
+
+                <form class="contact-form" id="contactForm" action="https://script.google.com/macros/s/AKfycbxrBExj_TvpbnR4Yd2Q8kvxtmKHyOLMH25m1E9v80xo3Pl7RDaNoMf_4OOhfIX8RJhR/exec" method="POST">
+                    <input type="hidden" name="form-type" value="contact">
+                    <input type="text" name="_hp_trap" style="display:none !important;" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <div class="form-group">
+                        <label class="form-label" for="name">Ваше имя *</label>
+                        <input class="form-input" type="text" id="name" name="name" required placeholder="Константин">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="email">Email для связи *</label>
+                        <input class="form-input" type="email" id="email" name="email" required placeholder="name@company.ru">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="message">Описание задачи *</label>
+                        <textarea class="form-textarea" id="message" name="message" required placeholder="Опишите вашу задачу по ЧПУ, автоматизации или разработке бота..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="align-self: flex-start;">
+                        <span>Отправить сообщение</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </button>
+                    <p class="form-note">Ваши данные защищены и используются исключительно для обратной связи.</p>
+                </form>
+            </div>
         </div>
     </div>
 </main>

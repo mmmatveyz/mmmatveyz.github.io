@@ -118,13 +118,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    const projectCardsList = document.querySelectorAll('.projects-grid .card');
+    const projectCardsList = document.querySelectorAll('.projects-grid .card, .projects-grid .bento-card, .projects-grid .project-card, .bento-grid .project-card');
     projectCardsList.forEach(card => {
         card.style.cursor = 'pointer';
         card.addEventListener('click', (e) => {
-            if (e.target.closest('a') || e.target.closest('button')) return;
+            if (e.target.closest('a') || e.target.closest('button') || e.target.closest('.segmented-tab-btn') || e.target.closest('.project-tab-btn')) return;
 
-            const titleEl = card.querySelector('.card-title');
+            const titleEl = card.querySelector('.project-title, .card-title');
             if (!titleEl) return;
 
             const cardKey = Object.keys(projectDetails).find(key => titleEl.textContent.includes(key));
@@ -263,16 +263,31 @@ document.addEventListener('DOMContentLoaded', () => {
             cursor.style.opacity = '1';
         });
 
-        const clickables = document.querySelectorAll('a, button, .card, input, textarea, select');
+        const clickables = document.querySelectorAll('a, button, .card, .bento-card, input, textarea, select, .segmented-tab-btn, .project-tab-btn');
         clickables.forEach(el => {
             el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
             el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
         });
     }
 
+    // --- ✨ Spotlight Mouse Tracking for Bento Cards ---
+    function initBentoSpotlight() {
+        const cards = document.querySelectorAll('.bento-card');
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+    }
+    initBentoSpotlight();
+
     // --- 🗂️ Табы внутри карточек проектов ---
-    document.querySelectorAll('.card').forEach(card => {
-        const tabBtns = card.querySelectorAll('.project-tab-btn');
+    document.querySelectorAll('.card, .bento-card, .project-card').forEach(card => {
+        const tabBtns = card.querySelectorAll('.project-tab-btn, .segmented-tab-btn');
         const tabPanes = card.querySelectorAll('.tab-pane');
 
         tabBtns.forEach(btn => {
@@ -292,7 +307,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 🗂️ Фильтрация портфолио ---
     const filterBtns = document.querySelectorAll('.filter-btn');
-    const projectCards = document.querySelectorAll('.projects-grid .card');
+    const projectCards = document.querySelectorAll('.projects-grid .card, .projects-grid .bento-card, .projects-grid .project-card, .bento-grid .project-card');
 
     if (filterBtns.length > 0) {
         filterBtns.forEach(btn => {
@@ -304,7 +319,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 projectCards.forEach(card => {
                     if (filter === 'all' || card.getAttribute('data-category') === filter) {
-                        card.style.display = 'block';
+                        card.style.display = 'flex';
                         setTimeout(() => {
                             card.style.opacity = '1';
                             card.style.transform = 'scale(1)';
@@ -320,7 +335,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- 🎥 Оптимизация воспроизведения видео при скролле ---
-    const projectVideos = document.querySelectorAll('.project-screenshot video');
+    const projectVideos = document.querySelectorAll('.project-screenshot video, .project-preview-wrapper video');
     if (projectVideos.length > 0 && 'IntersectionObserver' in window) {
         const videoObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
