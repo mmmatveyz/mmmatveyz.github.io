@@ -773,8 +773,9 @@ h1, h2, h3, h4, h5, h6 {
   height: 100%;
   border-radius: var(--radius-md);
   border: 1px solid var(--border-subtle);
-  box-shadow: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   object-fit: cover;
+  object-position: center 20%;
 }
 
 /* Chip Tags */
