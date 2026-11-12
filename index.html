@@ -127,17 +127,48 @@
                     </div>
                 </div>
 
-                <!-- AVATAR CARD (4 COLS) -->
-                <div class="bento-card col-4 avatar-bento-card">
-                    <div class="avatar-hud-wrapper">
-                        <img src="images/profile.svg" alt="Матвей Зрячих" width="140" height="140" class="avatar-image" loading="lazy">
+                <!-- AVATAR & INDUSTRIAL TELEMETRY CARD (4 COLS) -->
+                <div class="bento-card col-4 console-bento-card">
+                    <div class="console-head">
+                        <div class="console-status">
+                            <span class="status-dot"></span>
+                            <span class="console-title">ИНЖЕНЕРНЫЙ ПУЛЬТ</span>
+                        </div>
+                        <span class="console-badge">ONLINE</span>
                     </div>
-                    <div style="font-weight: 600; font-size: var(--text-base); color: var(--text-primary); margin-bottom: 2px;">Матвей Зрячих</div>
-                    <div style="font-size: var(--text-xs); color: var(--text-secondary); margin-bottom: var(--space-sm);">г. Санкт-Петербург</div>
-                    <div class="badge-list" style="justify-content: center;">
-                        <span class="tag-chip">6-й разряд</span>
-                        <span class="tag-chip">ЧПУ Siemens / Fanuc</span>
-                        <span class="tag-chip">Aiogram 3</span>
+
+                    <div class="console-profile-row">
+                        <div class="avatar-hud-wrapper" style="width: 72px; height: 72px; margin-bottom: 0; flex-shrink: 0;">
+                            <img src="images/profile.svg" alt="Матвей Зрячих" width="72" height="72" class="avatar-image" loading="lazy">
+                        </div>
+                        <div>
+                            <div style="font-weight: 600; font-size: var(--text-base); color: var(--text-primary);">Матвей Зрячих</div>
+                            <div style="font-size: var(--text-xs); color: var(--text-secondary); margin-bottom: 4px;">г. Санкт-Петербург</div>
+                            <span class="badge-accent" style="display: inline-block;">6-й разряд (высший)</span>
+                        </div>
+                    </div>
+
+                    <div class="console-telemetry">
+                        <div class="telemetry-row">
+                            <span class="telemetry-key">Оборудование:</span>
+                            <span class="telemetry-val">Siemens 840D / Fanuc 0i</span>
+                        </div>
+                        <div class="telemetry-row">
+                            <span class="telemetry-key">Электробезопасность:</span>
+                            <span class="telemetry-val">Группа IV до 1000В</span>
+                        </div>
+                        <div class="telemetry-row">
+                            <span class="telemetry-key">Прикладной стек:</span>
+                            <span class="telemetry-val">Python 3.11 • Aiogram 3</span>
+                        </div>
+                        <div class="telemetry-row">
+                            <span class="telemetry-key">Выезд по заявкам:</span>
+                            <span class="telemetry-val">СПб и Ленинградская обл.</span>
+                        </div>
+                    </div>
+
+                    <div class="console-footer">
+                        <span style="font-size: var(--text-xs); color: var(--text-muted); font-family: var(--font-mono);">Статус: На связи для задач</span>
                     </div>
                 </div>
 

@@ -113,7 +113,10 @@
                             <div class="contact-channel-label">Telegram <span class="badge-accent">Основной</span></div>
                             <div class="contact-channel-val">@mmmatveyz</div>
                         </div>
-                        <span class="contact-channel-arrow">↗</span>
+                        <svg class="contact-channel-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="7" y1="17" x2="17" y2="7"></line>
+                            <polyline points="7 7 17 7 17 17"></polyline>
+                        </svg>
                     </a>
 
                     <a href="tel:+79817915616" class="contact-channel-card">
@@ -126,7 +129,10 @@
                             <div class="contact-channel-label">Телефон / Звонки</div>
                             <div class="contact-channel-val">+7 (981) 791-56-16</div>
                         </div>
-                        <span class="contact-channel-arrow">↗</span>
+                        <svg class="contact-channel-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="7" y1="17" x2="17" y2="7"></line>
+                            <polyline points="7 7 17 7 17 17"></polyline>
+                        </svg>
                     </a>
 
                     <a href="mailto:matvey6527@mail.ru" class="contact-channel-card">
@@ -140,7 +146,10 @@
                             <div class="contact-channel-label">Email <span class="badge-accent">Для ТЗ и схем</span></div>
                             <div class="contact-channel-val">matvey6527@mail.ru</div>
                         </div>
-                        <span class="contact-channel-arrow">↗</span>
+                        <svg class="contact-channel-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="7" y1="17" x2="17" y2="7"></line>
+                            <polyline points="7 7 17 7 17 17"></polyline>
+                        </svg>
                     </a>
 
                     <a href="https://github.com/mmmatveyz" target="_blank" rel="noopener" class="contact-channel-card">
@@ -153,7 +162,10 @@
                             <div class="contact-channel-label">GitHub профиль</div>
                             <div class="contact-channel-val">github.com/mmmatveyz</div>
                         </div>
-                        <span class="contact-channel-arrow">↗</span>
+                        <svg class="contact-channel-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="7" y1="17" x2="17" y2="7"></line>
+                            <polyline points="7 7 17 7 17 17"></polyline>
+                        </svg>
                     </a>
                 </div>
 
@@ -190,6 +202,15 @@
                     <div class="form-group">
                         <label class="form-label" for="email">Email для связи *</label>
                         <input class="form-input" type="email" id="email" name="email" required autocomplete="email" inputmode="email" spellcheck="false" placeholder="name@company.ru">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Тема обращения</label>
+                        <div class="topic-chips" style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px;">
+                            <button type="button" class="tag-chip topic-btn" data-topic="Диагностика ЧПУ / Шкафы автоматики">ЧПУ / Автоматика</button>
+                            <button type="button" class="tag-chip topic-btn" data-topic="Разработка Telegram-бота">Telegram-бот</button>
+                            <button type="button" class="tag-chip topic-btn" data-topic="Автоматизация отчётов Excel">Автоматизация Excel</button>
+                            <button type="button" class="tag-chip topic-btn" data-topic="Предложение о работе / Вакансия">Работа / Оффер</button>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="message">Описание задачи *</label>
@@ -237,6 +258,19 @@
 </footer>
 
 <script src="js/main.js"></script>
+<script>
+document.querySelectorAll('.topic-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+        var msg = document.getElementById('message');
+        var topic = btn.getAttribute('data-topic');
+        if (msg) {
+            var prefix = '[Тема: ' + topic + ']\n';
+            msg.value = prefix + msg.value.replace(/^\[Тема: [^\]]+\]\n?/, '');
+            msg.focus();
+        }
+    });
+});
+</script>
 
 <!-- COOKIE BANNER -->
 <div id="cookie-banner" class="cookie-banner">

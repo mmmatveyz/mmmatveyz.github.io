@@ -155,6 +155,17 @@ body {
   position: relative;
   overflow-x: hidden;
   background-color: var(--bg-primary);
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+[data-theme="light"] body {
+  background-image: 
+    linear-gradient(to right, rgba(15, 23, 42, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.035) 1px, transparent 1px);
+  background-size: 32px 32px;
 }
 
 body::before {
@@ -428,12 +439,19 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-lg);
   padding: var(--space-lg);
   overflow: hidden;
-  transition: border-color var(--transition-fast), background-color var(--transition-fast);
+  box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.4);
+  transition: border-color var(--transition-fast), background-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
   display: flex;
   flex-direction: column;
+}
+
+[data-theme="light"] .bento-card {
+  border-top: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.06);
 }
 
 .bento-card::before,
@@ -442,10 +460,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .bento-card:hover {
-  transform: none;
+  transform: translateY(-2px);
   border-color: var(--border-hover);
   background: var(--bg-card-hover);
-  box-shadow: none;
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.55);
+}
+
+[data-theme="light"] .bento-card:hover {
+  box-shadow: 0 8px 24px -4px rgba(15, 23, 42, 0.1);
 }
 
 /* Bento Column Spans */
@@ -644,6 +666,95 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   justify-content: center;
   text-align: center;
+}
+
+/* Console Telemetry HUD Card */
+.console-bento-card {
+  padding: var(--space-md) var(--space-lg);
+  justify-content: space-between;
+}
+
+.console-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: var(--space-xs);
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: var(--space-sm);
+}
+
+.console-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.console-title {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+}
+
+.console-badge {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--accent-emerald);
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  padding: 1px 6px;
+  border-radius: var(--radius-xs);
+}
+
+.console-profile-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-sm);
+}
+
+.console-telemetry {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  margin-bottom: var(--space-xs);
+}
+
+[data-theme="light"] .console-telemetry {
+  background: rgba(15, 23, 42, 0.03);
+}
+
+.telemetry-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--text-xs);
+  line-height: 1.4;
+}
+
+.telemetry-key {
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.telemetry-val {
+  color: var(--text-primary);
+  font-weight: 500;
+  text-align: right;
+}
+
+.console-footer {
+  padding-top: var(--space-xs);
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .avatar-hud-wrapper {
@@ -1104,16 +1215,21 @@ body.modal-open {
    ========================================================================== */
 .project-filters {
   display: flex;
-  gap: var(--space-xs);
+  gap: 4px;
   justify-content: flex-start;
   align-items: center;
   margin-bottom: var(--space-xl);
   flex-wrap: wrap;
+  background: var(--bg-card);
+  padding: 4px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  width: fit-content;
 }
 
 .filter-btn {
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
+  background: transparent;
+  border: 1px solid transparent;
   color: var(--text-secondary);
   padding: 6px 14px;
   border-radius: var(--radius-sm);
@@ -1125,30 +1241,34 @@ body.modal-open {
 }
 
 .filter-btn:hover {
-  background: var(--bg-card-hover);
+  background: rgba(255, 255, 255, 0.05);
   color: var(--text-primary);
-  border-color: var(--border-hover);
-  transform: none;
+  border-color: transparent;
 }
 
 .filter-btn.active {
-  background: var(--text-primary);
-  color: var(--text-inverse);
-  border-color: var(--text-primary);
-  box-shadow: none;
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  border-color: var(--border-hover);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
   font-weight: 600;
 }
 
 [data-theme="light"] .filter-btn {
-  background: #ffffff;
-  border-color: rgba(15, 23, 42, 0.12);
+  background: transparent;
+  border-color: transparent;
   color: var(--text-secondary);
 }
 
+[data-theme="light"] .filter-btn:hover {
+  background: rgba(15, 23, 42, 0.05);
+}
+
 [data-theme="light"] .filter-btn.active {
-  background: var(--text-primary);
-  color: #ffffff;
-  border-color: var(--text-primary);
+  background: #ffffff;
+  color: var(--text-primary);
+  border-color: rgba(15, 23, 42, 0.15);
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.08);
 }
 
 /* ==========================================================================
