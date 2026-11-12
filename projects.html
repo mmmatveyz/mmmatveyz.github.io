@@ -69,8 +69,12 @@
             <a href="projects.html" class="nav-link active">Проекты</a>
             <a href="achievements.html" class="nav-link">Достижения</a>
             <a href="contacts.html" class="nav-link">Контакты</a>
-            <a href="resume.html" class="nav-link">Резюме 📄</a>
-            <button id="theme-toggle" class="theme-toggle" aria-label="Переключить тему">🌙</button>
+            <a href="resume.html" class="nav-link">Резюме</a>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Переключить тему">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
         </nav>
     </div>
 </header>
@@ -101,7 +105,7 @@
                 </div>
 
                 <div class="project-header-bar">
-                    <h2 class="project-title">🔧 РемонтTrack</h2>
+                    <h2 class="project-title">РемонтTrack</h2>
                     <span class="project-status-tag">Внедрено / MVP</span>
                 </div>
                 <p class="card-text" style="font-size: var(--text-sm); margin-bottom: var(--space-xs);">Учёт ремонтов станков ЧПУ с семантическим векторным поиском и аналитикой простоев</p>
@@ -116,10 +120,10 @@
                     <p class="card-text" style="font-size: var(--text-sm);">Автоматизация учёта неисправностей станков ЧПУ. Система позволяет инженерам и слесарям мгновенно заносить и находить аналогичные поломки благодаря семантическому поиску даже при различных формулировках.</p>
                 </div>
                 <div class="tab-pane" data-pane="specs">
-                    <ul class="card-text" style="font-size: var(--text-xs); line-height: 1.8; padding-left: var(--space-md);">
-                        <li>⚡ Семантический векторный поиск по формулировкам (MiniLM-L12)</li>
-                        <li>🔒 Многоуровневая ролевая модель (слесарь, инженер, админ)</li>
-                        <li>📈 Автоматическая аналитика времени простоя оборудования</li>
+                    <ul class="card-text" style="font-size: var(--text-xs); line-height: 1.8; padding-left: var(--space-md); list-style: disc;">
+                        <li>Семантический векторный поиск по формулировкам (MiniLM-L12)</li>
+                        <li>Многоуровневая ролевая модель (слесарь, инженер, админ)</li>
+                        <li>Автоматическая аналитика времени простоя оборудования</li>
                     </ul>
                 </div>
                 <div class="tab-pane" data-pane="stack">
@@ -132,8 +136,8 @@
                 </div>
 
                 <div style="margin-top: auto; padding-top: var(--space-md); display: flex; justify-content: space-between; align-items: center;">
-                    <span style="font-size: var(--text-xs); color: var(--accent-secondary); font-family: var(--font-mono);">Industrial Bot</span>
-                    <button class="btn btn-sm btn-outline">Подробнее ↗</button>
+                    <span style="font-size: var(--text-xs); color: var(--text-secondary); font-family: var(--font-mono);">Industrial Bot</span>
+                    <button class="btn btn-sm btn-outline">Подробнее</button>
                 </div>
             </article>
 
@@ -147,7 +151,7 @@
                 </div>
 
                 <div class="project-header-bar">
-                    <h2 class="project-title">⏱️ WorkTimeBot</h2>
+                    <h2 class="project-title">WorkTimeBot</h2>
                     <span class="project-status-tag">В эксплуатации</span>
                 </div>
                 <p class="card-text" style="font-size: var(--text-sm); margin-bottom: var(--space-xs);">Автоматизация табеля рабочего времени с генерацией Excel-отчётов</p>
@@ -162,10 +166,10 @@
                     <p class="card-text" style="font-size: var(--text-sm);">Бот парсит сообщения из рабочего чата, распознает смены, перерывы и сверхурочные часы, автоматически формируя официальный табель учета рабочего времени в формате Excel.</p>
                 </div>
                 <div class="tab-pane" data-pane="specs">
-                    <ul class="card-text" style="font-size: var(--text-xs); line-height: 1.8; padding-left: var(--space-md);">
-                        <li>📊 Парсинг сообщений чата и отслеживание переработок</li>
-                        <li>📁 Генерация Excel-отчётов по форме Т-13 через OpenPyXL</li>
-                        <li>⚡ Экономия до 15 часов ручной бухгалтерской работы в месяц</li>
+                    <ul class="card-text" style="font-size: var(--text-xs); line-height: 1.8; padding-left: var(--space-md); list-style: disc;">
+                        <li>Парсинг сообщений чата и отслеживание переработок</li>
+                        <li>Генерация Excel-отчётов по форме Т-13 через OpenPyXL</li>
+                        <li>Экономия до 15 часов ручной бухгалтерской работы в месяц</li>
                     </ul>
                 </div>
                 <div class="tab-pane" data-pane="stack">
@@ -178,8 +182,8 @@
                 </div>
 
                 <div style="margin-top: auto; padding-top: var(--space-md); display: flex; justify-content: space-between; align-items: center;">
-                    <span style="font-size: var(--text-xs); color: var(--accent-secondary); font-family: var(--font-mono);">Automation Bot</span>
-                    <button class="btn btn-sm btn-outline">Подробнее ↗</button>
+                    <span style="font-size: var(--text-xs); color: var(--text-secondary); font-family: var(--font-mono);">Automation Bot</span>
+                    <button class="btn btn-sm btn-outline">Подробнее</button>
                 </div>
             </article>
 
@@ -193,7 +197,7 @@
                 </div>
 
                 <div class="project-header-bar">
-                    <h2 class="project-title">⚡ VoltGroup</h2>
+                    <h2 class="project-title">VoltGroup</h2>
                     <span class="project-status-tag">Live Production</span>
                 </div>
                 <p class="card-text" style="font-size: var(--text-sm); margin-bottom: var(--space-xs);">Веб-платформа с интерактивным калькулятором смет и Telegram-интеграцией</p>
@@ -208,10 +212,10 @@
                     <p class="card-text" style="font-size: var(--text-sm);">Коммерческий веб-сайт для электромонтажной компании VoltGroup (СПб) с интерактивным алгоритмом расчёта стоимости работ и моментальной пересылкой готовых смет мастерам в Telegram.</p>
                 </div>
                 <div class="tab-pane" data-pane="specs">
-                    <ul class="card-text" style="font-size: var(--text-xs); line-height: 1.8; padding-left: var(--space-md);">
-                        <li>🧮 Интерактивный калькулятор смет под параметры объекта</li>
-                        <li>✈️ Прямая интеграция заявок с рабочим Telegram-ботом</li>
-                        <li>📱 Адаптивная мобильная вёрстка и высокая скорость работы</li>
+                    <ul class="card-text" style="font-size: var(--text-xs); line-height: 1.8; padding-left: var(--space-md); list-style: disc;">
+                        <li>Интерактивный калькулятор смет под параметры объекта</li>
+                        <li>Прямая интеграция заявок с рабочим Telegram-ботом</li>
+                        <li>Адаптивная мобильная вёрстка и высокая скорость работы</li>
                     </ul>
                 </div>
                 <div class="tab-pane" data-pane="stack">
@@ -236,10 +240,10 @@
                 </div>
 
                 <div class="project-header-bar">
-                    <h2 class="project-title">🌐 Персональное портфолио</h2>
+                    <h2 class="project-title">Портфолио инженера</h2>
                     <span class="project-status-tag">Версия 2.0</span>
                 </div>
-                <p class="card-text" style="font-size: var(--text-sm); margin-bottom: var(--space-xs);">Сверхбыстрый стек с серверлесс-бэкендом на Google Apps Script и Neo-Bento UI</p>
+                <p class="card-text" style="font-size: var(--text-sm); margin-bottom: var(--space-xs);">Сверхбыстрый статический стек с серверлесс-бэкендом на Google Apps Script</p>
 
                 <div class="project-tabs-segmented">
                     <button class="segmented-tab-btn active" data-tab="overview">Обзор</button>
@@ -248,21 +252,21 @@
                 </div>
 
                 <div class="tab-pane active" data-pane="overview">
-                    <p class="card-text" style="font-size: var(--text-sm);">Высокотехнологичный сайт-визитка с поддержкой тёмной темы Neo-Bento, Canvas-анимацией, модерацией отзывов через Google Apps Script и антиспам-защитой без внешних тяжелых библиотек.</p>
+                    <p class="card-text" style="font-size: var(--text-sm);">Инженерное портфолио в стиле приборной панели промышленного контроллера. Быстрая загрузка без тяжелых библиотек, модерация отзывов через Google Apps Script и антиспам-защита.</p>
                 </div>
                 <div class="tab-pane" data-pane="specs">
-                    <ul class="card-text" style="font-size: var(--text-xs); line-height: 1.8; padding-left: var(--space-md);">
-                        <li>🌌 Интерактивный Canvas background и Spotlight-эффекты</li>
-                        <li>☁️ Бесплатный серверлесс бэкенд на Google Apps Script</li>
-                        <li>🛡️ Honeypot & Time-gate антиспам, PWA & Yandex Metrika</li>
+                    <ul class="card-text" style="font-size: var(--text-xs); line-height: 1.8; padding-left: var(--space-md); list-style: disc;">
+                        <li>Инженерная дизайн-система в slate-палитре без AI-визуального мусора</li>
+                        <li>Серверлесс-бэкенд для формы обратной связи на Google Apps Script</li>
+                        <li>Honeypot и time-gate валидация, PWA-манифест и Yandex Metrika</li>
                     </ul>
                 </div>
                 <div class="tab-pane" data-pane="stack">
                     <div class="badge-list">
                         <span class="tag-chip">JavaScript Vanilla</span>
                         <span class="tag-chip">Google Apps Script</span>
-                        <span class="tag-chip">Neo-Bento CSS 2.0</span>
-                        <span class="tag-chip">Canvas API</span>
+                        <span class="tag-chip">Modern CSS</span>
+                        <span class="tag-chip">PWA Ready</span>
                     </div>
                 </div>
 
@@ -303,7 +307,6 @@
     </div>
 </footer>
 
-<script src="js/canvas-bg.js"></script>
 <script src="js/main.js"></script>
 
 <div id="cookie-banner" class="cookie-banner">

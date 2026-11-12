@@ -86,16 +86,19 @@
             <a href="projects.html" class="nav-link">Проекты</a>
             <a href="achievements.html" class="nav-link">Достижения</a>
             <a href="contacts.html" class="nav-link">Контакты</a>
-            <a href="resume.html" class="nav-link">Резюме 📄</a>
-            <button id="theme-toggle" class="theme-toggle" aria-label="Переключить тему">🌙</button>
+            <a href="resume.html" class="nav-link">Резюме</a>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Переключить тему">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
         </nav>
     </div>
 </header>
 
 <main>
-    <!-- 🌌 HERO & BENTO SHOWCASE -->
+    <!-- HERO & BENTO SHOWCASE -->
     <section class="section hero-relative reveal" style="padding-top: var(--space-md);">
-        <canvas id="hero-canvas" class="hero-canvas"></canvas>
         <div class="container">
             <div class="bento-grid">
                 <!-- HERO MAIN CARD (8 COLS) -->
@@ -108,9 +111,7 @@
                         Матвей Зрячих<br>
                         <span class="text-gradient">Инженер и Python-разработчик</span>
                     </h1>
-                    <div class="typewriter-wrapper">
-                        <p class="hero-subtitle typewriter" data-text="Обслуживание ЧПУ (Siemens, Fanuc), силовая электроника & автоматизация процессов">Обслуживание ЧПУ (Siemens, Fanuc), силовая электроника & автоматизация процессов</p>
-                    </div>
+                    <p class="hero-subtitle">Обслуживание металлообрабатывающих станков с ЧПУ (Siemens, Fanuc), силовая электроника и прикладная автоматизация процессов</p>
 
                     <div class="btn-group">
                         <a href="projects.html" class="btn btn-primary">
@@ -120,19 +121,18 @@
                                 <polyline points="12 5 19 12 12 19"></polyline>
                             </svg>
                         </a>
-                        <a href="resume.html" class="btn btn-outline">📄 Открыть резюме →</a>
+                        <a href="resume.html" class="btn btn-outline">Резюме →</a>
                         <a href="contacts.html" class="btn btn-outline">Связаться</a>
                     </div>
                 </div>
 
-                <!-- AVATAR HUD CARD (4 COLS) -->
+                <!-- AVATAR CARD (4 COLS) -->
                 <div class="bento-card col-4 avatar-bento-card">
                     <div class="avatar-hud-wrapper">
-                        <div class="avatar-hud-ring"></div>
                         <img src="images/profile.svg" alt="Матвей Зрячих" class="avatar-image" loading="lazy">
                     </div>
-                    <div style="font-weight: 700; font-size: var(--text-lg); color: var(--text-primary); margin-bottom: 2px;">Матвей Зрячих</div>
-                    <div style="font-size: var(--text-xs); color: var(--accent-secondary); margin-bottom: var(--space-sm);">г. Санкт-Петербург</div>
+                    <div style="font-weight: 600; font-size: var(--text-base); color: var(--text-primary); margin-bottom: 2px;">Матвей Зрячих</div>
+                    <div style="font-size: var(--text-xs); color: var(--text-secondary); margin-bottom: var(--space-sm);">г. Санкт-Петербург</div>
                     <div class="badge-list" style="justify-content: center;">
                         <span class="tag-chip">6-й разряд</span>
                         <span class="tag-chip">ЧПУ Siemens / Fanuc</span>
@@ -142,7 +142,12 @@
 
                 <!-- METRIC 1: EXPERIENCE -->
                 <div class="bento-card col-3">
-                    <div class="bento-icon-badge">⚙️</div>
+                    <div class="bento-icon-badge">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                        </svg>
+                    </div>
                     <div class="bento-val">4.5+ года</div>
                     <div class="bento-label">Пром. опыт</div>
                     <div class="bento-desc">«Силовые машины», «Энергомаш» — тяжелое машиностроение и станки с ЧПУ</div>
@@ -150,7 +155,11 @@
 
                 <!-- METRIC 2: QUALIFICATION -->
                 <div class="bento-card col-3">
-                    <div class="bento-icon-badge emerald">⚡</div>
+                    <div class="bento-icon-badge">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                        </svg>
+                    </div>
                     <div class="bento-val">6 разряд</div>
                     <div class="bento-label">Высший разряд</div>
                     <div class="bento-desc">Электромонтёр по ремонту сложного оборудования + диплом инженера-электроника</div>
@@ -158,7 +167,12 @@
 
                 <!-- METRIC 3: IT & AI -->
                 <div class="bento-card col-3">
-                    <div class="bento-icon-badge cyan">🤖</div>
+                    <div class="bento-icon-badge">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="16 18 22 12 16 6"></polyline>
+                            <polyline points="8 6 2 12 8 18"></polyline>
+                        </svg>
+                    </div>
                     <div class="bento-val">Python & AI</div>
                     <div class="bento-label">Боты & NLP</div>
                     <div class="bento-desc">Семантический векторный поиск дефектов (MiniLM), авто-табели и интеграции</div>
@@ -166,7 +180,12 @@
 
                 <!-- METRIC 4: LOCATION -->
                 <div class="bento-card col-3">
-                    <div class="bento-icon-badge amber">📍</div>
+                    <div class="bento-icon-badge">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                    </div>
                     <div class="bento-val">СПб / РФ</div>
                     <div class="bento-label">Формат работы</div>
                     <div class="bento-desc">Full-time производство / выезд по СПб и ЛО, разработка ПО удалённо</div>
@@ -175,10 +194,17 @@
                 <!-- DIRECTION 1: INDUSTRY (6 COLS) -->
                 <div class="bento-card col-6">
                     <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-sm);">
-                        <div class="bento-icon-badge" style="margin-bottom: 0;">🏭</div>
+                        <div class="bento-icon-badge" style="margin-bottom: 0;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                                <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                                <line x1="6" y1="18" x2="6.01" y2="18"></line>
+                            </svg>
+                        </div>
                         <div>
-                            <h3 style="font-size: var(--text-lg); font-weight: 700; color: var(--text-primary); margin: 0;">Промышленность & ЧПУ</h3>
-                            <span style="font-size: var(--text-xs); color: var(--text-muted);">4.5+ года в тяжелом машиностроении</span>
+                            <h3 style="font-size: var(--text-base); font-weight: 600; color: var(--text-primary); margin: 0;">Промышленность & ЧПУ</h3>
+                            <span style="font-size: var(--text-xs); color: var(--text-secondary);">4.5+ года в тяжелом машиностроении</span>
                         </div>
                     </div>
                     <p class="card-text" style="font-size: var(--text-sm); line-height: 1.6; margin-bottom: var(--space-md);">
@@ -197,10 +223,15 @@
                 <!-- DIRECTION 2: IT & BOTS (6 COLS) -->
                 <div class="bento-card col-6">
                     <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-sm);">
-                        <div class="bento-icon-badge cyan" style="margin-bottom: 0;">💻</div>
+                        <div class="bento-icon-badge" style="margin-bottom: 0;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="4 17 10 11 4 5"></polyline>
+                                <line x1="12" y1="19" x2="20" y2="19"></line>
+                            </svg>
+                        </div>
                         <div>
-                            <h3 style="font-size: var(--text-lg); font-weight: 700; color: var(--text-primary); margin: 0;">IT-разработка & Автоматизация</h3>
-                            <span style="font-size: var(--text-xs); color: var(--text-muted);">Telegram-экосистемы и прикладные сервисы</span>
+                            <h3 style="font-size: var(--text-base); font-weight: 600; color: var(--text-primary); margin: 0;">IT-разработка & Автоматизация</h3>
+                            <span style="font-size: var(--text-xs); color: var(--text-secondary);">Telegram-экосистемы и прикладные сервисы</span>
                         </div>
                     </div>
                     <p class="card-text" style="font-size: var(--text-sm); line-height: 1.6; margin-bottom: var(--space-md);">
@@ -220,50 +251,42 @@
                 <div class="bento-card col-12">
                     <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-sm); margin-bottom: var(--space-md);">
                         <div>
-                            <h3 style="font-size: var(--text-xl); font-weight: 700; color: var(--text-primary); margin: 0;">Технологическая матрица</h3>
-                            <span style="font-size: var(--text-xs); color: var(--text-muted);">Стек технологий промышленной электроники и веб-разработки</span>
+                            <h3 style="font-size: var(--text-lg); font-weight: 600; color: var(--text-primary); margin: 0;">Технологическая матрица</h3>
+                            <span style="font-size: var(--text-xs); color: var(--text-secondary);">Стек технологий промышленной электроники и веб-разработки</span>
                         </div>
                         <a href="projects.html" class="btn btn-sm btn-outline">Все проекты в портфолио →</a>
                     </div>
                     
                     <div class="tech-matrix">
                         <div class="tech-node">
-                            <span class="tech-icon">🐍</span>
                             <span class="tech-name">Python 3.11+</span>
                             <span class="tech-desc">Asyncio / Aiogram 3</span>
                         </div>
                         <div class="tech-node">
-                            <span class="tech-icon">⚡</span>
-                            <span class="tech-name">Telegram Bot API</span>
+                            <span class="tech-name">Telegram API</span>
                             <span class="tech-desc">Webhooks / Bots</span>
                         </div>
                         <div class="tech-node">
-                            <span class="tech-icon">🤖</span>
-                            <span class="tech-name">NLP & Vector AI</span>
+                            <span class="tech-name">Vector NLP</span>
                             <span class="tech-desc">MiniLM Embeddings</span>
                         </div>
                         <div class="tech-node">
-                            <span class="tech-icon">🌐</span>
                             <span class="tech-name">Frontend Web</span>
                             <span class="tech-desc">JS ES6+ / HTML5 / CSS3</span>
                         </div>
                         <div class="tech-node">
-                            <span class="tech-icon">⚙️</span>
                             <span class="tech-name">Siemens Sinumerik</span>
-                            <span class="tech-desc">840D sl / Промавтоматика</span>
+                            <span class="tech-desc">840D sl / Пром-ЧПУ</span>
                         </div>
                         <div class="tech-node">
-                            <span class="tech-icon">📊</span>
                             <span class="tech-name">Data & Excel</span>
                             <span class="tech-desc">SQLite / OpenPyXL</span>
                         </div>
                         <div class="tech-node">
-                            <span class="tech-icon">☁️</span>
                             <span class="tech-name">Serverless</span>
                             <span class="tech-desc">Google Apps Script</span>
                         </div>
                         <div class="tech-node">
-                            <span class="tech-icon">🛠️</span>
                             <span class="tech-name">CI/CD & Git</span>
                             <span class="tech-desc">GitHub / Workflows</span>
                         </div>
@@ -366,7 +389,6 @@
     </div>
 </footer>
 
-<script src="js/canvas-bg.js"></script>
 <script src="js/main.js"></script>
 
 <!-- COOKIE BANNER -->

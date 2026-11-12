@@ -270,21 +270,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- ✨ Spotlight Mouse Tracking for Bento Cards ---
-    function initBentoSpotlight() {
-        const cards = document.querySelectorAll('.bento-card');
-        cards.forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                card.style.setProperty('--mouse-x', `${x}px`);
-                card.style.setProperty('--mouse-y', `${y}px`);
-            });
-        });
-    }
-    initBentoSpotlight();
-
     // --- 🗂️ Табы внутри карточек проектов ---
     document.querySelectorAll('.card, .bento-card, .project-card').forEach(card => {
         const tabBtns = card.querySelectorAll('.project-tab-btn, .segmented-tab-btn');
@@ -409,30 +394,6 @@ document.addEventListener('DOMContentLoaded', () => {
         terminal.addEventListener('click', () => {
             terminal.remove();
         });
-    }
-
-    // --- ⌨️ Typewriter эффект без обрезания слов ---
-    const typewriterEl = document.querySelector('.typewriter');
-    if (typewriterEl) {
-        const fullText = typewriterEl.getAttribute('data-text') || typewriterEl.textContent.trim();
-        typewriterEl.textContent = '';
-
-        const textSpan = document.createElement('span');
-        const cursor = document.createElement('span');
-        cursor.className = 'typewriter-cursor';
-        cursor.textContent = '|';
-        typewriterEl.appendChild(textSpan);
-        typewriterEl.appendChild(cursor);
-
-        let charIndex = 0;
-        function typeChar() {
-            if (charIndex < fullText.length) {
-                textSpan.textContent += fullText.charAt(charIndex);
-                charIndex++;
-                setTimeout(typeChar, 30);
-            }
-        }
-        setTimeout(typeChar, 350);
     }
 
     // --- 💎 12. Отзывы (Загрузка и карусель) ---
