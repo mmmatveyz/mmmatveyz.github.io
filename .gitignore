@@ -76,3 +76,6 @@ htmlcov/
 *.tar.xz
 *.tar.zst
 ```
+
+# Test and audit artifacts
+.taste-skill/

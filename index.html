@@ -68,6 +68,7 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://mc.yandex.ru; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://script.google.com https://mc.yandex.ru; form-action 'self' https://script.google.com; object-src 'none'; base-uri 'self';">
 </head>
 <body>
+<a href="#main" class="skip-link">Перейти к основному содержимому</a>
 
 <header class="header">
     <div class="container header-inner">
@@ -96,7 +97,7 @@
     </div>
 </header>
 
-<main>
+<main id="main">
     <!-- HERO & BENTO SHOWCASE -->
     <section class="section hero-relative reveal" style="padding-top: var(--space-md);">
         <div class="container">
@@ -129,7 +130,7 @@
                 <!-- AVATAR CARD (4 COLS) -->
                 <div class="bento-card col-4 avatar-bento-card">
                     <div class="avatar-hud-wrapper">
-                        <img src="images/profile.svg" alt="Матвей Зрячих" class="avatar-image" loading="lazy">
+                        <img src="images/profile.svg" alt="Матвей Зрячих" width="140" height="140" class="avatar-image" loading="lazy">
                     </div>
                     <div style="font-weight: 600; font-size: var(--text-base); color: var(--text-primary); margin-bottom: 2px;">Матвей Зрячих</div>
                     <div style="font-size: var(--text-xs); color: var(--text-secondary); margin-bottom: var(--space-sm);">г. Санкт-Петербург</div>
@@ -148,7 +149,7 @@
                             <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
                         </svg>
                     </div>
-                    <div class="bento-val">4.5+ года</div>
+                    <div class="bento-val">4.5+&nbsp;года</div>
                     <div class="bento-label">Пром. опыт</div>
                     <div class="bento-desc">«Силовые машины», «Энергомаш» — тяжелое машиностроение и станки с ЧПУ</div>
                 </div>
@@ -160,7 +161,7 @@
                             <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
                         </svg>
                     </div>
-                    <div class="bento-val">6 разряд</div>
+                    <div class="bento-val">6&nbsp;разряд</div>
                     <div class="bento-label">Высший разряд</div>
                     <div class="bento-desc">Электромонтёр по ремонту сложного оборудования + диплом инженера-электроника</div>
                 </div>
@@ -173,8 +174,8 @@
                             <polyline points="8 6 2 12 8 18"></polyline>
                         </svg>
                     </div>
-                    <div class="bento-val">Python & AI</div>
-                    <div class="bento-label">Боты & NLP</div>
+                    <div class="bento-val">Python &amp; AI</div>
+                    <div class="bento-label">Боты &amp; NLP</div>
                     <div class="bento-desc">Семантический векторный поиск дефектов (MiniLM), авто-табели и интеграции</div>
                 </div>
 
@@ -311,7 +312,7 @@
                     </svg>
                 </button>
                 <div class="testimonials-grid" id="testimonials-list">
-                    <p style="color: var(--text-secondary);">Загрузка отзывов...</p>
+                    <p style="color: var(--text-secondary);">Загрузка отзывов…</p>
                 </div>
                 <button class="carousel-btn right" id="scrollRight" aria-label="Следующий отзыв">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -328,11 +329,11 @@
                     <input type="text" name="_hp_trap" style="display:none !important;" tabindex="-1" autocomplete="off" aria-hidden="true">
                     <div class="form-group">
                         <label class="form-label" for="review-name">Ваше имя *</label>
-                        <input class="form-input" type="text" id="review-name" name="name" required placeholder="Иван Иванов">
+                        <input class="form-input" type="text" id="review-name" name="name" required autocomplete="name" placeholder="Иван Иванов">
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="review-role">Роль / Компания</label>
-                        <input class="form-input" type="text" id="review-role" name="role" placeholder="Главный механик / Ведущий инженер">
+                        <input class="form-input" type="text" id="review-role" name="role" autocomplete="organization-title" placeholder="Главный механик / Ведущий инженер">
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="review-stars">Оценка</label>
@@ -346,7 +347,7 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="review-text">Ваш отзыв *</label>
-                        <textarea class="form-textarea" id="review-text" name="message" required placeholder="Расскажите о вашем опыте совместной работы..."></textarea>
+                        <textarea class="form-textarea" id="review-text" name="message" required autocomplete="off" placeholder="Расскажите о вашем опыте совместной работы…"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary" style="align-self: flex-start;">
                         <span>Опубликовать отзыв</span>

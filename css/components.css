@@ -78,7 +78,7 @@
     padding: 4px 10px;
     cursor: pointer;
     border-radius: var(--radius-xs);
-    transition: all var(--transition-fast);
+    transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
 }
 
 .project-tab-btn:hover {

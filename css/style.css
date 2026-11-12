@@ -6,6 +6,8 @@
 @import 'components.css';
 
 :root {
+  color-scheme: dark;
+
   /* 🪨 Slate Industrial Ramp (calm, exact, technical) */
   --bg-primary: #0a0c10;
   --bg-secondary: #0f1218;
@@ -91,6 +93,7 @@
 
 /* ☀️ Calibrated Light Theme */
 [data-theme="light"] {
+  color-scheme: light;
   --bg-primary: #f8fafc;
   --bg-secondary: #f1f5f9;
   --bg-card: #ffffff;
@@ -168,6 +171,29 @@ a {
   transition: color var(--transition-fast);
 }
 
+:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  top: -120px;
+  left: var(--space-md);
+  background: var(--text-primary);
+  color: var(--text-inverse);
+  padding: 8px 16px;
+  z-index: 10001;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  transition: top var(--transition-fast);
+}
+
+.skip-link:focus-visible {
+  top: var(--space-sm);
+}
+
 img, video {
   max-width: 100%;
   height: auto;
@@ -176,6 +202,7 @@ img, video {
 
 button, input, textarea, select {
   font: inherit;
+  touch-action: manipulation;
 }
 
 /* ==========================================================================
@@ -193,6 +220,11 @@ button, input, textarea, select {
   position: relative;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  scroll-margin-top: 80px;
+  text-wrap: balance;
+}
+
 .section-title {
   font-size: var(--text-3xl);
   font-weight: 600;
@@ -200,6 +232,7 @@ button, input, textarea, select {
   margin-bottom: var(--space-sm);
   color: var(--text-primary);
   line-height: 1.25;
+  text-wrap: balance;
 }
 
 .section-subtitle {
@@ -291,7 +324,7 @@ button, input, textarea, select {
   border-radius: 0;
   padding: 12px 0;
   box-shadow: none;
-  transition: all var(--transition-normal);
+  transition: border-color var(--transition-normal);
 }
 
 [data-theme="light"] .header-inner {
@@ -325,7 +358,7 @@ button, input, textarea, select {
   color: var(--text-secondary);
   padding: 6px 12px;
   border-radius: var(--radius-sm);
-  transition: all var(--transition-fast);
+  transition: color var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast);
   position: relative;
 }
 
@@ -357,7 +390,7 @@ button, input, textarea, select {
   cursor: pointer;
   color: var(--text-secondary);
   margin-left: var(--space-xs);
-  transition: all var(--transition-fast);
+  transition: color var(--transition-fast), border-color var(--transition-fast);
 }
 
 .theme-toggle:hover {
@@ -508,7 +541,7 @@ button, input, textarea, select {
   font-size: var(--text-sm);
   font-weight: 500;
   cursor: pointer;
-  transition: all var(--transition-fast);
+  transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
   text-decoration: none;
 }
 
@@ -652,7 +685,7 @@ button, input, textarea, select {
   font-size: 11px;
   font-family: var(--font-mono);
   color: var(--text-secondary);
-  transition: all var(--transition-fast);
+  transition: background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
 }
 
 .tag-chip:hover {
@@ -736,7 +769,7 @@ button, input, textarea, select {
   padding: 6px 10px;
   cursor: pointer;
   border-radius: var(--radius-xs);
-  transition: all var(--transition-fast);
+  transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
 }
 
 .segmented-tab-btn.active {
@@ -784,7 +817,7 @@ button, input, textarea, select {
   color: var(--text-secondary);
   cursor: pointer;
   flex-shrink: 0;
-  transition: all var(--transition-fast);
+  transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
   backdrop-filter: blur(12px);
 }
 
@@ -898,7 +931,7 @@ button, input, textarea, select {
   background: rgba(0, 0, 0, 0.25);
   color: var(--text-primary);
   font-size: var(--text-sm);
-  transition: all var(--transition-fast);
+  transition: border-color var(--transition-fast), background var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 [data-theme="light"] .form-input,
@@ -985,7 +1018,7 @@ select.form-input option {
   z-index: 10000;
   opacity: 0;
   visibility: hidden;
-  transition: all var(--transition-normal);
+  transition: opacity var(--transition-normal), visibility var(--transition-normal);
 }
 
 .modal-overlay.active {
@@ -1018,7 +1051,7 @@ select.form-input option {
   justify-content: center;
   color: var(--text-secondary);
   cursor: pointer;
-  transition: all var(--transition-fast);
+  transition: background var(--transition-fast), color var(--transition-fast);
 }
 
 .modal-close:hover {
@@ -1090,7 +1123,7 @@ body.modal-open {
   font-size: var(--text-xs);
   font-family: var(--font-mono);
   font-weight: 500;
-  transition: all var(--transition-fast);
+  transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
 }
 
 .filter-btn:hover {
@@ -1196,7 +1229,7 @@ body.modal-open {
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   text-align: center;
-  transition: all var(--transition-fast);
+  transition: background var(--transition-fast), border-color var(--transition-fast);
 }
 
 .tech-node:hover {
@@ -1412,5 +1445,20 @@ body.modal-open {
   .footer-inner {
     flex-direction: column;
     text-align: center;
+  }
+}
+
+/* ==========================================================================
+   ♿ ACCESSIBILITY: PREFERS REDUCED MOTION
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .skills-ticker-track {
+    animation: none !important;
   }
 }
