@@ -294,29 +294,41 @@ document.addEventListener('DOMContentLoaded', () => {
     const filterBtns = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.projects-grid .card, .projects-grid .bento-card, .projects-grid .project-card, .bento-grid .project-card');
 
+    function applyFilter(filter) {
+        projectCards.forEach(card => {
+            const rawCat = card.getAttribute('data-category') || '';
+            const categories = rawCat.split(/\s+/);
+            if (filter === 'all' || categories.includes(filter)) {
+                card.style.display = 'flex';
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'scale(1)';
+                }, 50);
+            } else {
+                card.style.opacity = '0';
+                card.style.transform = 'scale(0.95)';
+                setTimeout(() => { card.style.display = 'none'; }, 300);
+            }
+        });
+    }
+
     if (filterBtns.length > 0) {
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 filterBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
-
-                const filter = btn.getAttribute('data-filter');
-
-                projectCards.forEach(card => {
-                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
-                        card.style.display = 'flex';
-                        setTimeout(() => {
-                            card.style.opacity = '1';
-                            card.style.transform = 'scale(1)';
-                        }, 50);
-                    } else {
-                        card.style.opacity = '0';
-                        card.style.transform = 'scale(0.95)';
-                        setTimeout(() => { card.style.display = 'none'; }, 300);
-                    }
-                });
+                applyFilter(btn.getAttribute('data-filter'));
             });
         });
+
+        // Initialize active filter on page load if one is marked active
+        const initialActiveBtn = document.querySelector('.filter-btn.active');
+        if (initialActiveBtn) {
+            const initialFilter = initialActiveBtn.getAttribute('data-filter');
+            if (initialFilter && initialFilter !== 'all') {
+                applyFilter(initialFilter);
+            }
+        }
     }
 
     // --- 🎥 Оптимизация воспроизведения видео при скролле ---
