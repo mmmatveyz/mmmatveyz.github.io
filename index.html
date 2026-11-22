@@ -110,7 +110,7 @@
                     </div>
                     <h1 class="hero-title">
                         Матвей Зрячих<br>
-                        <span class="text-gradient">Инженер-электроник и специалист по промавтоматике</span>
+                        <span class="hero-role">Инженер-электроник и специалист по промавтоматике</span>
                     </h1>
                     <p class="hero-subtitle">Наладка и обслуживание металлообрабатывающих станков с ЧПУ (Siemens Sinumerik), силовая электроника, КИПиА и промышленная автоматизация</p>
 
@@ -123,7 +123,6 @@
                             </svg>
                         </a>
                         <a href="resume.html" class="btn btn-outline">Резюме</a>
-                        <a href="contacts.html" class="btn btn-outline">Связаться</a>
                     </div>
                 </div>
 
@@ -132,9 +131,9 @@
                     <div class="console-head">
                         <div class="console-status">
                             <span class="status-dot"></span>
-                            <span class="console-title">ИНЖЕНЕРНЫЙ ПУЛЬТ</span>
+                            <span class="console-title">Инженерный пульт</span>
                         </div>
-                        <span class="console-badge">ONLINE</span>
+                        <span class="console-badge">В сети</span>
                     </div>
 
                     <div class="console-profile-row">
@@ -144,7 +143,10 @@
                         <div>
                             <div style="font-weight: 600; font-size: var(--text-base); color: var(--text-primary);">Матвей Зрячих</div>
                             <div style="font-size: var(--text-xs); color: var(--text-secondary); margin-bottom: 4px;">г. Санкт-Петербург</div>
-                            <span class="badge-accent" style="display: inline-block;">Инженер-электроник (диплом) • Электромонтёр 6 разряда</span>
+                            <div class="badge-list" style="margin-top: 4px;">
+                                <span class="tag-chip">Инженер-электроник</span>
+                                <span class="tag-chip">Электромонтёр 6 разряда</span>
+                            </div>
                         </div>
                     </div>
 
@@ -332,70 +334,7 @@
         </div>
     </section>
 
-    <!-- REVIEWS SECTION (BENTO GLASS) -->
-    <section class="section reveal">
-        <div class="container">
-            <div style="margin-bottom: var(--space-lg);">
-                <h2 class="section-title">Отзывы и обратная связь</h2>
-                <p class="section-subtitle">Мнения коллег, заказчиков и руководителей о совместной работе</p>
-            </div>
 
-            <div class="reviews-wrapper">
-                <button class="carousel-btn left" id="scrollLeft" aria-label="Предыдущий отзыв">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="15 18 9 12 15 6"></polyline>
-                    </svg>
-                </button>
-                <div class="testimonials-grid" id="testimonials-list">
-                    <p style="color: var(--text-secondary);">Загрузка отзывов…</p>
-                </div>
-                <button class="carousel-btn right" id="scrollRight" aria-label="Следующий отзыв">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="9 18 15 12 9 6"></polyline>
-                    </svg>
-                </button>
-            </div>
-
-            <div class="mt-xl bento-card col-12" style="max-width: 720px; margin-left: auto; margin-right: auto;">
-                <h3 style="font-size: var(--text-xl); font-weight: 700; color: var(--text-primary); margin-bottom: var(--space-xs);">Оставить отзыв</h3>
-                <p style="font-size: var(--text-sm); color: var(--text-muted); margin-bottom: var(--space-md);">Работали вместе над станками или IT-проектом? Поделитесь вашим впечатлением.</p>
-                <form class="contact-form" id="reviewForm" action="https://script.google.com/macros/s/AKfycbxrBExj_TvpbnR4Yd2Q8kvxtmKHyOLMH25m1E9v80xo3Pl7RDaNoMf_4OOhfIX8RJhR/exec" method="POST">
-                    <input type="hidden" name="form-type" value="review">
-                    <input type="text" name="_hp_trap" style="display:none !important;" tabindex="-1" autocomplete="off" aria-hidden="true">
-                    <div class="form-group">
-                        <label class="form-label" for="review-name">Ваше имя *</label>
-                        <input class="form-input" type="text" id="review-name" name="name" required autocomplete="name" placeholder="Иван Иванов">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label" for="review-role">Роль / Компания</label>
-                        <input class="form-input" type="text" id="review-role" name="role" autocomplete="organization-title" placeholder="Главный механик / Ведущий инженер">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label" for="review-stars">Оценка</label>
-                        <select class="form-input" id="review-stars" name="stars">
-                            <option value="5">5 из 5 — Отлично</option>
-                            <option value="4">4 из 5 — Хорошо</option>
-                            <option value="3">3 из 5 — Нормально</option>
-                            <option value="2">2 из 5 — Удовлетворительно</option>
-                            <option value="1">1 из 5 — Плохо</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label" for="review-text">Ваш отзыв *</label>
-                        <textarea class="form-textarea" id="review-text" name="message" required autocomplete="off" placeholder="Расскажите о вашем опыте совместной работы…"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary" style="align-self: flex-start;">
-                        <span>Опубликовать отзыв</span>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                            <polyline points="12 5 19 12 12 19"></polyline>
-                        </svg>
-                    </button>
-                    <p class="form-note">Отзыв проверяется и публикуется автоматически.</p>
-                </form>
-            </div>
-        </div>
-    </section>
 </main>
 
 <footer class="footer">

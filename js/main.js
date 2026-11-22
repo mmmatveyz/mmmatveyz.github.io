@@ -190,19 +190,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (link.getAttribute('href') === currentPath) link.classList.add('active');
     });
 
-    // --- 💎 6. Scroll Reveal (Плавное появление) ---
-    const revealElements = document.querySelectorAll('.reveal');
-    const revealObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.1 });
-
-    revealElements.forEach(el => revealObserver.observe(el));
-
     // --- 💎 7. Баннер согласия с Cookie ---
     const cookieBanner = document.getElementById('cookie-banner');
     const acceptCookiesBtn = document.getElementById('accept-cookies');
@@ -408,103 +395,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 💎 12. Отзывы (Загрузка и карусель) ---
-    const googleAppScriptUrl = 'https://script.google.com/macros/s/AKfycbxrBExj_TvpbnR4Yd2Q8kvxtmKHyOLMH25m1E9v80xo3Pl7RDaNoMf_4OOhfIX8RJhR/exec';
+    // --- 💎 12. Обработка форм с антиспамом (Honeypot + Time-gate + предотвращение дублирования) ---
     const pageLoadTimestamp = Date.now();
 
-    const reviewsContainer = document.getElementById('testimonials-list');
-    const scrollLeftBtn = document.getElementById('scrollLeft');
-    const scrollRightBtn = document.getElementById('scrollRight');
-
-    function getStarsSvg(count) {
-        const starsCount = Math.min(Math.max(parseInt(count, 10) || 5, 1), 5);
-        const starSvg = `<svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>`;
-        return starSvg.repeat(starsCount);
-    }
-
-    function scrollContainer(direction) {
-        if (!reviewsContainer) return;
-        const scrollAmount = reviewsContainer.clientWidth;
-        reviewsContainer.scrollBy({
-            left: direction === 'left' ? -scrollAmount : scrollAmount,
-            behavior: 'smooth'
-        });
-    }
-
-    if (scrollLeftBtn && scrollRightBtn) {
-        scrollLeftBtn.addEventListener('click', () => scrollContainer('left'));
-        scrollRightBtn.addEventListener('click', () => scrollContainer('right'));
-    }
-
-    function loadReviews() {
-        if (!reviewsContainer) return;
-        fetch(googleAppScriptUrl)
-            .then(response => response.json())
-            .then(data => {
-                reviewsContainer.innerHTML = '';
-                if (!Array.isArray(data) || data.length === 0) {
-                    reviewsContainer.innerHTML = '<p class="card-text">Пока нет отзывов. Будьте первым!</p>';
-                    return;
-                }
-                const recentReviews = data.slice().reverse();
-                recentReviews.forEach(review => {
-                    const card = document.createElement('div');
-                    card.className = 'card testimonial-card';
-
-                    const safeName = String(review.name || 'Пользователь').trim();
-                    const safeRole = String(review.role || '').trim();
-                    const safeText = String(review.text || '').trim();
-                    const initial = (safeName.charAt(0) || 'U').toUpperCase();
-
-                    const headerDiv = document.createElement('div');
-                    headerDiv.className = 'testimonial-header';
-
-                    const avatarDiv = document.createElement('div');
-                    avatarDiv.className = 'testimonial-avatar';
-                    avatarDiv.textContent = initial;
-
-                    const infoDiv = document.createElement('div');
-                    const nameEl = document.createElement('h4');
-                    nameEl.className = 'testimonial-name';
-                    nameEl.textContent = safeName;
-                    infoDiv.appendChild(nameEl);
-
-                    if (safeRole) {
-                        const roleEl = document.createElement('p');
-                        roleEl.className = 'testimonial-role';
-                        roleEl.textContent = safeRole;
-                        infoDiv.appendChild(roleEl);
-                    }
-
-                    headerDiv.appendChild(avatarDiv);
-                    headerDiv.appendChild(infoDiv);
-
-                    const textEl = document.createElement('p');
-                    textEl.className = 'testimonial-text';
-                    textEl.textContent = `"${safeText}"`;
-
-                    const ratingEl = document.createElement('div');
-                    ratingEl.className = 'testimonial-rating';
-                    ratingEl.innerHTML = getStarsSvg(review.stars);
-
-                    card.appendChild(headerDiv);
-                    card.appendChild(textEl);
-                    card.appendChild(ratingEl);
-
-                    reviewsContainer.appendChild(card);
-                });
-            })
-            .catch(error => {
-                console.error('Ошибка загрузки отзывов:', error);
-                reviewsContainer.innerHTML = '<p class="card-text">Не удалось загрузить отзывы.</p>';
-            });
-    }
-
-    if (reviewsContainer) {
-        loadReviews();
-    }
-
-    // --- 💎 13. Обработка форм с антиспамом (Honeypot + Time-gate + предотвращение дублирования) ---
     function setupForm(formId, successMsgText) {
         const form = document.getElementById(formId);
         if (!form) return;
@@ -557,10 +450,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     submitBtn.innerHTML = originalContent;
                     submitBtn.disabled = false;
                 }
-
-                if (formId === 'reviewForm') {
-                    setTimeout(loadReviews, 1500);
-                }
             }).catch(error => {
                 console.error('Ошибка отправки:', error);
                 const msg = document.createElement('div');
@@ -579,6 +468,5 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    setupForm('reviewForm', 'Отзыв успешно опубликован.');
     setupForm('contactForm', 'Сообщение успешно отправлено. Я свяжусь с вами в ближайшее время.');
 });

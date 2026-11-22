@@ -299,12 +299,14 @@ h1, h2, h3, h4, h5, h6 {
 .mt-lg { margin-top: var(--space-lg); }
 .mt-xl { margin-top: var(--space-xl); }
 
+.hero-role,
 .text-gradient {
   color: var(--text-primary);
   background: none;
   -webkit-text-fill-color: initial;
 }
 
+[data-theme="light"] .hero-role,
 [data-theme="light"] .text-gradient {
   color: var(--text-primary);
   background: none;
@@ -914,109 +916,6 @@ h1, h2, h3, h4, h5, h6 {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* ==========================================================================
-   ⭐ REVIEWS & CAROUSEL
-   ========================================================================== */
-.reviews-wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-}
-
-.carousel-btn {
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: 50%;
-  width: 44px;
-  height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-secondary);
-  cursor: pointer;
-  flex-shrink: 0;
-  transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
-  backdrop-filter: blur(12px);
-}
-
-.carousel-btn:hover {
-  background: var(--accent-primary);
-  color: #ffffff;
-  border-color: var(--accent-primary);
-  transform: scale(1.08);
-}
-
-.testimonials-grid {
-  display: flex;
-  gap: var(--space-md);
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  padding: var(--space-xs) 0;
-  scrollbar-width: none;
-  flex: 1;
-}
-
-.testimonials-grid::-webkit-scrollbar {
-  display: none;
-}
-
-.testimonial-card {
-  min-width: 320px;
-  max-width: 380px;
-  flex-shrink: 0;
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  padding: var(--space-lg);
-}
-
-.testimonial-header {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-  margin-bottom: var(--space-sm);
-}
-
-.testimonial-avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent-primary), var(--accent-cyan));
-  color: #ffffff;
-  font-weight: 700;
-  font-size: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.testimonial-name {
-  font-weight: 700;
-  font-size: var(--text-sm);
-  color: var(--text-primary);
-}
-
-.testimonial-role {
-  font-size: var(--text-xs);
-  color: var(--text-muted);
-}
-
-.testimonial-text {
-  font-size: var(--text-sm);
-  color: var(--text-secondary);
-  line-height: 1.6;
-  margin-bottom: var(--space-sm);
-  font-style: italic;
-}
-
-.testimonial-rating svg {
-  width: 16px;
-  height: 16px;
-  fill: #fbbf24;
-  margin-right: 2px;
-}
 
 /* ==========================================================================
    📋 FORMS & INPUTS (GLASS 2.0)
