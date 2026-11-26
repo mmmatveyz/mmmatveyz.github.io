@@ -110,11 +110,11 @@ document.addEventListener('DOMContentLoaded', () => {
             '• <strong>Ведение карточек объектов:</strong> структура для наглядной презентации выполненных объектов с этапами работ и техническими деталями.<br><br>' +
             '<a href="https://voltgroup-spb.ru" target="_blank" rel="noopener noreferrer" style="color: var(--accent-secondary); text-decoration: underline; font-weight: 500;">Перейти на voltgroup-spb.ru &rarr;</a>'
         },
-        'Персональное портфолио': {
-            title: 'Персональное портфолио',
-            tech: ['JavaScript', 'Google Apps Script', 'CSS3', 'Яндекс.Метрика'],
-            desc: 'Интерактивный сайт-визитка для демонстрации инженерных проектов и связи с клиентами.',
-            extra: '<strong>Архитектура и особенности:</strong> Полностью собственный Frontend без громоздких фреймворков. В качестве бесплатной серверлесс-БД используется Google Apps Script (прием отзывов, хранение, статусы модерации). Интегрированы кастомный курсор, динамическая фильтрация, переключатель темы и аналитика Яндекс.Метрики.'
+        'Портфолио инженера': {
+            title: 'Портфолио инженера',
+            tech: ['JavaScript Vanilla', 'Google Apps Script', 'CSS3', 'Яндекс.Метрика'],
+            desc: 'Статический сайт-портфолио инженера-электроника с адаптивным интерфейсом и серверлесс-формой обратной связи.',
+            extra: '<strong>Архитектура и особенности:</strong> Чистый Frontend на Vanilla JS и CSS без тяжёлых фреймворков, калиброванные тёмная и светлая темы, динамическая фильтрация проектов, модальный просмотр документов и защита формы обратной связи (honeypot + time-gate) на базе Google Apps Script.'
         }
     };
 
@@ -132,8 +132,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (cardKey && projectDetails[cardKey]) {
                 const data = projectDetails[cardKey];
                 modalTitle.textContent = data.title;
+                modalTech.className = 'badge-list';
                 modalTech.style.display = 'flex';
-                modalTech.innerHTML = data.tech.map(t => `<span class="tech-tag">${t}</span>`).join('');
+                modalTech.innerHTML = data.tech.map(t => `<span class="tag-chip">${t}</span>`).join('');
                 modalImageWrapper.style.display = 'none';
                 modalDesc.textContent = data.desc;
                 modalDesc.style.display = 'block';
@@ -209,51 +210,6 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 cookieBanner.style.display = 'none';
             }, 300);
-        });
-    }
-
-    // --- 💎 8. Индикатор прогресса чтения ---
-    const progressContainer = document.createElement('div');
-    progressContainer.className = 'progress-container';
-    const progressBar = document.createElement('div');
-    progressBar.className = 'progress-bar';
-    progressContainer.appendChild(progressBar);
-    document.body.appendChild(progressContainer);
-
-    window.addEventListener('scroll', () => {
-        const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        if (windowHeight <= 0) {
-            progressBar.style.width = '0%';
-            return;
-        }
-        const scrolled = Math.min(Math.max((window.scrollY / windowHeight) * 100, 0), 100);
-        progressBar.style.width = scrolled + '%';
-    });
-
-    // --- 💎 9. Кастомный курсор ---
-    if (window.matchMedia("(pointer: fine)").matches) {
-        const cursor = document.createElement('div');
-        cursor.className = 'custom-cursor';
-        document.body.appendChild(cursor);
-
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.opacity = '1';
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
-
-        document.addEventListener('mouseleave', () => {
-            cursor.style.opacity = '0';
-        });
-
-        document.addEventListener('mouseenter', () => {
-            cursor.style.opacity = '1';
-        });
-
-        const clickables = document.querySelectorAll('a, button, .card, .bento-card, input, textarea, select, .segmented-tab-btn, .project-tab-btn');
-        clickables.forEach(el => {
-            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
         });
     }
 

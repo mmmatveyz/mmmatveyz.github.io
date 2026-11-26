@@ -36,7 +36,7 @@
     <link rel="yandex-tableau-widget" href="yandex-manifest.json">
 
     <!-- Content Security Policy (CSP) -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://mc.yandex.ru; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://script.google.com https://mc.yandex.ru; form-action 'self' https://script.google.com; object-src 'none'; base-uri 'self';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://mc.yandex.ru; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://script.google.com https://mc.yandex.ru; frame-src https://mc.yandex.ru; form-action 'self' https://script.google.com; object-src 'none'; base-uri 'self';">
 
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
@@ -88,7 +88,7 @@
         <div style="font-family: var(--font-mono); font-size: var(--text-sm); color: var(--accent-primary); margin-bottom: var(--space-xs); letter-spacing: 0.1em;">[ERROR_404: RESOURCE_NOT_FOUND]</div>
         <h1 class="hero-title" style="font-size: clamp(5rem, 14vw, 9rem); line-height: 1; margin-bottom: var(--space-sm); font-family: var(--font-mono); font-weight: 800;">404</h1>
         <p class="hero-subtitle" style="max-width: 500px; margin: 0 auto var(--space-lg);">Запрошенная страница недоступна или была перемещена в процессе планового обслуживания.</p>
-        <div class="card-actions" style="justify-content: center;">
+        <div class="btn-group" style="justify-content: center;">
             <a href="index.html" class="btn btn-primary">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="19" y1="12" x2="5" y2="12"></line>
@@ -108,7 +108,7 @@
 </main>
 
 <footer class="footer">
-    <div class="container">
+    <div class="container footer-inner">
         <p>© <span id="year"></span> Матвей Зрячих (mmmatveyz). Все права защищены.</p>
         <div class="footer-links">
             <a href="privacy.html" class="footer-link">

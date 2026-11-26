@@ -8,9 +8,10 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
     <!-- Theme Color & Mobile Browser Bar -->
-    <meta name="theme-color" content="#0f172a">
-    <meta name="msapplication-TileColor" content="#0f172a">
+    <meta name="theme-color" content="#080b11">
+    <meta name="msapplication-TileColor" content="#080b11">
 
     <!-- Favicons & Touch Icons -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -26,7 +27,7 @@
     <link rel="yandex-tableau-widget" href="yandex-manifest.json">
 
     <!-- Content Security Policy (CSP) -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://mc.yandex.ru; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://script.google.com https://mc.yandex.ru; form-action 'self' https://script.google.com; object-src 'none'; base-uri 'self';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://mc.yandex.ru; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://script.google.com https://mc.yandex.ru; frame-src https://mc.yandex.ru; form-action 'self' https://script.google.com; object-src 'none'; base-uri 'self';">
 
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
@@ -48,12 +49,36 @@
             --bg-color: #0a0c10;
             --card-bg: #131720;
             --text-main: #f1f5f9;
+            --text-body: #cbd5e1;
             --text-muted: #94a3b8;
             --accent: #3b82f6;
+            --accent-hover: #2563eb;
             --accent-glow: transparent;
             --border-color: rgba(241, 245, 249, 0.08);
+            --border-hover: rgba(241, 245, 249, 0.16);
+            --surface-soft: rgba(255, 255, 255, 0.04);
+            --edu-bg: rgba(59, 130, 246, 0.08);
+            --edu-border: rgba(59, 130, 246, 0.25);
+            --edu-accent: #60a5fa;
             --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
             --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        [data-theme="light"] {
+            color-scheme: light;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-body: #334155;
+            --text-muted: #475569;
+            --accent: #2563eb;
+            --accent-hover: #1d4ed8;
+            --border-color: rgba(15, 23, 42, 0.1);
+            --border-hover: rgba(15, 23, 42, 0.2);
+            --surface-soft: rgba(15, 23, 42, 0.04);
+            --edu-bg: rgba(37, 99, 235, 0.06);
+            --edu-border: rgba(37, 99, 235, 0.22);
+            --edu-accent: #2563eb;
         }
 
         * {
@@ -88,17 +113,29 @@
             position: relative;
         }
 
+        [data-theme="light"] .resume-container {
+            box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
+        }
+
         .no-print-bar {
             max-width: 920px;
             margin: 0 auto 1.5rem auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 12px;
+        }
+
+        .no-print-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .btn {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
             padding: 8px 16px;
             border-radius: 6px;
@@ -119,6 +156,15 @@
             background: #cbd5e1;
         }
 
+        [data-theme="light"] .btn-primary {
+            background: #0f172a;
+            color: #ffffff;
+        }
+
+        [data-theme="light"] .btn-primary:hover {
+            background: #1e293b;
+        }
+
         .btn-outline {
             background: transparent;
             color: var(--text-main);
@@ -126,8 +172,14 @@
         }
 
         .btn-outline:hover {
-            border-color: var(--text-muted);
-            color: #ffffff;
+            border-color: var(--border-hover);
+            background: var(--surface-soft);
+        }
+
+        .theme-btn {
+            width: 36px;
+            height: 36px;
+            padding: 0;
         }
 
         /* Header */
@@ -168,7 +220,7 @@
             font-weight: 500;
             padding: 2px 8px;
             border-radius: 4px;
-            background: rgba(255, 255, 255, 0.04);
+            background: var(--surface-soft);
             color: var(--text-muted);
             border: 1px solid var(--border-color);
         }
@@ -179,6 +231,11 @@
             border-color: rgba(16, 185, 129, 0.25);
         }
 
+        [data-theme="light"] .badge-green {
+            color: #059669;
+            border-color: rgba(5, 150, 105, 0.25);
+        }
+
         .contact-info {
             text-align: right;
             font-size: 0.88rem;
@@ -186,6 +243,8 @@
             display: flex;
             flex-direction: column;
             gap: 6px;
+            flex-shrink: 0;
+            white-space: nowrap;
         }
 
         .contact-info a {
@@ -206,14 +265,15 @@
         }
 
         .section-title {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             text-transform: uppercase;
             letter-spacing: 0.08em;
             color: var(--accent);
             margin-bottom: 1.25rem;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+            white-space: nowrap;
         }
 
         .section-title::after {
@@ -233,7 +293,7 @@
         .timeline-item {
             position: relative;
             padding-left: 1.25rem;
-            border-left: 2px solid rgba(129, 140, 248, 0.3);
+            border-left: 2px solid var(--border-color);
         }
 
         .timeline-item::before {
@@ -245,7 +305,6 @@
             height: 10px;
             border-radius: 50%;
             background: var(--accent);
-            box-shadow: 0 0 8px var(--accent);
         }
 
         .job-title {
@@ -269,7 +328,7 @@
 
         .job-desc {
             font-size: 0.88rem;
-            color: #cbd5e1;
+            color: var(--text-body);
         }
 
         .job-desc ul {
@@ -295,11 +354,27 @@
 
         .skill-tag {
             font-size: 0.8rem;
-            background: rgba(255, 255, 255, 0.05);
+            background: var(--surface-soft);
             border: 1px solid var(--border-color);
             padding: 4px 10px;
             border-radius: 6px;
-            color: #e2e8f0;
+            color: var(--text-main);
+        }
+
+        .edu-card {
+            background: var(--edu-bg);
+            border: 1px solid var(--edu-border);
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 12px;
+        }
+
+        .edu-card-meta {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--edu-accent);
+            font-weight: 600;
+            margin-bottom: 2px;
         }
 
         .edu-item {
@@ -361,7 +436,7 @@
             }
 
             .header-title {
-                color: #4338ca !important;
+                color: #2563eb !important;
                 font-size: 11pt !important;
             }
 
@@ -374,12 +449,12 @@
                 font-size: 11pt !important;
             }
 
-            .job-period, .edu-year {
-                color: #4338ca !important;
+            .job-period, .edu-year, .edu-card-meta {
+                color: #2563eb !important;
             }
 
             .company-name, .section-title {
-                color: #4338ca !important;
+                color: #2563eb !important;
             }
 
             .job-desc, .job-desc li, .edu-place, .sidebar-block div {
@@ -387,9 +462,9 @@
             }
 
             .badge {
-                background: #e0e7ff !important;
-                color: #3730a3 !important;
-                border: 1px solid #c7d2fe !important;
+                background: #eff6ff !important;
+                color: #1d4ed8 !important;
+                border: 1px solid #bfdbfe !important;
             }
 
             .badge-green {
@@ -405,11 +480,11 @@
             }
 
             .timeline-item {
-                border-left-color: #6366f1 !important;
+                border-left-color: #2563eb !important;
             }
 
             .timeline-item::before {
-                background: #6366f1 !important;
+                background: #2563eb !important;
                 box-shadow: none !important;
             }
         }
@@ -436,6 +511,19 @@
                 width: 100%;
             }
 
+            .no-print-actions {
+                width: 100%;
+            }
+
+            .no-print-actions .btn-primary {
+                flex: 1;
+            }
+
+            .no-print-actions .theme-btn {
+                width: 38px;
+                flex-shrink: 0;
+            }
+
             .resume-header {
                 flex-direction: column;
                 align-items: flex-start;
@@ -457,6 +545,7 @@
                 width: 100%;
                 border-top: 1px solid var(--border-color);
                 padding-top: 1rem;
+                white-space: normal;
             }
 
             .resume-grid {
@@ -489,7 +578,14 @@
 
     <div class="no-print-bar">
         <a href="index.html" class="btn btn-outline">← На главную портфолио</a>
-        <button onclick="window.print()" class="btn btn-primary">Распечатать / Сохранить в PDF</button>
+        <div class="no-print-actions">
+            <button id="theme-toggle" class="btn btn-outline theme-btn" aria-label="Переключить тему">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+            <button onclick="window.print()" class="btn btn-primary">Распечатать / Сохранить в PDF</button>
+        </div>
     </div>
 
     <div class="resume-container">
@@ -508,10 +604,10 @@
             </div>
             <div class="contact-info">
                 <div><strong>СПб, м. Девяткино</strong></div>
-                <div>Тел: <a href="tel:+79817915616">+7 (981) 791-56-16</a></div>
+                <div>Тел: <a href="tel:+79817915616">+7&nbsp;(981)&nbsp;791-56-16</a></div>
                 <div>Email: <a href="mailto:matvey6527@mail.ru">matvey6527@mail.ru</a></div>
                 <div>Сайт: <a href="https://mmmatveyz.github.io" target="_blank">mmmatveyz.github.io</a></div>
-                <div style="margin-top: 4px; font-weight: 600; color: #10b981;">Желаемый доход: от 150 000 ₽ net</div>
+                <div style="margin-top: 4px; font-weight: 600; color: #10b981;">Желаемый доход: от&nbsp;150&nbsp;000&nbsp;₽&nbsp;net</div>
             </div>
         </header>
 
@@ -581,9 +677,9 @@
                 </div>
 
                 <div class="sidebar-block">
-                    <h2 class="section-title">Образование и Дипломы</h2>
-                    <div class="edu-card" style="background: rgba(59, 130, 246, 0.08); border: 1px solid rgba(59, 130, 246, 0.25); border-radius: 8px; padding: 12px; margin-bottom: 12px;">
-                        <div style="font-family: var(--font-mono); font-size: 0.72rem; color: #60a5fa; font-weight: 600; margin-bottom: 2px;">2026 г. • Диплом № 772427875803</div>
+                    <h2 class="section-title">Образование</h2>
+                    <div class="edu-card">
+                        <div class="edu-card-meta">2026 г. • Диплом № 772427875803</div>
                         <div style="font-weight: 600; font-size: 0.88rem; color: var(--text-main); margin-bottom: 4px;">Профессиональная переподготовка: Инженер-электроник</div>
                         <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 4px; line-height: 1.4;">ООО «Национальный центр профессионального образования» (НЦПО), г. Москва</p>
                         <p style="font-size: 0.78rem; color: var(--text-main); margin-bottom: 8px; line-height: 1.4;">Квалификация: <strong>Инженер-электроник</strong> по направлению «Электроника и электротехника»</p>
@@ -612,5 +708,33 @@
         </div>
     </div>
 
+    <script>
+        (function() {
+            var html = document.documentElement;
+            var toggle = document.getElementById('theme-toggle');
+            var sunSvg = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>';
+            var moonSvg = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>';
+
+            function applyTheme(theme) {
+                html.setAttribute('data-theme', theme);
+                if (toggle) {
+                    toggle.innerHTML = theme === 'dark' ? sunSvg : moonSvg;
+                    toggle.setAttribute('aria-label', theme === 'dark' ? 'Включить светлую тему' : 'Включить тёмную тему');
+                }
+            }
+
+            var saved = localStorage.getItem('theme');
+            var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            applyTheme(saved === 'dark' || (!saved && prefersDark) ? 'dark' : 'light');
+
+            if (toggle) {
+                toggle.addEventListener('click', function() {
+                    var next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+                    localStorage.setItem('theme', next);
+                    applyTheme(next);
+                });
+            }
+        })();
+    </script>
 </body>
 </html>

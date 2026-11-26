@@ -36,7 +36,7 @@
     <link rel="yandex-tableau-widget" href="yandex-manifest.json">
 
     <!-- Content Security Policy (CSP) -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://mc.yandex.ru; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://script.google.com https://mc.yandex.ru; form-action 'self' https://script.google.com; object-src 'none'; base-uri 'self';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://mc.yandex.ru; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://script.google.com https://mc.yandex.ru; frame-src https://mc.yandex.ru; form-action 'self' https://script.google.com; object-src 'none'; base-uri 'self';">
 
     <script type="text/javascript">
         (function(m,e,t,r,i,k,a){
@@ -147,68 +147,68 @@
             <div class="bento-grid">
                 <!-- HARDWARE & CNC -->
                 <div class="bento-card col-6">
-                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-md); padding-bottom: var(--space-xs); border-bottom: 1px solid var(--border-subtle);">
+                    <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: var(--space-md); padding-bottom: var(--space-xs); border-bottom: 1px solid var(--border-subtle);">
                         <div style="display: flex; align-items: center; gap: 8px;">
                             <span class="status-dot"></span>
                             <h3 style="font-size: var(--text-base); font-weight: 600; color: var(--text-primary); margin: 0;">ЧПУ, Автоматика &amp; Силовая часть</h3>
                         </div>
-                        <span class="tag-chip">Hardware &amp; КИПиА</span>
+                        <span class="tag-chip" style="flex-shrink: 0; white-space: nowrap;">Hardware &amp; КИПиА</span>
                     </div>
 
-                    <div style="display: flex; flex-direction: column; gap: var(--space-sm);">
-                        <div style="display: flex; justify-content: space-between; align-items: baseline; font-size: var(--text-sm);">
-                            <span style="color: var(--text-primary); font-weight: 500;">Siemens Sinumerik (840D sl / solution line)</span>
-                            <span style="color: var(--text-muted); font-size: var(--text-xs); font-family: var(--font-mono);">Пусконаладка, аварии</span>
+                    <div class="skill-list">
+                        <div class="skill-row">
+                            <span class="skill-row-name">Siemens Sinumerik (840D sl / solution line)</span>
+                            <span class="skill-row-meta">Пусконаладка, аварии</span>
                         </div>
-                        <div style="display: flex; justify-content: space-between; align-items: baseline; font-size: var(--text-sm);">
-                            <span style="color: var(--text-primary); font-weight: 500;">Контроллеры PLC Simatic S7 (STEP 7 / TIA Portal)</span>
-                            <span style="color: var(--text-muted); font-size: var(--text-xs); font-family: var(--font-mono);">Логика PLC, аварии</span>
+                        <div class="skill-row">
+                            <span class="skill-row-name">Контроллеры PLC Simatic S7 (STEP 7 / TIA Portal)</span>
+                            <span class="skill-row-meta">Логика PLC, аварии</span>
                         </div>
-                        <div style="display: flex; justify-content: space-between; align-items: baseline; font-size: var(--text-sm);">
-                            <span style="color: var(--text-primary); font-weight: 500;">Силовые приводы Simodrive 611 &amp; Sinamics S120</span>
-                            <span style="color: var(--text-muted); font-size: var(--text-xs); font-family: var(--font-mono);">Силовые модули</span>
+                        <div class="skill-row">
+                            <span class="skill-row-name">Силовые приводы Simodrive 611 &amp; Sinamics S120</span>
+                            <span class="skill-row-meta">Силовые модули</span>
                         </div>
-                        <div style="display: flex; justify-content: space-between; align-items: baseline; font-size: var(--text-sm);">
-                            <span style="color: var(--text-primary); font-weight: 500;">Шкафы автоматики, датчики КИПиА, энкодеры</span>
-                            <span style="color: var(--text-muted); font-size: var(--text-xs); font-family: var(--font-mono);">Монтаж и ревизия</span>
+                        <div class="skill-row">
+                            <span class="skill-row-name">Шкафы автоматики, датчики КИПиА, энкодеры</span>
+                            <span class="skill-row-meta">Монтаж и ревизия</span>
                         </div>
-                        <div style="display: flex; justify-content: space-between; align-items: baseline; font-size: var(--text-sm);">
-                            <span style="color: var(--text-primary); font-weight: 500;">Электробезопасность до 1000В (Группа IV)</span>
-                            <span style="color: var(--text-muted); font-size: var(--text-xs); font-family: var(--font-mono);">Допуск IV группы</span>
+                        <div class="skill-row">
+                            <span class="skill-row-name">Электробезопасность до 1000В (Группа IV)</span>
+                            <span class="skill-row-meta">Допуск IV группы</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- SOFTWARE & AI -->
                 <div class="bento-card col-6">
-                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-md); padding-bottom: var(--space-xs); border-bottom: 1px solid var(--border-subtle);">
+                    <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: var(--space-md); padding-bottom: var(--space-xs); border-bottom: 1px solid var(--border-subtle);">
                         <div style="display: flex; align-items: center; gap: 8px;">
                             <span class="status-dot"></span>
                             <h3 style="font-size: var(--text-base); font-weight: 600; color: var(--text-primary); margin: 0;">Программная инженерия &amp; AI</h3>
                         </div>
-                        <span class="tag-chip">Software &amp; NLP</span>
+                        <span class="tag-chip" style="flex-shrink: 0; white-space: nowrap;">Software &amp; NLP</span>
                     </div>
 
-                    <div style="display: flex; flex-direction: column; gap: var(--space-sm);">
-                        <div style="display: flex; justify-content: space-between; align-items: baseline; font-size: var(--text-sm);">
-                            <span style="color: var(--text-primary); font-weight: 500;">Python 3.11 (Aiogram 3.x, asyncio)</span>
-                            <span style="color: var(--text-muted); font-size: var(--text-xs); font-family: var(--font-mono);">Telegram Bot API</span>
+                    <div class="skill-list">
+                        <div class="skill-row">
+                            <span class="skill-row-name">Python 3.11 (Aiogram 3.x, asyncio)</span>
+                            <span class="skill-row-meta">Telegram Bot API</span>
                         </div>
-                        <div style="display: flex; justify-content: space-between; align-items: baseline; font-size: var(--text-sm);">
-                            <span style="color: var(--text-primary); font-weight: 500;">Семантический векторный поиск дефектов</span>
-                            <span style="color: var(--text-muted); font-size: var(--text-xs); font-family: var(--font-mono);">MiniLM-L12 / NLP</span>
+                        <div class="skill-row">
+                            <span class="skill-row-name">Семантический векторный поиск дефектов</span>
+                            <span class="skill-row-meta">MiniLM-L12 / NLP</span>
                         </div>
-                        <div style="display: flex; justify-content: space-between; align-items: baseline; font-size: var(--text-sm);">
-                            <span style="color: var(--text-primary); font-weight: 500;">Автоматизация табелей и отчётов Excel</span>
-                            <span style="color: var(--text-muted); font-size: var(--text-xs); font-family: var(--font-mono);">OpenPyXL, SQLite</span>
+                        <div class="skill-row">
+                            <span class="skill-row-name">Автоматизация табелей и отчётов Excel</span>
+                            <span class="skill-row-meta">OpenPyXL, SQLite</span>
                         </div>
-                        <div style="display: flex; justify-content: space-between; align-items: baseline; font-size: var(--text-sm);">
-                            <span style="color: var(--text-primary); font-weight: 500;">Калькуляторы смет и веб-сервисы</span>
-                            <span style="color: var(--text-muted); font-size: var(--text-xs); font-family: var(--font-mono);">JS ES6+, HTML5, CSS3</span>
+                        <div class="skill-row">
+                            <span class="skill-row-name">Калькуляторы смет и веб-сервисы</span>
+                            <span class="skill-row-meta">JS ES6+, HTML5, CSS3</span>
                         </div>
-                        <div style="display: flex; justify-content: space-between; align-items: baseline; font-size: var(--text-sm);">
-                            <span style="color: var(--text-primary); font-weight: 500;">Облачные бэкенды &amp; Google Apps Script</span>
-                            <span style="color: var(--text-muted); font-size: var(--text-xs); font-family: var(--font-mono);">Webhook, REST</span>
+                        <div class="skill-row">
+                            <span class="skill-row-name">Облачные бэкенды &amp; Google Apps Script</span>
+                            <span class="skill-row-meta">Webhook, REST</span>
                         </div>
                     </div>
                 </div>
@@ -299,7 +299,7 @@
 </main>
 
 <footer class="footer">
-    <div class="container">
+    <div class="container footer-inner">
         <p>© <span id="year"></span> Матвей Зрячих (mmmatveyz). Все права защищены.</p>
         <div class="footer-links">
             <a href="privacy.html" class="footer-link">

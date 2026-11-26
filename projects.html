@@ -36,7 +36,7 @@
     <link rel="yandex-tableau-widget" href="yandex-manifest.json">
 
     <!-- Content Security Policy (CSP) -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://mc.yandex.ru; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://script.google.com https://mc.yandex.ru; form-action 'self' https://script.google.com; object-src 'none'; base-uri 'self';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://mc.yandex.ru; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://script.google.com https://mc.yandex.ru; frame-src https://mc.yandex.ru; form-action 'self' https://script.google.com; object-src 'none'; base-uri 'self';">
 
     <script type="text/javascript">
         (function(m,e,t,r,i,k,a){
@@ -88,8 +88,8 @@
         </div>
 
         <div class="project-filters">
-            <button class="filter-btn active" data-filter="cnc">Автоматизация и ЧПУ</button>
-            <button class="filter-btn" data-filter="all">Все проекты</button>
+            <button class="filter-btn active" data-filter="all">Все проекты</button>
+            <button class="filter-btn" data-filter="cnc">Автоматизация и ЧПУ</button>
             <button class="filter-btn" data-filter="bot">Telegram-сервисы данных</button>
             <button class="filter-btn" data-filter="web">Веб-разработка</button>
         </div>
@@ -98,7 +98,7 @@
 
             <!-- PROJECT 1: РемонтTrack -->
             <article class="bento-card col-6 project-card" data-category="cnc bot">
-                <div class="project-preview-wrapper">
+                <div class="project-preview-wrapper is-portrait">
                     <video autoplay loop muted playsinline preload="metadata">
                         <source src="images/remonttrack-demo.mp4" type="video/mp4">
                         Ваш браузер не поддерживает видео.
@@ -145,7 +145,7 @@
 
             <!-- PROJECT 2: WorkTimeBot -->
             <article class="bento-card col-6 project-card" data-category="cnc bot">
-                <div class="project-preview-wrapper">
+                <div class="project-preview-wrapper is-portrait">
                     <video autoplay loop muted playsinline preload="metadata">
                         <source src="images/worktime-demo.mp4" type="video/mp4">
                         Ваш браузер не поддерживает видео.
@@ -191,7 +191,7 @@
             </article>
 
             <!-- PROJECT 3: VoltGroup -->
-            <article class="bento-card col-6 project-card" data-category="cnc web">
+            <article class="bento-card col-6 project-card" data-category="web bot">
                 <div class="project-preview-wrapper">
                     <video autoplay loop muted playsinline preload="metadata">
                         <source src="images/voltgroup-demo.mp4" type="video/mp4">
@@ -284,7 +284,7 @@
 </main>
 
 <footer class="footer">
-    <div class="container">
+    <div class="container footer-inner">
         <p>© <span id="year"></span> Матвей Зрячих (mmmatveyz). Все права защищены.</p>
         <div class="footer-links">
             <a href="privacy.html" class="footer-link">
